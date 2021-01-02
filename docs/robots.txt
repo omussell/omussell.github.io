@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://omussell.github.io/sitemap.xml

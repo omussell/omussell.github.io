@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <title>Firecracker</title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
+    
+
+    
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to content</a>
+    <div class="container">
+        <header> 
+            <h1 class="site-header">
+                <a href="https:&#x2F;&#x2F;omussell.github.io"></a>
+            </h1>
+            <nav>
+                
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;about&#x2F;">About</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;">Blog</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;tags&#x2F;">Tags</a>
+                
+                
+            </nav>
+        </header>
+        <main id="main" tabindex="-1">
+            
+
+<article class="post">
+    <header>
+        <h1>Firecracker</h1>
+    </header>
+    <div class="content">
+        <p>My summary</p>
+<h1 id="firecracker">Firecracker</h1>
+<p><a href="https://github.com/firecracker-microvm/firecracker">Firecracker</a> - Secure and fast microVMs for serverless computing.</p>
+<p>Follow the steps in <a href="https://github.com/firecracker-microvm/firecracker/blob/master/docs/rootfs-and-kernel-setup.md">here</a> to compile the kernel and base file. </p>
+<p>On Ubuntu when compiling you need to install dependencies like libssl-dev, libncurses-dev, bison, autoconf.</p>
+<p>Then if you try and compile and it complains about auto.conf not existing, run make menuconfig, then exit out immediately. That seems to have sorted it.</p>
+<p>Then when you run make vmlinux it asks lots of questions, but by using the preexisting config file from the repo a lot has already been decided. You could probably pipe yes into this, or otherwise just hold enter. Someone with more kernel experience needs to go over those options and decide if they're necessary. </p>
+<p>Once compiled continue with the getting started instructions but change the path to the kernel file to the vmlinux you created.</p>
+<p>I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.</p>
+
+    </div>
+
+    
+    <div class="article-info">
+        
+        <div class="article-date">14 January 2020</div>
+        
+        <div class="article-taxonomies">
+            
+            
+                <ul class="article-tags">
+                    
+                    <li><a href="https://omussell.github.io/tags/homelab/">#homelab</a></li>
+                    
+                </ul>
+            
+        </div>
+    </div>
+
+</article>
+
+
+        </main>
+        <footer>
+            <p>
+                ©  2021<br>
+                Powered by <a target="_blank" href="https://getzola.com/">Zola</a>, Theme <a target="_blank" href="https://github.com/zbrox/anpu-zola-theme">Anpu</a>.
+            </p>
+            <p>
+                
+                
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+base_url = "https://omussell.github.io"
+
+compile_sass = true
+
+highlight_code = true
+
+build_search_index = false
+
+generate_feed = true
+
+theme = "anpu"
+
+taxonomies = [
+    {name = "tags", rss = true},
+    {name = "categories", rss = true},
+]
+
+[extra]
+anpu_date_format="%e %B %Y"
+anpu_menu_links = [
+    { url = "$BASE_URL/about/", name = "About" },
+    { url = "$BASE_URL/", name = "Blog" },
+    { url = "$BASE_URL/tags/", name = "Tags" },
+]
