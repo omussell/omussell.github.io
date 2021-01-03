@@ -1,2 +1,2 @@
-# [https://omussell.github.io/]()
-Personal Site
+[Personal Site](https://omussell.github.io/)
+
