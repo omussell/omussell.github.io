@@ -1,5 +1,5 @@
 +++
-title = "Firecracker"
+title = "AWS Firecracker"
 date = 2020-01-14
 
 [taxonomies]

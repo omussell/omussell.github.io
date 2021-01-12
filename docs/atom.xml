@@ -4,10 +4,47 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2020-01-14T00:00:00+00:00</updated>
+	<updated>2021-01-12T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
 	<entry xml:lang="en">
-		<title>Firecracker</title>
+		<title>Running bitwarden_rs on a Raspberry Pi 4</title>
+		<published>2021-01-12T00:00:00+00:00</published>
+		<updated>2021-01-12T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/pi-bitwarden/" type="text/html"/>
+		<id>https://omussell.github.io/pi-bitwarden/</id>
+		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;We will be setting up bitwarden_rs without Docker, by compiling it manually and then running as a service. In this example we are using SQLite, but you can change this to MySQL or PostgreSQL if you prefer.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-dependencies&quot;&gt;Install dependencies&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;curl --proto &amp;#39;=https&amp;#39; --tlsv1.2 -sSf https:&#x2F;&#x2F;sh.rustup.rs | sh      # Answer Y when prompted
+apt install -y build-essential git pkg-config libssl-dev libsqlite3-dev
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;clone-the-repo&quot;&gt;Clone the repo&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;git clone https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;bitwarden_rs.git
+cd bitwarden_rs
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;compile&quot;&gt;Compile&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;cargo build --features sqlite --release
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;admin&quot;&gt;Admin&lt;&#x2F;h2&gt;
+&lt;p&gt;After compilation, the built binary will be &lt;code&gt;.&#x2F;target&#x2F;release&#x2F;bitwarden_rs&lt;&#x2F;code&gt;. This should be moved to &lt;code&gt;&#x2F;usr&#x2F;bin&lt;&#x2F;code&gt; with &lt;code&gt;mv .&#x2F;target&#x2F;release&#x2F;bitwarden_rs &#x2F;usr&#x2F;bin&#x2F;bitwarden_rs&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The data directory needs to be created with `mkdir -p &#x2F;var&#x2F;lib&#x2F;bitwarden_rs&#x2F;data. This is where the bitwarden keys and database are stored.&lt;&#x2F;p&gt;
+&lt;p&gt;Create a user account with &lt;code&gt;adduser bitwarden_rs&lt;&#x2F;code&gt;. Make sure the ownership of everything in &lt;code&gt;&#x2F;var&#x2F;lib&#x2F;bitwarden_rs&lt;&#x2F;code&gt; is set to the &lt;code&gt;bitwarden_rs&lt;&#x2F;code&gt; user.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;frontend&quot;&gt;Frontend&lt;&#x2F;h2&gt;
+&lt;p&gt;Download the already built assets: &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;cd &#x2F;var&#x2F;lib&#x2F;bitwarden_rs
+# Amend the version as appropriate
+wget https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;bw_web_builds&#x2F;releases&#x2F;download&#x2F;v2.17.1&#x2F;bw_web_v2.17.1.tar.gz
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Extract them&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;tar -xvf bw_web_v2.17.1.tar.gz
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;run&quot;&gt;Run&lt;&#x2F;h2&gt;
+&lt;p&gt;Create the systemd service file. Copy the file from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;bitwarden_rs&#x2F;wiki&#x2F;Setup-as-a-systemd-service&quot;&gt;the wiki&lt;&#x2F;a&gt;. &lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>AWS Firecracker</title>
 		<published>2020-01-14T00:00:00+00:00</published>
 		<updated>2020-01-14T00:00:00+00:00</updated>
 		<link href="https://omussell.github.io/firecracker/" type="text/html"/>
