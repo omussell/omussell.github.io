@@ -258,7 +258,32 @@ with open(&amp;#39;index.html&amp;#39;, &amp;#39;rb&amp;#39;) as f:
 &lt;p&gt;You should also make sure to set &lt;code&gt;add_header Content-Encoding &amp;quot;br&amp;quot;;&lt;&#x2F;code&gt; so that the browser knows that it is Brotli encoded.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;dynamic&quot;&gt;Dynamic&lt;&#x2F;h3&gt;
 &lt;p&gt;Otherwise, set &lt;code&gt;brotli on;&lt;&#x2F;code&gt; and it will compress file on-the-fly.&lt;&#x2F;p&gt;
-</content>
+&lt;h2 id=&quot;nginx-tcp-udp-proxy&quot;&gt;NGINX TCP&#x2F;UDP proxy&lt;&#x2F;h2&gt;
+&lt;p&gt;NGINX needs to be compiled with the --with-stream option. It can&#x27;t be dynamic, which is the default. In the config file you need to add:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;load_module &#x2F;usr&#x2F;local&#x2F;libexec&#x2F;nginx&#x2F;ngx_stream_module.so;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then in the config file:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;stream {
+
+  server {
+
+    listen 80;
+    proxy_pass 192.168.1.15:80;
+
+  }
+
+  server {
+
+    # Override the default stream type of TCP with UDP
+    listen 53;
+    proxy_pass 192.168.1.15:53 udp;
+
+  }
+
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
 	</entry>
 	<entry xml:lang="en">
 		<title>Signify</title>

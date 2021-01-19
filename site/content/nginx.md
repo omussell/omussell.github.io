@@ -103,3 +103,34 @@ You should also make sure to set `add_header Content-Encoding "br";` so that the
 ### Dynamic
 
 Otherwise, set `brotli on;` and it will compress file on-the-fly.
+
+## NGINX TCP/UDP proxy
+
+NGINX needs to be compiled with the --with-stream option. It can't be dynamic, which is the default. In the config file you need to add:
+
+```
+load_module /usr/local/libexec/nginx/ngx_stream_module.so;
+```
+
+Then in the config file:
+
+```
+stream {
+
+  server {
+
+    listen 80;
+    proxy_pass 192.168.1.15:80;
+
+  }
+
+  server {
+
+    # Override the default stream type of TCP with UDP
+    listen 53;
+    proxy_pass 192.168.1.15:53 udp;
+
+  }
+
+}
+```

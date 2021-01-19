@@ -113,7 +113,32 @@ with open(&#39;index.html&#39;, &#39;rb&#39;) as f:
 <p>You should also make sure to set <code>add_header Content-Encoding &quot;br&quot;;</code> so that the browser knows that it is Brotli encoded.</p>
 <h3 id="dynamic">Dynamic</h3>
 <p>Otherwise, set <code>brotli on;</code> and it will compress file on-the-fly.</p>
+<h2 id="nginx-tcp-udp-proxy">NGINX TCP/UDP proxy</h2>
+<p>NGINX needs to be compiled with the --with-stream option. It can't be dynamic, which is the default. In the config file you need to add:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">load_module /usr/local/libexec/nginx/ngx_stream_module.so;
+</span></code></pre>
+<p>Then in the config file:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">stream {
 
+  server {
+
+    listen 80;
+    proxy_pass 192.168.1.15:80;
+
+  }
+
+  server {
+
+    # Override the default stream type of TCP with UDP
+    listen 53;
+    proxy_pass 192.168.1.15:53 udp;
+
+  }
+
+}
+</span></code></pre>
     </div>
 
     
