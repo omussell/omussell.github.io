@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <title>Gemini Protocol</title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
+    
+
+    
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to content</a>
+    <div class="container">
+        <header> 
+            <h1 class="site-header">
+                <a href="https:&#x2F;&#x2F;omussell.github.io"></a>
+            </h1>
+            <nav>
+                
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;about&#x2F;">About</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;">Blog</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;tags&#x2F;">Tags</a>
+                
+                
+            </nav>
+        </header>
+        <main id="main" tabindex="-1">
+            
+
+<article class="post">
+    <header>
+        <h1>Gemini Protocol</h1>
+    </header>
+    <div class="content">
+        <p><a href="https://gemini.circumlunar.space/">Project Gemini</a></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Gemini is a new, collaboratively designed internet protocol, which explores the space inbetween gopher and the web, striving to address (perceived) limitations of one while avoiding the (undeniable) pitfalls of the other.
+</span></code></pre>
+<p>For the server I'm using <a href="https://git.sr.ht/%7Egsthnz/satellite">satellite</a>.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">git clone https://git.sr.ht/~gsthnz/satellite
+cd satellite
+go build
+mkdir -p /var/lib/satellite/certs
+</span></code></pre>
+<p>Create satellite.toml</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;"># Address to listen to requests (default: 0.0.0.0:1965)
+#listen = &quot;0.0.0.0&quot;
+
+[tls]
+# Directory to save certificates
+directory = &quot;/var/lib/satellite/certs&quot;
+
+# Multiple domains can be set with the [[domain]] section
+[[domain]]
+name = &quot;gemini.matrix&quot;
+root = &quot;/srv/gemini/gemini.matrix&quot;
+</span></code></pre>
+<p>For the client I'm using <a href="https://bombadillo.colorfield.space/">bombadillo</a></p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">git clone https://tildegit.org/sloum/bombadillo
+cd bombadillo
+sudo make install
+bombadillo
+</span></code></pre>
+<p>You will need to create a directory with some static files inside. These files should have a file extension of <code>.gmi</code> or <code>.gemini</code>. The content is structured like a subset of markdown:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;"># Normal text
+Hello World!
+
+# Link
+=&gt; gemini://example.org/ An Example Link
+
+# Preformatted text
+# ```
+preformatted text surrounded by 3 backticks
+# ```
+
+# Headers using #
+# Title
+## Sub Title
+### Sub Sub Title
+
+# Unordered list
+* No
+* Particular
+* Order
+
+# Quote lines
+&gt; This is a good quote
+
+</span></code></pre>
+    </div>
+
+    
+    <div class="article-info">
+        
+        <div class="article-date">20 January 2021</div>
+        
+        <div class="article-taxonomies">
+            
+            
+                <ul class="article-tags">
+                    
+                    <li><a href="https://omussell.github.io/tags/homelab/">#homelab</a></li>
+                    
+                </ul>
+            
+        </div>
+    </div>
+
+</article>
+
+
+        </main>
+        <footer>
+            <p>
+                ©  2021<br>
+                Powered by <a target="_blank" href="https://getzola.com/">Zola</a>, Theme <a target="_blank" href="https://github.com/zbrox/anpu-zola-theme">Anpu</a>.
+            </p>
+            <p>
+                
+                
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

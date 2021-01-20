@@ -4,8 +4,74 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-01-12T00:00:00+00:00</updated>
+	<updated>2021-01-20T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Gemini Protocol</title>
+		<published>2021-01-20T00:00:00+00:00</published>
+		<updated>2021-01-20T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/gemini/" type="text/html"/>
+		<id>https://omussell.github.io/gemini/</id>
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gemini.circumlunar.space&#x2F;&quot;&gt;Project Gemini&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;Gemini is a new, collaboratively designed internet protocol, which explores the space inbetween gopher and the web, striving to address (perceived) limitations of one while avoiding the (undeniable) pitfalls of the other.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For the server I&#x27;m using &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Egsthnz&#x2F;satellite&quot;&gt;satellite&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;git clone https:&#x2F;&#x2F;git.sr.ht&#x2F;~gsthnz&#x2F;satellite
+cd satellite
+go build
+mkdir -p &#x2F;var&#x2F;lib&#x2F;satellite&#x2F;certs
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create satellite.toml&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;# Address to listen to requests (default: 0.0.0.0:1965)
+#listen = &amp;quot;0.0.0.0&amp;quot;
+
+[tls]
+# Directory to save certificates
+directory = &amp;quot;&#x2F;var&#x2F;lib&#x2F;satellite&#x2F;certs&amp;quot;
+
+# Multiple domains can be set with the [[domain]] section
+[[domain]]
+name = &amp;quot;gemini.matrix&amp;quot;
+root = &amp;quot;&#x2F;srv&#x2F;gemini&#x2F;gemini.matrix&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For the client I&#x27;m using &lt;a href=&quot;https:&#x2F;&#x2F;bombadillo.colorfield.space&#x2F;&quot;&gt;bombadillo&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;git clone https:&#x2F;&#x2F;tildegit.org&#x2F;sloum&#x2F;bombadillo
+cd bombadillo
+sudo make install
+bombadillo
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You will need to create a directory with some static files inside. These files should have a file extension of &lt;code&gt;.gmi&lt;&#x2F;code&gt; or &lt;code&gt;.gemini&lt;&#x2F;code&gt;. The content is structured like a subset of markdown:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;# Normal text
+Hello World!
+
+# Link
+=&amp;gt; gemini:&#x2F;&#x2F;example.org&#x2F; An Example Link
+
+# Preformatted text
+# ```
+preformatted text surrounded by 3 backticks
+# ```
+
+# Headers using #
+# Title
+## Sub Title
+### Sub Sub Title
+
+# Unordered list
+* No
+* Particular
+* Order
+
+# Quote lines
+&amp;gt; This is a good quote
+
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Running bitwarden_rs on a Raspberry Pi 4</title>
 		<published>2021-01-12T00:00:00+00:00</published>
