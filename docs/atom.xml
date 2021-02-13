@@ -128,7 +128,7 @@ cd bitwarden_rs
 &lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;cargo build --features sqlite --release
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;admin&quot;&gt;Admin&lt;&#x2F;h2&gt;
 &lt;p&gt;After compilation, the built binary will be &lt;code&gt;.&#x2F;target&#x2F;release&#x2F;bitwarden_rs&lt;&#x2F;code&gt;. This should be moved to &lt;code&gt;&#x2F;usr&#x2F;bin&lt;&#x2F;code&gt; with &lt;code&gt;mv .&#x2F;target&#x2F;release&#x2F;bitwarden_rs &#x2F;usr&#x2F;bin&#x2F;bitwarden_rs&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;The data directory needs to be created with `mkdir -p &#x2F;var&#x2F;lib&#x2F;bitwarden_rs&#x2F;data. This is where the bitwarden keys and database are stored.&lt;&#x2F;p&gt;
+&lt;p&gt;The data directory needs to be created with &lt;code&gt;mkdir -p &#x2F;var&#x2F;lib&#x2F;bitwarden_rs&#x2F;data&lt;&#x2F;code&gt;. This is where the bitwarden keys and database are stored.&lt;&#x2F;p&gt;
 &lt;p&gt;Create a user account with &lt;code&gt;adduser bitwarden_rs&lt;&#x2F;code&gt;. Make sure the ownership of everything in &lt;code&gt;&#x2F;var&#x2F;lib&#x2F;bitwarden_rs&lt;&#x2F;code&gt; is set to the &lt;code&gt;bitwarden_rs&lt;&#x2F;code&gt; user.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;frontend&quot;&gt;Frontend&lt;&#x2F;h2&gt;
 &lt;p&gt;Download the already built assets: &lt;&#x2F;p&gt;

@@ -33,7 +33,7 @@ cargo build --features sqlite --release
 ## Admin
 After compilation, the built binary will be `./target/release/bitwarden_rs`. This should be moved to `/usr/bin` with `mv ./target/release/bitwarden_rs /usr/bin/bitwarden_rs`
 
-The data directory needs to be created with `mkdir -p /var/lib/bitwarden_rs/data. This is where the bitwarden keys and database are stored.
+The data directory needs to be created with `mkdir -p /var/lib/bitwarden_rs/data`. This is where the bitwarden keys and database are stored.
 
 Create a user account with `adduser bitwarden_rs`. Make sure the ownership of everything in `/var/lib/bitwarden_rs` is set to the `bitwarden_rs` user.
 
