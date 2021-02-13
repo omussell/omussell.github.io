@@ -2,7 +2,6 @@ base_url = "https://omussell.github.io"
 
 compile_sass = true
 
-highlight_code = true
 
 build_search_index = false
 
@@ -14,6 +13,9 @@ taxonomies = [
     {name = "tags", rss = true},
     {name = "categories", rss = true},
 ]
+
+[markdown]
+highlight_code = true
 
 [extra]
 anpu_date_format="%e %B %Y"

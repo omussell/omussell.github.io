@@ -4,8 +4,43 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-01-20T00:00:00+00:00</updated>
+	<updated>2021-02-13T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>NAS on HP Microserver Gen8</title>
+		<published>2021-02-13T00:00:00+00:00</published>
+		<updated>2021-02-13T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/microserver/" type="text/html"/>
+		<id>https://omussell.github.io/microserver/</id>
+		<content type="html">&lt;h2 id=&quot;hardware-specs&quot;&gt;Hardware specs&lt;&#x2F;h2&gt;
+&lt;p&gt;HP ProLiant G8 Microserver G1610T&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel Celeron G1610T (dual core 2.3 GHz)&lt;&#x2F;li&gt;
+&lt;li&gt;16GB RAM&lt;&#x2F;li&gt;
+&lt;li&gt;2 x 250GB SSD&lt;&#x2F;li&gt;
+&lt;li&gt;2 x 3TB HDD&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;I previously ran FreeNAS on this Microserver, but that was installed about 6 years ago so its very out of date. I want to use this as a NAS, but Im not too bothered about running a specific NAS OS like FreeNAS&#x2F;TrueNAS etc. So my plan is to install Ubuntu 20.04 (current latest LTS) onto a USB disk, then have the disks set up in zpools with ZFS.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;Whenever you search the internet for installing Ubuntu onto a USB disk it assumes you want to use it as a LiveCD from which to install Ubuntu onto the HDDs. I initially tried installing onto a USB stick by using two sticks, one for the initial boot which is placed in the USB jack inside the case, then another blank one inserted in the USB jack on the front of the case.&lt;&#x2F;p&gt;
+&lt;p&gt;However for whatever reason, the subsequent USB stick didnt boot. I think just a dodgy stick.&lt;&#x2F;p&gt;
+&lt;p&gt;So instead I did the same thing of booting from a USB stick inside the case, but then inserted a micro-sd card into the slot inside the case. I then selected that SD card as the disk to install to. &lt;&#x2F;p&gt;
+&lt;p&gt;In order to boot from this SD card, you need to press F9 during boot to enter the system setup. Then, I cant remember which specific option, but one of them has a list of options for booting from USB sticks which says like &amp;quot;Boot from internal USB drive first&amp;quot;, &amp;quot;Boot from internal SD card first&amp;quot;. You need to select the &amp;quot;Boot from internal SD first&amp;quot; option.&lt;&#x2F;p&gt;
+&lt;p&gt;Then continue boot, and it should boot correctly.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zfs&quot;&gt;ZFS&lt;&#x2F;h2&gt;
+&lt;p&gt;You need to install the &lt;code&gt;zfsutils-linux&lt;&#x2F;code&gt; package to manage zpools.&lt;&#x2F;p&gt;
+&lt;p&gt;I set up the disks so that the two SSDs were in one pool, just striped, no mirror. Then the two HDDs were in another pool, mirrored. This results in two zpools, one with 500GB and no redundancy plus one with 3TB and redundancy.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;# Amend device names as appropriate
+
+# SSD zpool
+zpool create SSD_storage &#x2F;dev&#x2F;sdb &#x2F;dev&#x2F;sdc
+
+# HDD zpool
+zpool create HDD_storage mirror &#x2F;dev&#x2F;sdd &#x2F;dev&#x2F;sde
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Gemini Protocol</title>
 		<published>2021-01-20T00:00:00+00:00</published>

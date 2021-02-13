@@ -1,6 +1,10 @@
 #! /bin/bash -
+export PATH="/home/oem/omussell.github.io/venv/bin:$PATH"
 
 cd site
+
+## Create HTML files
 zola build --output-dir ../docs
 
-for mdfile in `ls content/`; do cp content/$mdfile ../gemini/$mdfile.gmi; done
+## Create Gemini files
+for mdfile in `ls content/`; do md2gemini -f -w content/$mdfile -d ../gemini; done
