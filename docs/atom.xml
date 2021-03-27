@@ -4,8 +4,98 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-02-22T00:00:00+00:00</updated>
+	<updated>2021-03-27T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Creating Bonded NICs on Ubuntu 20.04</title>
+		<published>2021-03-27T00:00:00+00:00</published>
+		<updated>2021-03-27T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/bonded-nic/" type="text/html"/>
+		<id>https://omussell.github.io/bonded-nic/</id>
+		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;On the HP MicroServer Gen 8 and MicroServer Gen 10+ there are four ethernet ports. I wanted to group these together into a bonded NIC so that ethernet traffic could run over all four to increase the throughput.&lt;&#x2F;p&gt;
+&lt;p&gt;There are other names for bonding, like teaming or link aggregation&#x2F;LACP. They all mean the same thing, multiple network ports joined together to serve traffic.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;Install the dependency:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;apt install ifenslave
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Load the kernel module:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;# Check if already loaded:
+lsmod | grep bonding
+
+# If no output then:
+modprobe bonding
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This only loads the bonding kernel module while the system is running, it would be lost on reboot. Add it to the modules file to load it at boot as well:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;vim &#x2F;etc&#x2F;modules
+
+# Add the following line to the file:
+bonding
+
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Find the network interfaces. You can do this in a few different ways, an easy way is just:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;ip addr
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Which lists all of your network interfaces. &lt;code&gt;lo&lt;&#x2F;code&gt; is for loopback, then the others will be your ethernet interfaces. This can differ between different NIC manufacturers. On this machine, its returning names like &lt;code&gt;eno1&lt;&#x2F;code&gt;, &lt;code&gt;eno2&lt;&#x2F;code&gt; etc. Sometimes it is like &lt;code&gt;enp2s0&lt;&#x2F;code&gt; or &lt;code&gt;enp3s0&lt;&#x2F;code&gt; instead.&lt;&#x2F;p&gt;
+&lt;p&gt;Edit the netplan config file to add the config. You will need to know the IP address of your gateway&#x2F;router and the IP addresses for the DNS nameservers. For me, the router IP is &lt;code&gt;192.168.0.1&lt;&#x2F;code&gt; and the DNS servers are &lt;code&gt;192.168.0.15&lt;&#x2F;code&gt; (Rpi) and &lt;code&gt;1.1.1.1&lt;&#x2F;code&gt; (Cloudflare).&lt;&#x2F;p&gt;
+&lt;p&gt;Also, I&#x27;ve set the bonded NIC to use DHCP to configure its IP address. I&#x27;m also using all available &lt;code&gt;eno*&lt;&#x2F;code&gt; ethernet ports in the bond. If you want to use a specific set of ports instead, check out the &lt;a href=&quot;https:&#x2F;&#x2F;netplan.io&#x2F;examples&#x2F;&quot;&gt;netplan documentation&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;vim &#x2F;etc&#x2F;netplan&#x2F;00-installer-config.yaml
+
+network:
+  version: 2
+  ethernets:
+    eports:
+      match:
+        name: eno*
+      optional: true
+  bonds:
+    bond0:
+      interfaces: [eports]
+      dhcp4: true
+      gateway4: 192.168.0.1
+      nameservers:
+        addresses: [192.168.0.15, 1.1.1.1]
+      parameters:
+        mode: 802.3ad
+        lacp-rate: fast
+        mii-monitor-interval: 100
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Apply the changes:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;netplan apply
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you lose your SSH connection, something went wrong, or DHCP has just decided to give it a different IP address than what you used to connect. Its a good idea to have out of band management or a spare keyboard+monitor plugged in if the network stops working.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;end-result&quot;&gt;End result&lt;&#x2F;h2&gt;
+&lt;p&gt;If you run &lt;code&gt;ip addr&lt;&#x2F;code&gt; again, you can now see a new network interface has been created called &lt;code&gt;bond0&lt;&#x2F;code&gt;, which is the master. Then the &lt;code&gt;eno*&lt;&#x2F;code&gt; interfaces have been added as slaves of &lt;code&gt;bond0&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;root@dixie:~# ip addr
+1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link&#x2F;loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1&#x2F;8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1&#x2F;128 scope host 
+       valid_lft forever preferred_lft forever
+2: eno1: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+3: eno2: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+4: eno3: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+5: eno4: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+6: bond0: &amp;lt;BROADCAST,MULTICAST,MASTER,UP,LOWER_UP&amp;gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.21&#x2F;24 brd 192.168.0.255 scope global dynamic bond0
+       valid_lft 84976sec preferred_lft 84976sec
+    inet6 fe80::dcd5:c6ff:feda:5ba0&#x2F;64 scope link 
+       valid_lft forever preferred_lft forever
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>LXC&#x2F;LXD Containers</title>
 		<published>2021-02-22T00:00:00+00:00</published>
