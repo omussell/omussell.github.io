@@ -4,8 +4,32 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-02-13T00:00:00+00:00</updated>
+	<updated>2021-02-22T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>LXC&#x2F;LXD Containers</title>
+		<published>2021-02-22T00:00:00+00:00</published>
+		<updated>2021-02-22T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/lxc/" type="text/html"/>
+		<id>https://omussell.github.io/lxc/</id>
+		<content type="html">&lt;p&gt;You should have either a blank disk or an existing zpool for storage. Run &lt;code&gt;lxd init&lt;&#x2F;code&gt;, answer the questions with Yes for the most part. Enter either the disk name like &lt;code&gt;&#x2F;dev&#x2F;sdb&lt;&#x2F;code&gt; or the zpool name &lt;code&gt;tank&lt;&#x2F;code&gt; when prompted.&lt;&#x2F;p&gt;
+&lt;p&gt;Once complete, you can start up an Alpine container with &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;lxc launch images:alpine&#x2F;3.12 alpinecontainer
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;or a Ubuntu container with &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;lxc launch ubuntu:20.04 ubuntucontainer
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You can then connect to the container with &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;lxc exec alpinecontainer -- &#x2F;bin&#x2F;sh
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;or &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;lxc exec ubuntucontainer -- &#x2F;bin&#x2F;bash
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>NAS on HP Microserver Gen8</title>
 		<published>2021-02-13T00:00:00+00:00</published>
@@ -40,6 +64,22 @@ zpool create SSD_storage &#x2F;dev&#x2F;sdb &#x2F;dev&#x2F;sdc
 # HDD zpool
 zpool create HDD_storage mirror &#x2F;dev&#x2F;sdd &#x2F;dev&#x2F;sde
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Puppet Bolt</title>
+		<published>2021-02-13T00:00:00+00:00</published>
+		<updated>2021-02-13T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/puppet-bolt/" type="text/html"/>
+		<id>https://omussell.github.io/puppet-bolt/</id>
+		<content type="html">&lt;p&gt;Install Bolt with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;wget https:&#x2F;&#x2F;apt.puppet.com&#x2F;puppet-tools-release-focal.deb
+sudo dpkg -i puppet-tools-release-focal.deb
+sudo apt-get update 
+sudo apt-get install puppet-bolt
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you want to create modules but dont want to publish them to the Puppet Forge, you can just &lt;a href=&quot;https:&#x2F;&#x2F;puppet.com&#x2F;docs&#x2F;bolt&#x2F;latest&#x2F;modules.html#modulepath&quot;&gt;add the directory to the module path&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
 	</entry>
 	<entry xml:lang="en">
 		<title>Gemini Protocol</title>

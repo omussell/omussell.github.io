@@ -31,6 +31,10 @@
         <lastmod>2020-01-01</lastmod>
     </url>
     <url>
+        <loc>https://omussell.github.io/lxc/</loc>
+        <lastmod>2021-02-22</lastmod>
+    </url>
+    <url>
         <loc>https://omussell.github.io/microserver/</loc>
         <lastmod>2021-02-13</lastmod>
     </url>
@@ -59,6 +63,10 @@
     <url>
         <loc>https://omussell.github.io/pi-bitwarden/</loc>
         <lastmod>2021-01-12</lastmod>
+    </url>
+    <url>
+        <loc>https://omussell.github.io/puppet-bolt/</loc>
+        <lastmod>2021-02-13</lastmod>
     </url>
     <url>
         <loc>https://omussell.github.io/quick-k8s/</loc>
