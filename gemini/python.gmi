@@ -1,0 +1,100 @@
+## Summary
+
+The following tools and libraries are known to work well with modern python. They are modular, so you can pick and choose the components you want based on your need.
+
+## HTTP
+
+### Client
+
+=> https://github.com/encode/httpx HTTPX
+
+### Server
+
+=> https://fastapi.tiangolo.com/ FastAPI
+
+=> https://www.uvicorn.org/ Uvicorn
+
+## Databases
+
+=> https://github.com/encode/orm ORM
+
+=> https://github.com/encode/databases Databases
+
+=> https://alembic.sqlalchemy.org/en/latest/tutorial.html Alembic
+
+## Async Processes
+
+=> https://docs.celeryproject.org/en/stable/getting-started/introduction.html Celery
+
+## Cryptography
+
+=> https://pynacl.readthedocs.io/en/latest/ pynacl
+
+=> https://docs.python.org/3/library/secrets.html secrets
+
+## Tools
+
+### Linting
+
+=> https://black.readthedocs.io/en/stable/ black
+
+### Typing
+
+=> https://pydantic-docs.helpmanual.io/ Pydantic
+
+=> https://github.com/python/mypy Mypy
+
+### Requirements
+
+=> https://python-poetry.org/ poetry
+
+### Documentation
+
+=> https://www.mkdocs.org/ mkdocs
+
+=> https://squidfunk.github.io/mkdocs-material/ mkdocs-material
+
+=> https://github.com/mkdocstrings/mkdocstrings mkdocstrings
+
+### Code Complexity
+
+* 
+=> https://pypi.org/project/lizard/ lizard
+* 
+=> https://pypi.org/project/radon/ radon
+
+#### Lizard
+
+`lizard -x'*/tests/*' -l python -w src`
+
+#### Radon
+
+```
+radon cc --min B --average --total-average src
+radon mi --min B src
+```
+
+#### Formatting/Styling
+
+* 
+=> https://pypi.org/project/isort/ isort
+* 
+=> https://flake8.pycqa.org/en/latest/ flake8
+* 
+=> https://pypi.org/project/flake8-blind-except/ flake8-blind-except
+* 
+=> https://pypi.org/project/flake8-bugbear/ flake8-bugbear
+* 
+=> https://pypi.org/project/flake8-coding/ flake8-coding
+* 
+=> https://pypi.org/project/flake8-commas/ flake8-commas
+* 
+=> https://pypi.org/project/flake8-debugger/ flake8-debugger
+* 
+=> https://pypi.org/project/flake8-docstrings/ flake8-docstrings
+* 
+=> https://pypi.org/project/flake8-isort/ flake8-isort
+* 
+=> https://pypi.org/project/flake8-quotes/ flake8-quotes
+* 
+=> https://pypi.org/project/flake8-sfs/ flake8-sfs

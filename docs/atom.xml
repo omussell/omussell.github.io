@@ -4,8 +4,70 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-03-27T00:00:00+00:00</updated>
+	<updated>2021-07-01T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Modern Python</title>
+		<published>2021-07-01T00:00:00+00:00</published>
+		<updated>2021-07-01T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/python/" type="text/html"/>
+		<id>https://omussell.github.io/python/</id>
+		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;The following tools and libraries are known to work well with modern python. They are modular, so you can pick and choose the components you want based on your need.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;http&quot;&gt;HTTP&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;client&quot;&gt;Client&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;encode&#x2F;httpx&quot;&gt;HTTPX&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;server&quot;&gt;Server&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;fastapi.tiangolo.com&#x2F;&quot;&gt;FastAPI&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;www.uvicorn.org&#x2F;&quot;&gt;Uvicorn&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;databases&quot;&gt;Databases&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;encode&#x2F;orm&quot;&gt;ORM&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;encode&#x2F;databases&quot;&gt;Databases&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;alembic.sqlalchemy.org&#x2F;en&#x2F;latest&#x2F;tutorial.html&quot;&gt;Alembic&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;async-processes&quot;&gt;Async Processes&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.celeryproject.org&#x2F;en&#x2F;stable&#x2F;getting-started&#x2F;introduction.html&quot;&gt;Celery&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cryptography&quot;&gt;Cryptography&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pynacl.readthedocs.io&#x2F;en&#x2F;latest&#x2F;&quot;&gt;pynacl&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;secrets.html&quot;&gt;secrets&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tools&quot;&gt;Tools&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;linting&quot;&gt;Linting&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;black.readthedocs.io&#x2F;en&#x2F;stable&#x2F;&quot;&gt;black&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;typing&quot;&gt;Typing&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pydantic-docs.helpmanual.io&#x2F;&quot;&gt;Pydantic&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;python&#x2F;mypy&quot;&gt;Mypy&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;python-poetry.org&#x2F;&quot;&gt;poetry&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;documentation&quot;&gt;Documentation&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.mkdocs.org&#x2F;&quot;&gt;mkdocs&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;&quot;&gt;mkdocs-material&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mkdocstrings&#x2F;mkdocstrings&quot;&gt;mkdocstrings&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;code-complexity&quot;&gt;Code Complexity&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;lizard&#x2F;&quot;&gt;lizard&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;radon&#x2F;&quot;&gt;radon&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;lizard&quot;&gt;Lizard&lt;&#x2F;h4&gt;
+&lt;p&gt;&lt;code&gt;lizard -x&#x27;*&#x2F;tests&#x2F;*&#x27; -l python -w src&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;radon&quot;&gt;Radon&lt;&#x2F;h4&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;radon cc --min B --average --total-average src
+radon mi --min B src
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;formatting-styling&quot;&gt;Formatting&#x2F;Styling&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;isort&#x2F;&quot;&gt;isort&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;flake8.pycqa.org&#x2F;en&#x2F;latest&#x2F;&quot;&gt;flake8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-blind-except&#x2F;&quot;&gt;flake8-blind-except&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-bugbear&#x2F;&quot;&gt;flake8-bugbear&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-coding&#x2F;&quot;&gt;flake8-coding&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-commas&#x2F;&quot;&gt;flake8-commas&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-debugger&#x2F;&quot;&gt;flake8-debugger&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-docstrings&#x2F;&quot;&gt;flake8-docstrings&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-isort&#x2F;&quot;&gt;flake8-isort&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-quotes&#x2F;&quot;&gt;flake8-quotes&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-sfs&#x2F;&quot;&gt;flake8-sfs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Creating Bonded NICs on Ubuntu 20.04</title>
 		<published>2021-03-27T00:00:00+00:00</published>
