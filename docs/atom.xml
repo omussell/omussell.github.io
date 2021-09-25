@@ -4,8 +4,99 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-08-29T00:00:00+00:00</updated>
+	<updated>2021-09-25T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Lean</title>
+		<published>2021-09-25T00:00:00+00:00</published>
+		<updated>2021-09-25T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/lean/" type="text/html"/>
+		<id>https://omussell.github.io/lean/</id>
+		<content type="html">&lt;p&gt;A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;toyota-production-system&quot;&gt;Toyota Production System&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;goal&quot;&gt;Goal&lt;&#x2F;h2&gt;
+&lt;p&gt;Design out overburden (muri) and inconsistency (mura), and to eliminate waste (muda).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;types-of-waste&quot;&gt;Types of waste&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Overproduction&lt;&#x2F;li&gt;
+&lt;li&gt;Time on hand (waiting)&lt;&#x2F;li&gt;
+&lt;li&gt;Transportation&lt;&#x2F;li&gt;
+&lt;li&gt;Processing itself&lt;&#x2F;li&gt;
+&lt;li&gt;Excess inventory&lt;&#x2F;li&gt;
+&lt;li&gt;Movement&lt;&#x2F;li&gt;
+&lt;li&gt;Making defective products&lt;&#x2F;li&gt;
+&lt;li&gt;Underutilised workers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;concept&quot;&gt;Concept&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;just-in-time&quot;&gt;Just-in-time&lt;&#x2F;h3&gt;
+&lt;p&gt;Make only what is needed, only when it is needed and only in the amount that is needed&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;jidoka&quot;&gt;Jidoka&lt;&#x2F;h3&gt;
+&lt;p&gt;Automation with a human touch&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;poka-yoke&quot;&gt;Poka Yoke&lt;&#x2F;h3&gt;
+&lt;p&gt;Any mechanism in a process that helps an equipment operator avoid (yokeru) mistakes (poka) and defects by preventing, correcting, or drawing attention to human errors as they occur&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;continuous-improvement&quot;&gt;Continuous Improvement&lt;&#x2F;h3&gt;
+&lt;p&gt;We form a long term vision, then iteratively work towards it&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;kaizen&quot;&gt;Kaizen&lt;&#x2F;h3&gt;
+&lt;p&gt;We improve our business operations continuously, always driving for innovation and evolution&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;genchi-genbutsu&quot;&gt;Genchi Genbutsu&lt;&#x2F;h3&gt;
+&lt;p&gt;Go to the source to find the facts to make correct decisions&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-right-process-will-produce-the-right-results&quot;&gt;The right process will produce the right results&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create continuous process flow to bring problems to the surface&lt;&#x2F;li&gt;
+&lt;li&gt;Use the &#x27;pull&#x27; system to avoid overproduction (Kanban)&lt;&#x2F;li&gt;
+&lt;li&gt;Level out the workload (Heijunka)&lt;&#x2F;li&gt;
+&lt;li&gt;Build a culture of stopping to fix problems, to get quality right from the start&lt;&#x2F;li&gt;
+&lt;li&gt;Standardised tasks are the foundation for continuous improvement and employee empowerment&lt;&#x2F;li&gt;
+&lt;li&gt;Use visual control so no problems are hidden&lt;&#x2F;li&gt;
+&lt;li&gt;Use only reliable, thoroughly tested technology that serves your people and processes&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;continuously-solving-root-problems-drives-organisational-learning&quot;&gt;Continuously solving root problems drives organisational learning&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Go and see for yourself to thoroughly understand the situation (Genchi Genbutsu)&lt;&#x2F;li&gt;
+&lt;li&gt;Make decisions slowly by consensus, thoroughly considering all options. Implement decisions rapidly (Nemawashi)&lt;&#x2F;li&gt;
+&lt;li&gt;Become a learning organisation through relentless reflection (Hansei) and continuous improvement (Kaizen)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;andon&quot;&gt;Andon&lt;&#x2F;h2&gt;
+&lt;p&gt;The worker has the ability to stop production when a defect is found, and immediately call for assistance.&lt;&#x2F;p&gt;
+&lt;p&gt;Work is stopped until a solution is found.&lt;&#x2F;p&gt;
+&lt;p&gt;Stack light &#x2F; Traffic light - Visual indicator of a machine state or process event&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;5s&quot;&gt;5S&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;Seiri       Sort
+Seiton      Set in order
+Seso        Shine
+Seiketsu    Standardise
+Shitsuke    Sustain
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;theory-of-constraints&quot;&gt;Theory of Constraints&lt;&#x2F;h2&gt;
+&lt;p&gt;Organisations can be measured and controlled by variations on three measures:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Inventory - The money that the system has invested in purchasing things which it intends to sell&lt;&#x2F;li&gt;
+&lt;li&gt;Operational expense - The money the system spends in order to turn inventory into throughput&lt;&#x2F;li&gt;
+&lt;li&gt;Throughput - The rate at which the system generates money through sales&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;constraints&quot;&gt;Constraints&lt;&#x2F;h3&gt;
+&lt;p&gt;A constraint is anything that prevents the system from achieving its goal. There is always at least one, but at most only a few, at any given time.&lt;&#x2F;p&gt;
+&lt;p&gt;If a constraints throughput capacity is elevated to the point where it is no longer the systems limiting factor, this is said to &#x27;break&#x27; the constraint.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;buffers&quot;&gt;Buffers&lt;&#x2F;h3&gt;
+&lt;p&gt;Buffers are placed before the governing constraint, thus ensuring that the constraint is never starved.&lt;&#x2F;p&gt;
+&lt;p&gt;Buffers are also placed behind the constraint to prevent downstream failure from blocking the constraints output.&lt;&#x2F;p&gt;
+&lt;p&gt;Buffers used in this way protect the constraint from variations in the rest of the system and should allow for normal variation of processing time and the occasional upset before and behind the constraint.&lt;&#x2F;p&gt;
+&lt;p&gt;With one constraint in the system, all other parts of the system must have sufficient capacity to keep up with the work at the constraint and to catch up if time was lost.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;plant-types-vati&quot;&gt;Plant Types (VATI)&lt;&#x2F;h3&gt;
+&lt;p&gt;The plant types specify the general flow of materials through a system&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;v&quot;&gt;V&lt;&#x2F;h4&gt;
+&lt;p&gt;Flow is one to many, such as a plant that takes one raw material and can make many final products.&lt;&#x2F;p&gt;
+&lt;p&gt;The primary problem in V plants is &#x27;robbing&#x27;, where on operation (A) immediately after a diverging point &#x27;steals&#x27; materials meant for the other operation (B). Once the material has been processed by A, it cannot come back and be run through B without significant rework.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;a&quot;&gt;A&lt;&#x2F;h4&gt;
+&lt;p&gt;Flow is many to one, such as where many sub-assemblies converge for a final assembly.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem in A plants is synchronising the converging lines so that each supplies the final assembly point at the right time.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;t&quot;&gt;T&lt;&#x2F;h4&gt;
+&lt;p&gt;Flow is many to many, similar to I plant (or has multiple lines), which then splits into many assemblies.&lt;&#x2F;p&gt;
+&lt;p&gt;T plants suffer from both synchronisation problems of A plants and the robbing problems of V plants.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;i&quot;&gt;I&lt;&#x2F;h4&gt;
+&lt;p&gt;Material flows in a sequence of events in a straight line. The constraint is the slowest operation.&lt;&#x2F;p&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Finding a New Programming Language</title>
 		<published>2021-08-29T00:00:00+00:00</published>
@@ -31,6 +122,14 @@
 &lt;p&gt;So far I have tried Go, Rust and even Ada. &lt;&#x2F;p&gt;
 &lt;p&gt;Somehow, I came across Nim, and it fits everything that I want. The syntax is similar enough to Python that it doesnt feel like a chore to learn like the other languages. It also compiles down to a single binary making deployment easy. It uses a C compiler so the resulting binary can be small and compile anywhere that supports C.&lt;&#x2F;p&gt;
 </content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Nim Cheat Sheet</title>
+		<published>2021-08-29T00:00:00+00:00</published>
+		<updated>2021-08-29T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/nim/" type="text/html"/>
+		<id>https://omussell.github.io/nim/</id>
+		<content type="html"></content>
 	</entry>
 	<entry xml:lang="en">
 		<title>Modern Python</title>
