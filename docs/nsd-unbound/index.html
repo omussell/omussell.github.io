@@ -9,7 +9,7 @@
     <title>NSD and Unbound config</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -50,94 +50,85 @@
     <div class="content">
         <h2 id="nsd-and-unbound-config">NSD and Unbound config</h2>
 <p>Set up the unbound/nsd-control</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">local-unbound-setup
-nsd-control-setup
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>local-unbound-setup
+</span><span>nsd-control-setup
 </span></code></pre>
 <p>Enable NSD and Unbound to start in <code>/etc/rc.conf</code></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">sysrc nsd_enable=&quot;YES&quot;
-sysrc local_unbound_enable=&quot;YES&quot;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>sysrc nsd_enable=&quot;YES&quot;
+</span><span>sysrc local_unbound_enable=&quot;YES&quot;
 </span></code></pre>
 <p>Set a different listening port for NSD in <code>/usr/local/etc/nsd.conf</code></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">server:
-  port: 5353
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>server:
+</span><span>  port: 5353
 </span></code></pre>
 <p>Create an inital zone file <code>/usr/local/etc/nsd/home.lan.zone</code></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">$ORIGIN home.lan. ;
-$TTL 86400 ;
-
-@ IN SOA ns1.home.lan. admin.home.lan. (
-        2017080619 ;
-        28800 ;
-        7200 ;
-        864000 ;
-        86400 ;
-        )
-
-        NS ns1.home.lan.
-
-ns1 IN A 192.168.1.15
-jail IN A 192.168.1.15
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ORIGIN home.lan. ;
+</span><span>$TTL 86400 ;
+</span><span>
+</span><span>@ IN SOA ns1.home.lan. admin.home.lan. (
+</span><span>        2017080619 ;
+</span><span>        28800 ;
+</span><span>        7200 ;
+</span><span>        864000 ;
+</span><span>        86400 ;
+</span><span>        )
+</span><span>
+</span><span>        NS ns1.home.lan.
+</span><span>
+</span><span>ns1 IN A 192.168.1.15
+</span><span>jail IN A 192.168.1.15
 </span></code></pre>
 <p>Create the reverse lookup zone file <code>/usr/local/etc/nsd/home.lan.reverse</code></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">$ORIGIN home.lan.
-$TTL 86400
-
-0.1.168.192.in-addr.arpa. IN SOA ns1.home.lan. admin.home.lan. (
-        2017080619
-        28800
-        7200
-        864000
-        86400
-        )
-
-        NS ns1.home.lan.
-
-15.1.168.192.in-addr.arpa. IN PTR jail
-15.1.168.192.in-addr.arpa. IN PTR ns1
-</span></code></pre><h3 id="opendnssec">OpenDNSSEC</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ORIGIN home.lan.
+</span><span>$TTL 86400
+</span><span>
+</span><span>0.1.168.192.in-addr.arpa. IN SOA ns1.home.lan. admin.home.lan. (
+</span><span>        2017080619
+</span><span>        28800
+</span><span>        7200
+</span><span>        864000
+</span><span>        86400
+</span><span>        )
+</span><span>
+</span><span>        NS ns1.home.lan.
+</span><span>
+</span><span>15.1.168.192.in-addr.arpa. IN PTR jail
+</span><span>15.1.168.192.in-addr.arpa. IN PTR ns1
+</span></code></pre>
+<h3 id="opendnssec">OpenDNSSEC</h3>
 <p>Install the required packages</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">pkg install -y opendnssec softhsm
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>pkg install -y opendnssec softhsm
 </span></code></pre>
 <p>Set the softhsm database location in <code>/usr/local/etc/softhsm.conf</code></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">0:/var/lib/softhsm/slot0.db
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>0:/var/lib/softhsm/slot0.db
 </span></code></pre>
 <p>Initialise the token database:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">softhsm --init-token --slot 0 --label &quot;OpenDNSSEC&quot;
-Enter the PIN for the SO and then the USER.
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>softhsm --init-token --slot 0 --label &quot;OpenDNSSEC&quot;
+</span><span>Enter the PIN for the SO and then the USER.
 </span></code></pre>
 <p>Make sure opendnssec has permission to access the token database</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">chown opendnssec /var/lib/softhsm/slot0.db
-chgrp opendnssec /var/lib/softhsm/slot0.db
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>chown opendnssec /var/lib/softhsm/slot0.db
+</span><span>chgrp opendnssec /var/lib/softhsm/slot0.db
 </span></code></pre>
 <p>Set some options for OpenDNSSEC in <code>/usr/local/etc/opendnssec/conf.xml</code></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">&lt;Repository name=&quot;SoftHSM&quot;&gt;
-        &lt;Module&gt;/usr/local/lib/softhsm/libsofthsm.so&lt;/Module&gt;
-        &lt;TokenLabel&gt;OpenDNSSEC&lt;/TokenLabel&gt;
-        &lt;PIN&gt;1234&lt;/PIN&gt;
-        &lt;SkipPublicKey/&gt;
-&lt;/Repository&gt;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&lt;Repository name=&quot;SoftHSM&quot;&gt;
+</span><span>        &lt;Module&gt;/usr/local/lib/softhsm/libsofthsm.so&lt;/Module&gt;
+</span><span>        &lt;TokenLabel&gt;OpenDNSSEC&lt;/TokenLabel&gt;
+</span><span>        &lt;PIN&gt;1234&lt;/PIN&gt;
+</span><span>        &lt;SkipPublicKey/&gt;
+</span><span>&lt;/Repository&gt;
 </span></code></pre>
 <p>Edit <code>/usr/local/etc/opendnssec/kasp.xml</code>. Change unixtime to datecounter in the Serial parameter. This allows us to use YYYYMMDDXX format for the SOA SERIAL values.</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">&lt;Zone&gt;
-        &lt;PropagationDelay&gt;PT300S&lt;/PropagationDelay&gt;
-        &lt;SOA&gt;
-                &lt;TTL&gt;PT300S&lt;/TTL&gt;
-                &lt;Minimum&gt;PT300S&lt;/Minimum&gt;
-                &lt;Serial&gt;datecounter&lt;/Serial&gt;
-        &lt;/SOA&gt;
-&lt;/Zone&gt;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&lt;Zone&gt;
+</span><span>        &lt;PropagationDelay&gt;PT300S&lt;/PropagationDelay&gt;
+</span><span>        &lt;SOA&gt;
+</span><span>                &lt;TTL&gt;PT300S&lt;/TTL&gt;
+</span><span>                &lt;Minimum&gt;PT300S&lt;/Minimum&gt;
+</span><span>                &lt;Serial&gt;datecounter&lt;/Serial&gt;
+</span><span>        &lt;/SOA&gt;
+</span><span>&lt;/Zone&gt;
 </span></code></pre>
+
     </div>
 
     

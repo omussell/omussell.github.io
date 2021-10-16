@@ -9,7 +9,7 @@
     <title>Bhyve VM Creation</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -50,101 +50,84 @@
     <div class="content">
         <h3 id="bhyve-initial-setup">Bhyve Initial Setup</h3>
 <p>Enable the tap interface in <code>/etc/sysctl.conf</code> and load it on the currently running system</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">net.link.tap.up_on_open=1
-sysctl -f /etc/sysctl.conf
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>net.link.tap.up_on_open=1
+</span><span>sysctl -f /etc/sysctl.conf
 </span></code></pre>
 <p>Enable bhyve, serial console and bridge/tap interface kernel modules in <code>/boot/loader.conf</code>. Reboot to apply changes or use kldload.</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">vmm_load=&quot;YES&quot;
-nmdm_load=&quot;YES&quot;
-if_bridge_load=&quot;YES&quot;
-if_tap_load=&quot;YES&quot;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>vmm_load=&quot;YES&quot;
+</span><span>nmdm_load=&quot;YES&quot;
+</span><span>if_bridge_load=&quot;YES&quot;
+</span><span>if_tap_load=&quot;YES&quot;
 </span></code></pre>
 <p>Set up the network interfaces in <code>/etc/rc.conf</code></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">cloned_interfaces=&quot;bridge0 tap0&quot;
-ifconfig_bridge0=&quot;addm re0 addm tap0&quot;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cloned_interfaces=&quot;bridge0 tap0&quot;
+</span><span>ifconfig_bridge0=&quot;addm re0 addm tap0&quot;
 </span></code></pre>
 <p>Create a ZFS volume</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">zfs create -V16G -o volmode=dev zroot/testvm
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>zfs create -V16G -o volmode=dev zroot/testvm
 </span></code></pre>
 <p>Download the installation image</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">fetch ftp://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/11.1/FreeBSD-11.1-RELEASE-amd64-disc1.iso 
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>fetch ftp://ftp.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/11.1/FreeBSD-11.1-RELEASE-amd64-disc1.iso 
 </span></code></pre>
 <p>Start the VM</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">sh /usr/share/examples/bhyve/vmrun.sh -c 1 -m 512M -t tap0 -d /dev/zvol/zroot/testvm -i -I FreeBSD-11.1-RELEASE-amd64-disc1.iso testvm
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>sh /usr/share/examples/bhyve/vmrun.sh -c 1 -m 512M -t tap0 -d /dev/zvol/zroot/testvm -i -I FreeBSD-11.1-RELEASE-amd64-disc1.iso testvm
 </span></code></pre>
 <p>Install as normal, following the menu options</p>
 <h3 id="new-vm-creation-script">New VM Creation Script</h3>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">#! /bin/sh
-read -p &quot;Enter hostname: &quot; hostname
-zfs create -V16G -o volmode=dev zroot/$hostname
-sh /usr/share/examples/bhyve/vmrun.sh -c 1 -m 512M -t tap0 -d /dev/zvol/zroot/$hostname -i -I ~/FreeBSD-11.1-RELEASE-amd64-disc1.iso $hostname
-</span></code></pre><h3 id="creating-a-linux-guest">Creating a Linux guest</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>#! /bin/sh
+</span><span>read -p &quot;Enter hostname: &quot; hostname
+</span><span>zfs create -V16G -o volmode=dev zroot/$hostname
+</span><span>sh /usr/share/examples/bhyve/vmrun.sh -c 1 -m 512M -t tap0 -d /dev/zvol/zroot/$hostname -i -I ~/FreeBSD-11.1-RELEASE-amd64-disc1.iso $hostname
+</span></code></pre>
+<h3 id="creating-a-linux-guest">Creating a Linux guest</h3>
 <p>Create a file for the hard disk</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">truncate -s 16G linux.img
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>truncate -s 16G linux.img
 </span></code></pre>
 <p>Create the file to map the virtual devices for kernel load</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">~/device.map
-
-(hd0) /root/linux.img
-(cd0) /root/linux.iso
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>~/device.map
+</span><span>
+</span><span>(hd0) /root/linux.img
+</span><span>(cd0) /root/linux.iso
 </span></code></pre>
 <p>Load the kernel</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">grub-bhyve -m ~/device.map -r cd0 -M 1024M linuxguest
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>grub-bhyve -m ~/device.map -r cd0 -M 1024M linuxguest
 </span></code></pre>
 <p>Grub should start, choose install as normal</p>
 <p>Start the VM</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">bhyve -A -H -P -s 0:0,hostbridge -s 1:0,lpc -s 2:0,virtio-net,tap0 -s 3:0,virtio-blk,/root/linux.img -l com1,/dev/nmdm0A -c 1 -m 512M linuxguest
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>bhyve -A -H -P -s 0:0,hostbridge -s 1:0,lpc -s 2:0,virtio-net,tap0 -s 3:0,virtio-blk,/root/linux.img -l com1,/dev/nmdm0A -c 1 -m 512M linuxguest
 </span></code></pre>
 <p>Access through the serial console</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">cu -l /dev/nmdm0B
-</span></code></pre><h3 id="pfsense-in-a-vm">pfSense in a VM</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cu -l /dev/nmdm0B
+</span></code></pre>
+<h3 id="pfsense-in-a-vm">pfSense in a VM</h3>
 <p>Download the pfSense disk image from the website using fetch</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">fetch https://frafiles.pfsense.org/mirror/downloads/pfSense-CE-2.3.1-RELEASE-2g-amd64-nanobsd.img.gz -o ~/pfSense.img.gz
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>fetch https://frafiles.pfsense.org/mirror/downloads/pfSense-CE-2.3.1-RELEASE-2g-amd64-nanobsd.img.gz -o ~/pfSense.img.gz
 </span></code></pre>
 <p>Create the storage</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">zfs create -V2G -o volmode=dev zroot/pfsense
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>zfs create -V2G -o volmode=dev zroot/pfsense
 </span></code></pre>
 <p>Unzip the file, and redirect output to the storage via dd</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">gzip -dc pfSense.img.gz | dd of=/dev/zvol/zroot/pfsense obs=64k
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>gzip -dc pfSense.img.gz | dd of=/dev/zvol/zroot/pfsense obs=64k
 </span></code></pre>
 <p>Load the kernel and start the boot process</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">bhyveload -c /dev/nmdm0A -d /dev/zvol/zroot/pfsense -m 256MB pfsense
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>bhyveload -c /dev/nmdm0A -d /dev/zvol/zroot/pfsense -m 256MB pfsense
 </span></code></pre>
 <p>Start the VM</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">/usr/sbin/bhyve -c 1 -m 256 -A -H -P -s 0:0,hostbridge -s 1:0,virtio-net,tap0 -s 3:0,ahci-hd,/dev/zvol/zroot/pfsense -s 4:1,lpc -l com1,/dev/nmdm0A pfsense
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>/usr/sbin/bhyve -c 1 -m 256 -A -H -P -s 0:0,hostbridge -s 1:0,virtio-net,tap0 -s 3:0,ahci-hd,/dev/zvol/zroot/pfsense -s 4:1,lpc -l com1,/dev/nmdm0A pfsense
 </span></code></pre>
 <p>Connect to the VM via the serial connection with nmdm</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">cu -l /dev/nmdm0B
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cu -l /dev/nmdm0B
 </span></code></pre>
 <p>Perform initial configuration through the shell to assign the network interfaces</p>
 <p>Once done, use the IP address to access through the web console </p>
 <p>When finished, you can shutdown/reboot</p>
 <p>To de-allocate the resources, you need to destroy the VM</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">bhyvectl --destroy --vm=pfsense
-</span></code></pre><h3 id="multiple-vms-using-bhyve">Multiple VMs using bhyve</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>bhyvectl --destroy --vm=pfsense
+</span></code></pre>
+<h3 id="multiple-vms-using-bhyve">Multiple VMs using bhyve</h3>
 <p>To allow networking on multiple vms, there should be a tap assigned to each vm, connected to the same bridge. </p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">cloned_interfaces=&quot;bridge0 tap0 tap1 tap2&quot;
-ifconfig_bridge0=&quot;addm re0 addm tap0 addm tap1 addm tap2&quot;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cloned_interfaces=&quot;bridge0 tap0 tap1 tap2&quot;
+</span><span>ifconfig_bridge0=&quot;addm re0 addm tap0 addm tap1 addm tap2&quot;
 </span></code></pre>
 <p>Then when you provision vms, assign one of the tap interfaces to them.</p>
 <h3 id="vm-bhyve">vm-bhyve</h3>

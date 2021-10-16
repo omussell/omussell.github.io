@@ -9,7 +9,7 @@
     <title>Signify</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -51,18 +51,16 @@
         <h2 id="signify">Signify</h2>
 <p>Sign and verify files</p>
 <p>Generate keys without password (remove -n flag to ask for a password)</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">signify-openbsd -G -p keyname.pub -s keyname.sec -n
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>signify-openbsd -G -p keyname.pub -s keyname.sec -n
 </span></code></pre>
 <p>Sign a file</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">signify-openbsd -S -s keyname.sec -m $file_to_sign -x $signature_file
-
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>signify-openbsd -S -s keyname.sec -m $file_to_sign -x $signature_file
+</span><span>
 </span></code></pre>
 <p>Verify a file</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">signify-openbsd -V -p keyname.pub -m $file_to_verify -x $signature_file
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>signify-openbsd -V -p keyname.pub -m $file_to_verify -x $signature_file
 </span></code></pre>
+
     </div>
 
     

@@ -9,7 +9,7 @@
     <title>NGINX</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -51,38 +51,34 @@
         <h2 id="tls-1-3-0-rtt-with-nginx">TLS 1.3 0-RTT with NGINX</h2>
 <p><a href="http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data">NGINX Docs</a>
 <a href="http://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_early_data">Early data var</a></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">ssl_early_data on;
-proxy_set_header Early-Data $ssl_early_data;
-limit_except GET {
-    deny  all;
-}
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>ssl_early_data on;
+</span><span>proxy_set_header Early-Data $ssl_early_data;
+</span><span>limit_except GET {
+</span><span>    deny  all;
+</span><span>}
 </span></code></pre>
 <p>0-RTT is vulnerable to replay attacks, so we should only use this with requests using the GET method. If passing the request to a backend, you can set a header with <code>proxy_set_header Early-Data $ssl_early_data;</code>. The value of the $ssl_early_data variable is &quot;1&quot; if early data is used, otherwise &quot;&quot;. This header is passed to the upstream, so it can be used by the upstream application to determine the response.</p>
 <h2 id="only-allow-certain-http-methods-with-nginx">Only allow certain HTTP methods with NGINX</h2>
 <p><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_except">NGNX Docs</a></p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">limit_except GET {
-    deny  all;
-}
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>limit_except GET {
+</span><span>    deny  all;
+</span><span>}
 </span></code></pre>
 <p>Only allows GET requests through, denies all other methods, with the exception of HEAD because if GET is allowed HEAD is too.</p>
 <h2 id="dynamic-certificate-loading-with-nginx">Dynamic Certificate loading with NGINX</h2>
 <p><a href="https://www.nginx.com/blog/nginx-plus-r18-released/">NGINX Announcement</a>
 <a href="http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate">NGINX Docs</a></p>
 <p>If you have a lot of NGINX servers/vhosts all served from the same box, you probably want to secure them with TLS. Normally this would mean a lot of duplicate configuration to specify which certificate is needed for each server_name. With Dynamic Certificate Loading, you can use a NGINX variable as part of the certificate name. So if you have certificate/key files named after the server name, you can load them dynamically with NGINX.</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">server_name  omuss.net omuss-test.net;
-
-ssl_certificate      /usr/local/etc/nginx/ssl/$ssl_server_name.crt;
-ssl_certificate_key  /usr/local/etc/nginx/ssl/$ssl_server_name.key;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>server_name  omuss.net omuss-test.net;
+</span><span>
+</span><span>ssl_certificate      /usr/local/etc/nginx/ssl/$ssl_server_name.crt;
+</span><span>ssl_certificate_key  /usr/local/etc/nginx/ssl/$ssl_server_name.key;
 </span></code></pre>
 <p>With certificate and key files named appropriately:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">/usr/local/etc/nginx/ssl/omuss.net.crt
-/usr/local/etc/nginx/ssl/omuss.net.key
-/usr/local/etc/nginx/ssl/omuss-test.net.crt
-/usr/local/etc/nginx/ssl/omuss-test.net.key
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>/usr/local/etc/nginx/ssl/omuss.net.crt
+</span><span>/usr/local/etc/nginx/ssl/omuss.net.key
+</span><span>/usr/local/etc/nginx/ssl/omuss-test.net.crt
+</span><span>/usr/local/etc/nginx/ssl/omuss-test.net.key
 </span></code></pre>
 <p>Note that certificates are lazy loaded, as in they are only loaded when a request comes in. So all certificates aren't loaded into memory, which means less resource usage, but there is some overhead for the TLS negotiation because NGINX has to load the certificate from disk. TLS session caching may help alleviate this though.</p>
 <p>You would probably want the certificates stored on a fast disk to eliminate I/O overhead.</p>
@@ -92,21 +88,19 @@ ssl_certificate_key  /usr/local/etc/nginx/ssl/$ssl_server_name.key;
 <a href="https://github.com/google/ngx_brotli/">Module Docs</a></p>
 <p>The normal <code>nginx</code> package does not include the brotli module. You can either compile NGINX yourself and include the Brotli module, or otherwise install the <code>nginx-full</code> package (though the package is big because of lots of dependencies and includes lots of other modules).</p>
 <p>Once you have a NGINX binary with the Brotli module included, you need to load the module in the NGINX configuration:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">load_module /usr/local/libexec/nginx/ngx_http_brotli_static_module.so;
-load_module /usr/local/libexec/nginx/ngx_http_brotli_filter_module.so;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>load_module /usr/local/libexec/nginx/ngx_http_brotli_static_module.so;
+</span><span>load_module /usr/local/libexec/nginx/ngx_http_brotli_filter_module.so;
 </span></code></pre>
 <p>Also an important note, you MUST use HTTPS for Brotli to work. So make sure you set a server block to use HTTPS and set up a certificate etc.</p>
 <p>Now you have two options, compress you static files manually and put them where NGINX can find them, or let NGINX compress them on-the-fly. </p>
 <h3 id="static">Static</h3>
 <p>With <code>brotli_static</code> set to <code>on</code> or <code>always</code>, the files must already be compressed. This can be done by installing the <code>brotli</code> package on FreeBSD, or otherwise you can do it quick and dirty with python like:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;"># pip install brotli
-
-import brotli
-with open(&#39;index.html&#39;, &#39;rb&#39;) as f:
-    with open(&#39;index.html.br&#39;, &#39;wb&#39;) as brotted:
-        brotted.write(brotli.compress(f.read()))
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span># pip install brotli
+</span><span>
+</span><span>import brotli
+</span><span>with open(&#39;index.html&#39;, &#39;rb&#39;) as f:
+</span><span>    with open(&#39;index.html.br&#39;, &#39;wb&#39;) as brotted:
+</span><span>        brotted.write(brotli.compress(f.read()))
 </span></code></pre>
 <p>Note that brotli prefers bytestrings.</p>
 <p>With the <code>brotli_static</code> option turned on, I found that using <code>index.html.br</code> didn't work, but if I set the filename to <code>index.html</code> but with Brotli-fied contents, it loaded correctly.</p>
@@ -115,30 +109,29 @@ with open(&#39;index.html&#39;, &#39;rb&#39;) as f:
 <p>Otherwise, set <code>brotli on;</code> and it will compress file on-the-fly.</p>
 <h2 id="nginx-tcp-udp-proxy">NGINX TCP/UDP proxy</h2>
 <p>NGINX needs to be compiled with the --with-stream option. It can't be dynamic, which is the default. In the config file you need to add:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">load_module /usr/local/libexec/nginx/ngx_stream_module.so;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>load_module /usr/local/libexec/nginx/ngx_stream_module.so;
 </span></code></pre>
 <p>Then in the config file:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">stream {
-
-  server {
-
-    listen 80;
-    proxy_pass 192.168.1.15:80;
-
-  }
-
-  server {
-
-    # Override the default stream type of TCP with UDP
-    listen 53;
-    proxy_pass 192.168.1.15:53 udp;
-
-  }
-
-}
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>stream {
+</span><span>
+</span><span>  server {
+</span><span>
+</span><span>    listen 80;
+</span><span>    proxy_pass 192.168.1.15:80;
+</span><span>
+</span><span>  }
+</span><span>
+</span><span>  server {
+</span><span>
+</span><span>    # Override the default stream type of TCP with UDP
+</span><span>    listen 53;
+</span><span>    proxy_pass 192.168.1.15:53 udp;
+</span><span>
+</span><span>  }
+</span><span>
+</span><span>}
 </span></code></pre>
+
     </div>
 
     

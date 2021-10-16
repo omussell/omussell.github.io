@@ -9,7 +9,7 @@
     <title>LXC&#x2F;LXD Containers</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -50,21 +50,18 @@
     <div class="content">
         <p>You should have either a blank disk or an existing zpool for storage. Run <code>lxd init</code>, answer the questions with Yes for the most part. Enter either the disk name like <code>/dev/sdb</code> or the zpool name <code>tank</code> when prompted.</p>
 <p>Once complete, you can start up an Alpine container with </p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">lxc launch images:alpine/3.12 alpinecontainer
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>lxc launch images:alpine/3.12 alpinecontainer
 </span></code></pre>
 <p>or a Ubuntu container with </p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">lxc launch ubuntu:20.04 ubuntucontainer
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>lxc launch ubuntu:20.04 ubuntucontainer
 </span></code></pre>
 <p>You can then connect to the container with </p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">lxc exec alpinecontainer -- /bin/sh
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>lxc exec alpinecontainer -- /bin/sh
 </span></code></pre>
 <p>or </p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">lxc exec ubuntucontainer -- /bin/bash
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>lxc exec ubuntucontainer -- /bin/bash
 </span></code></pre>
+
     </div>
 
     

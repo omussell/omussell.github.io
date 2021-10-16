@@ -9,7 +9,7 @@
     <title>RQLite</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -50,23 +50,20 @@
     <div class="content">
         <h2 id="rqlite">RQLite</h2>
 <p>SQLite, distributed over many nodes with consensus achieved with the Raft protocol.</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">go get github.com/rqlite/rqlite
-cd ~/go/src/github.com/rqlite/rqlite/cmd/rqlite
-go get -t -d -v ./...
-go build
-# You now have the rqlite binary
-cd ~/go/src/github.com/rqlite/rqlite/cmd/rqlited
-go build
-# You now have the rqlited binary
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>go get github.com/rqlite/rqlite
+</span><span>cd ~/go/src/github.com/rqlite/rqlite/cmd/rqlite
+</span><span>go get -t -d -v ./...
+</span><span>go build
+</span><span># You now have the rqlite binary
+</span><span>cd ~/go/src/github.com/rqlite/rqlite/cmd/rqlited
+</span><span>go build
+</span><span># You now have the rqlited binary
 </span></code></pre>
 <p>Set up the first cluster node:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">./rqlited ~/node.1
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>./rqlited ~/node.1
 </span></code></pre>
 <p>Then subsequent cluster nodes:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">rqlited -http-addr localhost:4003 -raft-addr localhost:4004 -join http://localhost:4001 ~/node.2
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>rqlited -http-addr localhost:4003 -raft-addr localhost:4004 -join http://localhost:4001 ~/node.2
 </span></code></pre>
 <p>Presumably you'd have the HTTP address and Raft address to be the same port on different servers, and you'd join to the same master node.</p>
 

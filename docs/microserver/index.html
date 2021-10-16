@@ -9,7 +9,7 @@
     <title>NAS on HP Microserver Gen8</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -67,15 +67,15 @@
 <h2 id="zfs">ZFS</h2>
 <p>You need to install the <code>zfsutils-linux</code> package to manage zpools.</p>
 <p>I set up the disks so that the two SSDs were in one pool, just striped, no mirror. Then the two HDDs were in another pool, mirrored. This results in two zpools, one with 500GB and no redundancy plus one with 3TB and redundancy.</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;"># Amend device names as appropriate
-
-# SSD zpool
-zpool create SSD_storage /dev/sdb /dev/sdc
-
-# HDD zpool
-zpool create HDD_storage mirror /dev/sdd /dev/sde
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span># Amend device names as appropriate
+</span><span>
+</span><span># SSD zpool
+</span><span>zpool create SSD_storage /dev/sdb /dev/sdc
+</span><span>
+</span><span># HDD zpool
+</span><span>zpool create HDD_storage mirror /dev/sdd /dev/sde
 </span></code></pre>
+
     </div>
 
     

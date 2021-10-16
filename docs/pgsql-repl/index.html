@@ -9,7 +9,7 @@
     <title>PostgreSQL 10.1 with replication</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;omussell.github.io&#x2F;main.css">
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
 
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
@@ -49,127 +49,114 @@
     </header>
     <div class="content">
         <h2 id="postgresql-10-1-with-replication">PostgreSQL 10.1 with replication</h2>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">pkg install -y postgresql10-server postgresql10-client
-sysrc postgresql_enable=YES
-service postgresql initdb
-service postgresql start
-</span></code></pre><h3 id="postgresql-10-1-scram-authentication">PostgreSQL 10.1 SCRAM Authentication</h3>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">su - postgres
-psql
-set password_encryption = &#39;scram-sha-256&#39;;
-create role app_db with password &#39;foo&#39;;
-select substring(rolpassword, 1, 14) from pg_authid where rolname = &#39;app_db&#39;;
-</span></code></pre><h3 id="postgresql-10-1-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage">PostgreSQL 10.1 using repmgr for database replication, WAL-G for WAL archiving, and minio for S3 compatible storage</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>pkg install -y postgresql10-server postgresql10-client
+</span><span>sysrc postgresql_enable=YES
+</span><span>service postgresql initdb
+</span><span>service postgresql start
+</span></code></pre>
+<h3 id="postgresql-10-1-scram-authentication">PostgreSQL 10.1 SCRAM Authentication</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>su - postgres
+</span><span>psql
+</span><span>set password_encryption = &#39;scram-sha-256&#39;;
+</span><span>create role app_db with password &#39;foo&#39;;
+</span><span>select substring(rolpassword, 1, 14) from pg_authid where rolname = &#39;app_db&#39;;
+</span></code></pre>
+<h3 id="postgresql-10-1-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage">PostgreSQL 10.1 using repmgr for database replication, WAL-G for WAL archiving, and minio for S3 compatible storage</h3>
 <p>For this, I created two bhyve VMs to host postgresql and a jail on the host for minio</p>
 <p>Make sure postgresql is running</p>
 <p>Carry out the following steps on both primary and replicas</p>
 <p>The current packaged version of repmgr is 3.3.1 which isn't the latest. The latest is 4.0.1, so we need to compile it ourself, and put files into the correct locations</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">fetch https://repmgr.org/download/repmgr-4.0.1.tar.gz
-tar -zvxf repmgr-4.0.1.tar.gz
-./configure
-pkg install -y gmake
-gmake
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>fetch https://repmgr.org/download/repmgr-4.0.1.tar.gz
+</span><span>tar -zvxf repmgr-4.0.1.tar.gz
+</span><span>./configure
+</span><span>pkg install -y gmake
+</span><span>gmake
 </span></code></pre>
 <p>Copy the repmgr files to their correct locations</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">cp -v repmgr /var/db/postgres
-cp -v repmgr--4.0.sql /usr/local/share/postgresql/extension/
-cp -v repmgr.control /usr/local/share/postgresql/extension
-</span></code></pre><pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">vim /var/db/postgrs/data10/postgresql.conf 
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cp -v repmgr /var/db/postgres
+</span><span>cp -v repmgr--4.0.sql /usr/local/share/postgresql/extension/
+</span><span>cp -v repmgr.control /usr/local/share/postgresql/extension
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>vim /var/db/postgrs/data10/postgresql.conf 
 </span></code></pre>
 <p>Add lines: </p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">include_dir = &#39;postgresql.conf.d&#39;
-listen_addresses = &#39;\*&#39;
-</span></code></pre><pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">vim /var/db/postgres/data10/postgresql.conf.d/postgresql.replication.conf
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>include_dir = &#39;postgresql.conf.d&#39;
+</span><span>listen_addresses = &#39;\*&#39;
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>vim /var/db/postgres/data10/postgresql.conf.d/postgresql.replication.conf
 </span></code></pre>
 <p>Add lines:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">max_wal_senders = 10
-wal_level = &#39;replica&#39;
-wal_keep_segments = 5000
-hot_standby = on
-archive_mode = on
-archive_command = &#39;wal-g stuff here&#39;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>max_wal_senders = 10
+</span><span>wal_level = &#39;replica&#39;
+</span><span>wal_keep_segments = 5000
+</span><span>hot_standby = on
+</span><span>archive_mode = on
+</span><span>archive_command = &#39;wal-g stuff here&#39;
 </span></code></pre>
 <p>vim /var/db/postgres/data10/pg_hba.conf</p>
 <p>Add lines:
 Please note, for testing purposes, these rules are wide open and allow everything. Dont do this in production, use a specific role with a password and restrict to a specific address</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">local	all		all			trust
-host	all		all	0.0.0.0/0	trust
-host	replication	all	0.0.0.0/0	trust
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>local	all		all			trust
+</span><span>host	all		all	0.0.0.0/0	trust
+</span><span>host	replication	all	0.0.0.0/0	trust
 </span></code></pre>
 <p>vim /usr/local/etc/repmgr.conf</p>
 <p>Add lines:</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">node_id=1 # arbitrary number, each node needs to be unique
-node_name=postgres-db1 # this nodes hostname
-conninfo=&#39;host=192.168.1.10 user=repmgr dbname=repmgr&#39; # the host value should be a hostname if DNS is working
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>node_id=1 # arbitrary number, each node needs to be unique
+</span><span>node_name=postgres-db1 # this nodes hostname
+</span><span>conninfo=&#39;host=192.168.1.10 user=repmgr dbname=repmgr&#39; # the host value should be a hostname if DNS is working
 </span></code></pre>
 <p>On the primary</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">su - postgres
-createuser -s repmgr
-createdb repmgr -O repmgr
-
-repmgr -f /usr/local/etc/repmgr.conf primary register
-repmgr -f /usr/local/etc/repmgr.conf cluster show
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>su - postgres
+</span><span>createuser -s repmgr
+</span><span>createdb repmgr -O repmgr
+</span><span>
+</span><span>repmgr -f /usr/local/etc/repmgr.conf primary register
+</span><span>repmgr -f /usr/local/etc/repmgr.conf cluster show
 </span></code></pre>
 <p>On a standby</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">su - postgres
-psql &#39;host=node1 user=repmgr dbname=repmgr&#39;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>su - postgres
+</span><span>psql &#39;host=node1 user=repmgr dbname=repmgr&#39;
 </span></code></pre>
 <p>To clone the primary, the data directory on the standby node must exist but be empty</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">rm -rf /var/db/postgres/data10/
-mkdir -p /var/db/postgres/data10
-chown postgres:postgres /var/db/postgres/data10
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>rm -rf /var/db/postgres/data10/
+</span><span>mkdir -p /var/db/postgres/data10
+</span><span>chown postgres:postgres /var/db/postgres/data10
 </span></code></pre>
 <p>Dry run first to check for problems</p>
 <p><code>repmgr -h node1 -U repmgr -d repmgr -f /usr/local/etc/repmgr.conf standby clone --dry-run</code></p>
 <p>If its ok, run it</p>
 <p><code>repmgr -h node1 -U repmgr -d repmgr -f /usr/local/etc/repmgr.conf standby clone</code></p>
 <p>On the primary</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">su - postgres
-psql -d repmgr
-select * from pg_stat_replication;
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>su - postgres
+</span><span>psql -d repmgr
+</span><span>select * from pg_stat_replication;
 </span></code></pre>
 <p>On the standby</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">repmgr -f /usr/local/etc/repmgr.conf standby register
-repmgr -f /usr/local/etc/repmgr.conf cluster show
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>repmgr -f /usr/local/etc/repmgr.conf standby register
+</span><span>repmgr -f /usr/local/etc/repmgr.conf cluster show
 </span></code></pre>
 <p>Install minio</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">pkg install -y minio
-sysrc minio_enable=YES
-sysrc minio_disks=/home/user/test
-mkdir -p /home/user/test
-chown minio:minio /home/user/test
-service minio start
-# The access keys are in /usr/local/etc/minio/config.json
-# You can change them in this file and restart the service to take effect
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>pkg install -y minio
+</span><span>sysrc minio_enable=YES
+</span><span>sysrc minio_disks=/home/user/test
+</span><span>mkdir -p /home/user/test
+</span><span>chown minio:minio /home/user/test
+</span><span>service minio start
+</span><span># The access keys are in /usr/local/etc/minio/config.json
+</span><span># You can change them in this file and restart the service to take effect
 </span></code></pre>
 <p>On the primary
 WAL-G</p>
-<pre style="background-color:#2b303b;">
-<code><span style="color:#c0c5ce;">pkg install -y go
-mkdir -p /root/go
-setenv GOPATH /root/go
-cd go
-go get github.com/wal-g/wal-g
-cd src/github.com/wal-g/wal-g
-make all
-make install
-cp /root/go/bin/wal-g /usr/local/bin
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>pkg install -y go
+</span><span>mkdir -p /root/go
+</span><span>setenv GOPATH /root/go
+</span><span>cd go
+</span><span>go get github.com/wal-g/wal-g
+</span><span>cd src/github.com/wal-g/wal-g
+</span><span>make all
+</span><span>make install
+</span><span>cp /root/go/bin/wal-g /usr/local/bin
 </span></code></pre>
 <p>WAL-G requires certain environment variables to be set. This can be done using envdir, part of the daemontools package</p>
 <p>pkg install -y daemontools</p>
