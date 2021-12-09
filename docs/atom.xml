@@ -4,8 +4,102 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-09-25T00:00:00+00:00</updated>
+	<updated>2021-12-09T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Firecracker</title>
+		<published>2021-12-09T00:00:00+00:00</published>
+		<updated>2021-12-09T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/firecracker/" type="text/html"/>
+		<id>https://omussell.github.io/firecracker/</id>
+		<content type="html">&lt;h1 id=&quot;firecracker&quot;&gt;Firecracker&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&quot;&gt;Firecracker&lt;&#x2F;a&gt; - Secure and fast microVMs for serverless computing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;quickstart&quot;&gt;Quickstart&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&#x2F;blob&#x2F;main&#x2F;docs&#x2F;getting-started.md&quot;&gt;Quickstart&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;get-firecracker&quot;&gt;Get firecracker&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;release_url=&amp;quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&#x2F;releases&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;latest=$(basename $(curl -fsSLI -o &#x2F;dev&#x2F;null -w  %{url_effective} ${release_url}&#x2F;latest))
+&lt;&#x2F;span&gt;&lt;span&gt;curl -L ${release_url}&#x2F;download&#x2F;${latest}&#x2F;firecracker-${latest}-x86_64.tgz | tar -xz
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;get-the-kernel-and-rootfs&quot;&gt;Get the kernel and rootfs&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Official instructions
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;dest_kernel=&amp;quot;hello-vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;dest_rootfs=&amp;quot;hello-rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;image_bucket_url=&amp;quot;https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;spec.ccfc.min&#x2F;img&#x2F;quickstart_guide&#x2F;x86_64&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;kernel=&amp;quot;${image_bucket_url}&#x2F;kernels&#x2F;vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;rootfs=&amp;quot;${image_bucket_url}&#x2F;rootfs&#x2F;bionic.rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_kernel $kernel
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_rootfs $rootfs
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Same but with a recently built image as gleaned from the bucket list
+&lt;&#x2F;span&gt;&lt;span&gt;dest_kernel=&amp;quot;hello-vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;dest_rootfs=&amp;quot;hello-rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;kernel=&amp;quot;https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;spec.ccfc.min&#x2F;img-dev&#x2F;x86_64&#x2F;ubuntu&#x2F;kernel&#x2F;vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;rootfs=&amp;quot;https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;spec.ccfc.min&#x2F;img-dev&#x2F;x86_64&#x2F;ubuntu&#x2F;fsfiles&#x2F;bionic.rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_kernel $kernel
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_rootfs $rootfs
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;using-firectl&quot;&gt;Using firectl&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;get-firectl&quot;&gt;Get firectl&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;curl -Lo firectl https:&#x2F;&#x2F;firectl-release.s3.amazonaws.com&#x2F;firectl-v0.1.0
+&lt;&#x2F;span&gt;&lt;span&gt;chmod +x firectl
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;create-microvm&quot;&gt;Create microvm&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;firectl \
+&lt;&#x2F;span&gt;&lt;span&gt;  --kernel=hello-vmlinux.bin \
+&lt;&#x2F;span&gt;&lt;span&gt;  --root-drive=hello-rootfs.ext4
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;using-the-api&quot;&gt;Using the API&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;set-the-guest-kernel&quot;&gt;Set the guest kernel&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;kernel_path=$(pwd)&amp;quot;&#x2F;hello-vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;curl --unix-socket &#x2F;tmp&#x2F;firecracker.socket -i \
+&lt;&#x2F;span&gt;&lt;span&gt;  -X PUT &amp;#39;http:&#x2F;&#x2F;localhost&#x2F;boot-source&amp;#39;   \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Accept: application&#x2F;json&amp;#39;           \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Content-Type: application&#x2F;json&amp;#39;     \
+&lt;&#x2F;span&gt;&lt;span&gt;  -d &amp;quot;{
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;kernel_image_path\&amp;quot;: \&amp;quot;${kernel_path}\&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;boot_args\&amp;quot;: \&amp;quot;console=ttyS0 reboot=k panic=1 pci=off\&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;   }&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;set-the-guest-rootf&quot;&gt;Set the guest rootf&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;rootfs_path=$(pwd)&amp;quot;&#x2F;hello-rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;curl --unix-socket &#x2F;tmp&#x2F;firecracker.socket -i \
+&lt;&#x2F;span&gt;&lt;span&gt;  -X PUT &amp;#39;http:&#x2F;&#x2F;localhost&#x2F;drives&#x2F;rootfs&amp;#39; \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Accept: application&#x2F;json&amp;#39;           \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Content-Type: application&#x2F;json&amp;#39;     \
+&lt;&#x2F;span&gt;&lt;span&gt;  -d &amp;quot;{
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;drive_id\&amp;quot;: \&amp;quot;rootfs\&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;path_on_host\&amp;quot;: \&amp;quot;${rootfs_path}\&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;is_root_device\&amp;quot;: true,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;is_read_only\&amp;quot;: false
+&lt;&#x2F;span&gt;&lt;span&gt;   }&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;start-the-guest-machine&quot;&gt;Start the guest machine&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;curl --unix-socket &#x2F;tmp&#x2F;firecracker.socket -i \
+&lt;&#x2F;span&gt;&lt;span&gt;  -X PUT &amp;#39;http:&#x2F;&#x2F;localhost&#x2F;actions&amp;#39;       \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H  &amp;#39;Accept: application&#x2F;json&amp;#39;          \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H  &amp;#39;Content-Type: application&#x2F;json&amp;#39;    \
+&lt;&#x2F;span&gt;&lt;span&gt;  -d &amp;#39;{
+&lt;&#x2F;span&gt;&lt;span&gt;      &amp;quot;action_type&amp;quot;: &amp;quot;InstanceStart&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;   }&amp;#39;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;compile-kernel-and-fs-manually&quot;&gt;Compile Kernel and FS manually&lt;&#x2F;h2&gt;
+&lt;p&gt;Follow the steps in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&#x2F;blob&#x2F;master&#x2F;docs&#x2F;rootfs-and-kernel-setup.md&quot;&gt;here&lt;&#x2F;a&gt; to compile the kernel and base file. &lt;&#x2F;p&gt;
+&lt;p&gt;On Ubuntu when compiling you need to install dependencies like libssl-dev, libncurses-dev, bison, autoconf.&lt;&#x2F;p&gt;
+&lt;p&gt;Then if you try and compile and it complains about auto.conf not existing, run make menuconfig, then exit out immediately. That seems to have sorted it.&lt;&#x2F;p&gt;
+&lt;p&gt;Then when you run make vmlinux it asks lots of questions, but by using the preexisting config file from the repo a lot has already been decided. You could probably pipe yes into this, or otherwise just hold enter. Someone with more kernel experience needs to go over those options and decide if they&#x27;re necessary. &lt;&#x2F;p&gt;
+&lt;p&gt;Once compiled continue with the getting started instructions but change the path to the kernel file to the vmlinux you created.&lt;&#x2F;p&gt;
+&lt;p&gt;I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.&lt;&#x2F;p&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Lean</title>
 		<published>2021-09-25T00:00:00+00:00</published>
@@ -456,23 +550,6 @@
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;run&quot;&gt;Run&lt;&#x2F;h2&gt;
 &lt;p&gt;Create the systemd service file. Copy the file from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;bitwarden_rs&#x2F;wiki&#x2F;Setup-as-a-systemd-service&quot;&gt;the wiki&lt;&#x2F;a&gt;. &lt;&#x2F;p&gt;
-</content>
-	</entry>
-	<entry xml:lang="en">
-		<title>AWS Firecracker</title>
-		<published>2020-01-14T00:00:00+00:00</published>
-		<updated>2020-01-14T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/firecracker/" type="text/html"/>
-		<id>https://omussell.github.io/firecracker/</id>
-		<content type="html">&lt;p&gt;My summary&lt;&#x2F;p&gt;
-&lt;h1 id=&quot;firecracker&quot;&gt;Firecracker&lt;&#x2F;h1&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&quot;&gt;Firecracker&lt;&#x2F;a&gt; - Secure and fast microVMs for serverless computing.&lt;&#x2F;p&gt;
-&lt;p&gt;Follow the steps in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&#x2F;blob&#x2F;master&#x2F;docs&#x2F;rootfs-and-kernel-setup.md&quot;&gt;here&lt;&#x2F;a&gt; to compile the kernel and base file. &lt;&#x2F;p&gt;
-&lt;p&gt;On Ubuntu when compiling you need to install dependencies like libssl-dev, libncurses-dev, bison, autoconf.&lt;&#x2F;p&gt;
-&lt;p&gt;Then if you try and compile and it complains about auto.conf not existing, run make menuconfig, then exit out immediately. That seems to have sorted it.&lt;&#x2F;p&gt;
-&lt;p&gt;Then when you run make vmlinux it asks lots of questions, but by using the preexisting config file from the repo a lot has already been decided. You could probably pipe yes into this, or otherwise just hold enter. Someone with more kernel experience needs to go over those options and decide if they&#x27;re necessary. &lt;&#x2F;p&gt;
-&lt;p&gt;Once compiled continue with the getting started instructions but change the path to the kernel file to the vmlinux you created.&lt;&#x2F;p&gt;
-&lt;p&gt;I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.&lt;&#x2F;p&gt;
 </content>
 	</entry>
 	<entry xml:lang="en">

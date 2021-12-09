@@ -1,9 +1,110 @@
-My summary
-
 # Firecracker
 
 => https://github.com/firecracker-microvm/firecracker Firecracker
 - Secure and fast microVMs for serverless computing.
+
+## Quickstart
+
+=> https://github.com/firecracker-microvm/firecracker/blob/main/docs/getting-started.md Quickstart
+
+### Get firecracker
+
+```
+release_url="https://github.com/firecracker-microvm/firecracker/releases"
+latest=$(basename $(curl -fsSLI -o /dev/null -w  %{url_effective} ${release_url}/latest))
+curl -L ${release_url}/download/${latest}/firecracker-${latest}-x86_64.tgz | tar -xz
+```
+
+### Get the kernel and rootfs
+
+```
+# Official instructions
+
+dest_kernel="hello-vmlinux.bin"
+dest_rootfs="hello-rootfs.ext4"
+image_bucket_url="https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/x86_64"
+
+
+kernel="${image_bucket_url}/kernels/vmlinux.bin"
+rootfs="${image_bucket_url}/rootfs/bionic.rootfs.ext4"
+
+curl -fsSL -o $dest_kernel $kernel
+curl -fsSL -o $dest_rootfs $rootfs
+
+
+
+# Same but with a recently built image as gleaned from the bucket list
+dest_kernel="hello-vmlinux.bin"
+dest_rootfs="hello-rootfs.ext4"
+kernel="https://s3.amazonaws.com/spec.ccfc.min/img-dev/x86_64/ubuntu/kernel/vmlinux.bin"
+rootfs="https://s3.amazonaws.com/spec.ccfc.min/img-dev/x86_64/ubuntu/fsfiles/bionic.rootfs.ext4"
+curl -fsSL -o $dest_kernel $kernel
+curl -fsSL -o $dest_rootfs $rootfs
+```
+
+## Using firectl
+
+### Get firectl
+
+```
+curl -Lo firectl https://firectl-release.s3.amazonaws.com/firectl-v0.1.0
+chmod +x firectl
+```
+
+### Create microvm
+
+```
+./firectl \
+  --kernel=hello-vmlinux.bin \
+  --root-drive=hello-rootfs.ext4
+```
+
+## Using the API
+
+### Set the guest kernel
+
+```
+kernel_path=$(pwd)"/hello-vmlinux.bin"
+
+curl --unix-socket /tmp/firecracker.socket -i \
+  -X PUT 'http://localhost/boot-source'   \
+  -H 'Accept: application/json'           \
+  -H 'Content-Type: application/json'     \
+  -d "{
+        \"kernel_image_path\": \"${kernel_path}\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+```
+
+### Set the guest rootf
+
+```
+rootfs_path=$(pwd)"/hello-rootfs.ext4"
+curl --unix-socket /tmp/firecracker.socket -i \
+  -X PUT 'http://localhost/drives/rootfs' \
+  -H 'Accept: application/json'           \
+  -H 'Content-Type: application/json'     \
+  -d "{
+        \"drive_id\": \"rootfs\",
+        \"path_on_host\": \"${rootfs_path}\",
+        \"is_root_device\": true,
+        \"is_read_only\": false
+   }"
+```
+
+### Start the guest machine
+
+```
+curl --unix-socket /tmp/firecracker.socket -i \
+  -X PUT 'http://localhost/actions'       \
+  -H  'Accept: application/json'          \
+  -H  'Content-Type: application/json'    \
+  -d '{
+      "action_type": "InstanceStart"
+   }'
+```
+
+## Compile Kernel and FS manually
 
 Follow the steps in 
 => https://github.com/firecracker-microvm/firecracker/blob/master/docs/rootfs-and-kernel-setup.md here

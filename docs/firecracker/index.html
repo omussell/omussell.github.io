@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer-when-downgrade">
 
-    <title>AWS Firecracker</title>
+    <title>Firecracker</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://omussell.github.io/main.css">
@@ -45,12 +45,89 @@
 
 <article class="post">
     <header>
-        <h1>AWS Firecracker</h1>
+        <h1>Firecracker</h1>
     </header>
     <div class="content">
-        <p>My summary</p>
-<h1 id="firecracker">Firecracker</h1>
+        <h1 id="firecracker">Firecracker</h1>
 <p><a href="https://github.com/firecracker-microvm/firecracker">Firecracker</a> - Secure and fast microVMs for serverless computing.</p>
+<h2 id="quickstart">Quickstart</h2>
+<p><a href="https://github.com/firecracker-microvm/firecracker/blob/main/docs/getting-started.md">Quickstart</a></p>
+<h3 id="get-firecracker">Get firecracker</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>release_url=&quot;https://github.com/firecracker-microvm/firecracker/releases&quot;
+</span><span>latest=$(basename $(curl -fsSLI -o /dev/null -w  %{url_effective} ${release_url}/latest))
+</span><span>curl -L ${release_url}/download/${latest}/firecracker-${latest}-x86_64.tgz | tar -xz
+</span><span>
+</span></code></pre>
+<h3 id="get-the-kernel-and-rootfs">Get the kernel and rootfs</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span># Official instructions
+</span><span>
+</span><span>dest_kernel=&quot;hello-vmlinux.bin&quot;
+</span><span>dest_rootfs=&quot;hello-rootfs.ext4&quot;
+</span><span>image_bucket_url=&quot;https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/x86_64&quot;
+</span><span>
+</span><span>
+</span><span>kernel=&quot;${image_bucket_url}/kernels/vmlinux.bin&quot;
+</span><span>rootfs=&quot;${image_bucket_url}/rootfs/bionic.rootfs.ext4&quot;
+</span><span>
+</span><span>curl -fsSL -o $dest_kernel $kernel
+</span><span>curl -fsSL -o $dest_rootfs $rootfs
+</span><span>
+</span><span>
+</span><span>
+</span><span># Same but with a recently built image as gleaned from the bucket list
+</span><span>dest_kernel=&quot;hello-vmlinux.bin&quot;
+</span><span>dest_rootfs=&quot;hello-rootfs.ext4&quot;
+</span><span>kernel=&quot;https://s3.amazonaws.com/spec.ccfc.min/img-dev/x86_64/ubuntu/kernel/vmlinux.bin&quot;
+</span><span>rootfs=&quot;https://s3.amazonaws.com/spec.ccfc.min/img-dev/x86_64/ubuntu/fsfiles/bionic.rootfs.ext4&quot;
+</span><span>curl -fsSL -o $dest_kernel $kernel
+</span><span>curl -fsSL -o $dest_rootfs $rootfs
+</span></code></pre>
+<h2 id="using-firectl">Using firectl</h2>
+<h3 id="get-firectl">Get firectl</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>curl -Lo firectl https://firectl-release.s3.amazonaws.com/firectl-v0.1.0
+</span><span>chmod +x firectl
+</span></code></pre>
+<h3 id="create-microvm">Create microvm</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>./firectl \
+</span><span>  --kernel=hello-vmlinux.bin \
+</span><span>  --root-drive=hello-rootfs.ext4
+</span></code></pre>
+<h2 id="using-the-api">Using the API</h2>
+<h3 id="set-the-guest-kernel">Set the guest kernel</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>kernel_path=$(pwd)&quot;/hello-vmlinux.bin&quot;
+</span><span>
+</span><span>curl --unix-socket /tmp/firecracker.socket -i \
+</span><span>  -X PUT &#39;http://localhost/boot-source&#39;   \
+</span><span>  -H &#39;Accept: application/json&#39;           \
+</span><span>  -H &#39;Content-Type: application/json&#39;     \
+</span><span>  -d &quot;{
+</span><span>        \&quot;kernel_image_path\&quot;: \&quot;${kernel_path}\&quot;,
+</span><span>        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+</span><span>   }&quot;
+</span></code></pre>
+<h3 id="set-the-guest-rootf">Set the guest rootf</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>rootfs_path=$(pwd)&quot;/hello-rootfs.ext4&quot;
+</span><span>curl --unix-socket /tmp/firecracker.socket -i \
+</span><span>  -X PUT &#39;http://localhost/drives/rootfs&#39; \
+</span><span>  -H &#39;Accept: application/json&#39;           \
+</span><span>  -H &#39;Content-Type: application/json&#39;     \
+</span><span>  -d &quot;{
+</span><span>        \&quot;drive_id\&quot;: \&quot;rootfs\&quot;,
+</span><span>        \&quot;path_on_host\&quot;: \&quot;${rootfs_path}\&quot;,
+</span><span>        \&quot;is_root_device\&quot;: true,
+</span><span>        \&quot;is_read_only\&quot;: false
+</span><span>   }&quot;
+</span></code></pre>
+<h3 id="start-the-guest-machine">Start the guest machine</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>curl --unix-socket /tmp/firecracker.socket -i \
+</span><span>  -X PUT &#39;http://localhost/actions&#39;       \
+</span><span>  -H  &#39;Accept: application/json&#39;          \
+</span><span>  -H  &#39;Content-Type: application/json&#39;    \
+</span><span>  -d &#39;{
+</span><span>      &quot;action_type&quot;: &quot;InstanceStart&quot;
+</span><span>   }&#39;
+</span></code></pre>
+<h2 id="compile-kernel-and-fs-manually">Compile Kernel and FS manually</h2>
 <p>Follow the steps in <a href="https://github.com/firecracker-microvm/firecracker/blob/master/docs/rootfs-and-kernel-setup.md">here</a> to compile the kernel and base file. </p>
 <p>On Ubuntu when compiling you need to install dependencies like libssl-dev, libncurses-dev, bison, autoconf.</p>
 <p>Then if you try and compile and it complains about auto.conf not existing, run make menuconfig, then exit out immediately. That seems to have sorted it.</p>
@@ -63,7 +140,7 @@
     
     <div class="article-info">
         
-        <div class="article-date">14 January 2020</div>
+        <div class="article-date"> 9 December 2021</div>
         
         <div class="article-taxonomies">
             
