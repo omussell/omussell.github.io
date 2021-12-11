@@ -127,3 +127,25 @@ Once compiled continue with the getting started instructions but change the path
 I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.
 
 
+
+## Using the jailer
+
+The jailer is used to provide additional isolation for the VMs.
+
+The jailer binary is included in the tgz file from the firecracker release.
+
+```
+# It needs to be built statically linked to musl.
+
+apt install -y musl-tools
+
+# install rust via rustup
+
+# cd into the jailer directory in the firecracker repo
+cargo build --target="x86_64-unknown-linux-musl" --release
+
+# the built binary gets created at:
+../../build/cargo_target/x86_64-unknown-linux-musl/release/jailer
+
+# you should probably build with tools/devtool build instead
+```

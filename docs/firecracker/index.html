@@ -134,6 +134,23 @@
 <p>Then when you run make vmlinux it asks lots of questions, but by using the preexisting config file from the repo a lot has already been decided. You could probably pipe yes into this, or otherwise just hold enter. Someone with more kernel experience needs to go over those options and decide if they're necessary. </p>
 <p>Once compiled continue with the getting started instructions but change the path to the kernel file to the vmlinux you created.</p>
 <p>I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.</p>
+<h2 id="using-the-jailer">Using the jailer</h2>
+<p>The jailer is used to provide additional isolation for the VMs.</p>
+<p>The jailer binary is included in the tgz file from the firecracker release.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span># It needs to be built statically linked to musl.
+</span><span>
+</span><span>apt install -y musl-tools
+</span><span>
+</span><span># install rust via rustup
+</span><span>
+</span><span># cd into the jailer directory in the firecracker repo
+</span><span>cargo build --target=&quot;x86_64-unknown-linux-musl&quot; --release
+</span><span>
+</span><span># the built binary gets created at:
+</span><span>../../build/cargo_target/x86_64-unknown-linux-musl/release/jailer
+</span><span>
+</span><span># you should probably build with tools/devtool build instead
+</span></code></pre>
 
     </div>
 

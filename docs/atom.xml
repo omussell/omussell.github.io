@@ -98,6 +98,23 @@
 &lt;p&gt;Then when you run make vmlinux it asks lots of questions, but by using the preexisting config file from the repo a lot has already been decided. You could probably pipe yes into this, or otherwise just hold enter. Someone with more kernel experience needs to go over those options and decide if they&#x27;re necessary. &lt;&#x2F;p&gt;
 &lt;p&gt;Once compiled continue with the getting started instructions but change the path to the kernel file to the vmlinux you created.&lt;&#x2F;p&gt;
 &lt;p&gt;I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;using-the-jailer&quot;&gt;Using the jailer&lt;&#x2F;h2&gt;
+&lt;p&gt;The jailer is used to provide additional isolation for the VMs.&lt;&#x2F;p&gt;
+&lt;p&gt;The jailer binary is included in the tgz file from the firecracker release.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# It needs to be built statically linked to musl.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;apt install -y musl-tools
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# install rust via rustup
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# cd into the jailer directory in the firecracker repo
+&lt;&#x2F;span&gt;&lt;span&gt;cargo build --target=&amp;quot;x86_64-unknown-linux-musl&amp;quot; --release
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# the built binary gets created at:
+&lt;&#x2F;span&gt;&lt;span&gt;..&#x2F;..&#x2F;build&#x2F;cargo_target&#x2F;x86_64-unknown-linux-musl&#x2F;release&#x2F;jailer
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# you should probably build with tools&#x2F;devtool build instead
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 </content>
 	</entry>
 	<entry xml:lang="en">
