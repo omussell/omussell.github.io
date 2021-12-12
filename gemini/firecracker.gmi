@@ -122,6 +122,8 @@ I compiled 5.4 kernel and used the existing alpine base from the getting started
 
 ## Using the jailer
 
+### Install
+
 The jailer is used to provide additional isolation for the VMs.
 
 The jailer binary is included in the tgz file from the firecracker release.
@@ -141,3 +143,17 @@ cargo build --target="x86_64-unknown-linux-musl" --release
 
 # you should probably build with tools/devtool build instead
 ```
+
+### Run
+
+Rather than running the jailer binary manually, you can use the `--jailer` flag with firectl. Note that you must also include the `--chroot-base-dir="/srv/jailer"` flag, otherwise you get the `no such file or directory` error as per 
+=> https://github.com/firecracker-microvm/firecracker-go-sdk/issues/313 this issue
+.
+
+You also need to copy or move the firectl, firecracker, and jailer binaries into a bin directory in your $PATH otherwise it complains. I copied them to /usr/local/bin
+
+```
+/usr/local/bin/firectl --kernel=/root/release-v0.25.2-x86_64/hello-vmlinux.bin --root-drive=/root/release-v0.25.2-x86_64/hello-rootfs.ext4 --jailer=/usr/local/bin/jailer --exec-file=/usr/local/bin/firecracker --id=testvm4 --chroot-base-dir="/srv/jailer"
+```
+
+Firectl also doesnt handle cleaning up the /srv/jailer/firecracker/$vm_name chroot directory when you power off the VM. So you need to clean this up manually.

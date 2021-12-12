@@ -99,6 +99,7 @@
 &lt;p&gt;Once compiled continue with the getting started instructions but change the path to the kernel file to the vmlinux you created.&lt;&#x2F;p&gt;
 &lt;p&gt;I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;using-the-jailer&quot;&gt;Using the jailer&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;install&quot;&gt;Install&lt;&#x2F;h3&gt;
 &lt;p&gt;The jailer is used to provide additional isolation for the VMs.&lt;&#x2F;p&gt;
 &lt;p&gt;The jailer binary is included in the tgz file from the firecracker release.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# It needs to be built statically linked to musl.
@@ -115,6 +116,12 @@
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;# you should probably build with tools&#x2F;devtool build instead
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;run&quot;&gt;Run&lt;&#x2F;h3&gt;
+&lt;p&gt;Rather than running the jailer binary manually, you can use the &lt;code&gt;--jailer&lt;&#x2F;code&gt; flag with firectl. Note that you must also include the &lt;code&gt;--chroot-base-dir=&amp;quot;&#x2F;srv&#x2F;jailer&amp;quot;&lt;&#x2F;code&gt; flag, otherwise you get the &lt;code&gt;no such file or directory&lt;&#x2F;code&gt; error as per &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker-go-sdk&#x2F;issues&#x2F;313&quot;&gt;this issue&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You also need to copy or move the firectl, firecracker, and jailer binaries into a bin directory in your $PATH otherwise it complains. I copied them to &#x2F;usr&#x2F;local&#x2F;bin&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;firectl --kernel=&#x2F;root&#x2F;release-v0.25.2-x86_64&#x2F;hello-vmlinux.bin --root-drive=&#x2F;root&#x2F;release-v0.25.2-x86_64&#x2F;hello-rootfs.ext4 --jailer=&#x2F;usr&#x2F;local&#x2F;bin&#x2F;jailer --exec-file=&#x2F;usr&#x2F;local&#x2F;bin&#x2F;firecracker --id=testvm4 --chroot-base-dir=&amp;quot;&#x2F;srv&#x2F;jailer&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Firectl also doesnt handle cleaning up the &#x2F;srv&#x2F;jailer&#x2F;firecracker&#x2F;$vm_name chroot directory when you power off the VM. So you need to clean this up manually.&lt;&#x2F;p&gt;
 </content>
 	</entry>
 	<entry xml:lang="en">
