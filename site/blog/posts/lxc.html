@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.ico"/>
+  </head>
+  <body>
+    <div class="title">Oliver Mussell</div>
+    <div class="nav">
+      <a href="https://omussell.github.io/">home</a>
+      <a href="https://omussell.github.io/blog">blog</a>
+      <a href="https://github.com/omussell">github</a>
+    </div>
+
+    <div class="post">
+
+        <p>You should have either a blank disk or an existing zpool for storage. Run <mark><code>lxd init</code></mark>, answer the questions with Yes for the most part. Enter either the disk name like <mark><code>/dev/sdb</code></mark> or the zpool name <mark><code>tank</code></mark> when prompted.</p>
+
+        <p>Once complete, you can start up an Alpine container with </p>
+
+        <pre><code>
+lxc launch images:alpine/3.12 alpinecontainer
+        </code></pre>
+
+        <p>or a Ubuntu container with </p>
+
+        <pre><code>
+lxc launch ubuntu:20.04 ubuntucontainer
+        </code></pre>
+
+        <p>You can then connect to the container with </p>
+
+        <pre><code>
+lxc exec alpinecontainer -- /bin/sh
+        </code></pre>
+
+        <p>or</p>
+
+        <pre><code>
+lxc exec ubuntucontainer -- /bin/bash
+        </code></pre>
+    </div>
+  </body>
+</html>

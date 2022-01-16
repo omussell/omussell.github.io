@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.ico"/>
+  </head>
+  <body>
+    <div class="title">Oliver Mussell</div>
+    <div class="nav">
+      <a href="https://omussell.github.io/">home</a>
+      <a href="https://omussell.github.io/blog">blog</a>
+      <a href="https://github.com/omussell">github</a>
+    </div>
+
+    <div class="post">
+
+        <p>A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites</p>
+
+        <h1>Toyota Production System</h1>
+
+        <h2>Goal</h2>
+
+        <p>Design out overburden (muri) and inconsistency (mura), and to eliminate waste (muda).</p>
+
+        <h3>Types of waste</h3>
+
+        <ul>
+            <li>Overproduction</li>
+            <li>Time on hand (waiting)</li>
+            <li>Transportation</li>
+            <li>Processing itself</li>
+            <li>Excess inventory</li>
+            <li>Movement</li>
+            <li>Making defective products</li>
+            <li>Underutilised workers</li>
+        </ul>
+
+        <h2>Concept</h2>
+
+        <h3>Just-in-time</h3>
+        <p>Make only what is needed, only when it is needed and only in the amount that is needed</p>
+
+        <h3>Jidoka</h3>
+        <p>Automation with a human touch</p>
+
+        <h3>Poka Yoke</h3>
+
+        <p>Any mechanism in a process that helps an equipment operator avoid (yokeru) mistakes (poka) and defects by preventing, correcting, or drawing attention to human errors as they occur</p>
+
+        <h3>Continuous Improvement</h3>
+        <p>We form a long term vision, then iteratively work towards it</p>
+
+        <h3>Kaizen</h3>
+        <p>We improve our business operations continuously, always driving for innovation and evolution</p>
+
+        <h3>Genchi Genbutsu</h3>
+        <p>Go to the source to find the facts to make correct decisions</p>
+
+
+        <h2>The right process will produce the right results</h2>
+
+        <ul>
+        <li>Create continuous process flow to bring problems to the surface</li>
+        <li>Use the 'pull' system to avoid overproduction (Kanban)</li>
+        <li>Level out the workload (Heijunka)</li>
+        <li>Build a culture of stopping to fix problems, to get quality right from the start</li>
+        <li>Standardised tasks are the foundation for continuous improvement and employee empowerment</li>
+        <li>Use visual control so no problems are hidden</li>
+        <li>Use only reliable, thoroughly tested technology that serves your people and processes</li>
+        </ul>
+
+        <h2>Continuously solving root problems drives organisational learning</h2>
+
+        <ul>
+            <li>Go and see for yourself to thoroughly understand the situation (Genchi Genbutsu)</li>
+            <li>Make decisions slowly by consensus, thoroughly considering all options. Implement decisions rapidly (Nemawashi)</li>
+            <li>Become a learning organisation through relentless reflection (Hansei) and continuous improvement (Kaizen)</li>
+        </ul>
+
+        <h2>Andon</h2>
+
+        <p>The worker has the ability to stop production when a defect is found, and immediately call for assistance.</p>
+
+        <p>Work is stopped until a solution is found.</p>
+
+        <p>Stack light / Traffic light - Visual indicator of a machine state or process event</p>
+
+        <h2>5S</h2>
+
+        <pre><code>
+        Seiri       Sort
+        Seiton      Set in order
+        Seso        Shine
+        Seiketsu    Standardise
+        Shitsuke    Sustain
+        </code></pre>
+
+        <h2>Theory of Constraints</h2>
+
+        <p>Organisations can be measured and controlled by variations on three measures:</p>
+
+        <ul>
+            <li>Inventory - The money that the system has invested in purchasing things which it intends to sell</li>
+            <li>Operational expense - The money the system spends in order to turn inventory into throughput</li>
+            <li>Throughput - The rate at which the system generates money through sales</li>
+        </ul>
+
+        <h3>Constraints</h3>
+
+        <p>A constraint is anything that prevents the system from achieving its goal. There is always at least one, but at most only a few, at any given time.</p>
+
+        <p>If a constraints throughput capacity is elevated to the point where it is no longer the systems limiting factor, this is said to 'break' the constraint.</p>
+
+        <h3>Buffers</h3>
+
+        <p>Buffers are placed before the governing constraint, thus ensuring that the constraint is never starved.</p>
+
+        <p>Buffers are also placed behind the constraint to prevent downstream failure from blocking the constraints output.</p>
+
+        <p>Buffers used in this way protect the constraint from variations in the rest of the system and should allow for normal variation of processing time and the occasional upset before and behind the constraint.</p>
+
+        <p>With one constraint in the system, all other parts of the system must have sufficient capacity to keep up with the work at the constraint and to catch up if time was lost.</p>
+
+        <h3>Plant Types (VATI)</h3>
+
+        <p>The plant types specify the general flow of materials through a system</p>
+
+        <h4>V</h4>
+
+        <p>Flow is one to many, such as a plant that takes one raw material and can make many final products.</p>
+
+        <p>The primary problem in V plants is 'robbing', where on operation (A) immediately after a diverging point 'steals' materials meant for the other operation (B). Once the material has been processed by A, it cannot come back and be run through B without significant rework.</p>
+
+        <h4>A</h4>
+
+        <p>Flow is many to one, such as where many sub-assemblies converge for a final assembly.</p>
+
+        <p>The problem in A plants is synchronising the converging lines so that each supplies the final assembly point at the right time.</p>
+
+        <h4>T</h4>
+
+        <p>Flow is many to many, similar to I plant (or has multiple lines), which then splits into many assemblies.</p>
+
+        <p>T plants suffer from both synchronisation problems of A plants and the robbing problems of V plants.</p>
+
+        <h4>I</h4>
+
+        <p>Material flows in a sequence of events in a straight line. The constraint is the slowest operation.</p>
+    </div>
+  </body>
+</html>
