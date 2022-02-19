@@ -1,0 +1,41 @@
+body {
+	margin: 1.5em 0 100px 3em;
+	font-size: 16px;
+    font-family: Verdana, sans-serif;
+}
+
+div {
+    margin-left: 10px;
+}
+
+.title {
+	padding: 1em 0 0 0;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.nav {
+	padding: .5em 0 0 0;
+}
+
+.nav a {
+	margin: 0 .5em 0 0;
+}
+
+.post {
+	max-width: 60em;
+	padding: 1em 0 0 0;
+	margin-right: 15px;
+}
+
+.post pre {
+	overflow: auto;
+	border: 3px dashed #ccc;
+	padding: 3px;
+	margin-right: 15px;
+	font-size: 75%;
+
+}
+.post mark {
+    background-color: lightgrey;
+}
