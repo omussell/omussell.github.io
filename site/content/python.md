@@ -14,48 +14,43 @@ The following tools and libraries are known to work well with modern python. The
 
 ### Client
 
-[HTTPX](https://github.com/encode/httpx)
+- [HTTPX](https://github.com/encode/httpx)
 
 ### Server
 
-[FastAPI](https://fastapi.tiangolo.com/)
-[Uvicorn](https://www.uvicorn.org/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Uvicorn](https://www.uvicorn.org/)
 
 ## Databases
 
-[ORM](https://github.com/encode/orm)
-[Databases](https://github.com/encode/databases)
-[Alembic](https://alembic.sqlalchemy.org/en/latest/tutorial.html)
+- [SQLModel](https://github.com/tiangolo/sqlmodel)
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/tutorial.html)
 
 ## Async Processes
 
-[Celery](https://docs.celeryproject.org/en/stable/getting-started/introduction.html)
+- [Arq](https://github.com/samuelcolvin/arq)
 
 ## Cryptography
 
-[pynacl](https://pynacl.readthedocs.io/en/latest/)
-[secrets](https://docs.python.org/3/library/secrets.html)
+- [pynacl](https://pynacl.readthedocs.io/en/latest/)
+- [secrets](https://docs.python.org/3/library/secrets.html)
 
 ## Tools
 
 ### Linting
 
-[black](https://black.readthedocs.io/en/stable/)
+- [black](https://black.readthedocs.io/en/stable/)
 
 ### Typing
 
-[Pydantic](https://pydantic-docs.helpmanual.io/)
-[Mypy](https://github.com/python/mypy)
-
-### Requirements
-
-[poetry](https://python-poetry.org/)
+- [Pydantic](https://pydantic-docs.helpmanual.io/)
+- [Mypy](https://github.com/python/mypy)
 
 ### Documentation
 
-[mkdocs](https://www.mkdocs.org/)
-[mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
-[mkdocstrings](https://github.com/mkdocstrings/mkdocstrings)
+- [mkdocs](https://www.mkdocs.org/)
+- [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
+- [mkdocstrings](https://github.com/mkdocstrings/mkdocstrings)
 
 ### Code Complexity
 - [lizard](https://pypi.org/project/lizard/)

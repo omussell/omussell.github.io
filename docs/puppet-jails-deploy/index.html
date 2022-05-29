@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <title>Blue&#x2F;Green Deployments with Puppet, NGINX and FreeBSD Jails</title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
+
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
+    
+
+    
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to content</a>
+    <div class="container">
+        <header> 
+            <h1 class="site-header">
+                <a href="https:&#x2F;&#x2F;omussell.github.io"></a>
+            </h1>
+            <nav>
+                
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;about&#x2F;">About</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;">Blog</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;tags&#x2F;">Tags</a>
+                
+                
+            </nav>
+        </header>
+        <main id="main" tabindex="-1">
+            
+
+<article class="post">
+    <header>
+        <h1>Blue&#x2F;Green Deployments with Puppet, NGINX and FreeBSD Jails</h1>
+    </header>
+    <div class="content">
+        <p>At $WORK, we were going through a period of rapid growth and were planning on creating many more web apps. The apps are mainly Django/Python with a few NodeJS apps too. Previously they had been deployed on Debian servers and the deployment process was to SSH onto each app server and run git pull, then restart the processes.</p>
+<p>This solution works fine for apps with little traffic, but since we were growing rapidly, we were finding that this architecture wouldnt scale as much as we would like.</p>
+<p>At the time we were deciding on a new architecture (2017), the current modern solutions like Docker, Kubernetes and LXC/LXD were still very much in their infancy and not ready for production.</p>
+<p>In addition, one of the main gripes with Python apps is that they frequently link to C libraries. So when a new deployment contains a package updated via pip, what can happen is that it requires a new version of an OS package for a C library. Now you not only need to deploy the app, you also need to update the OS too.</p>
+<h2 id="proposed-architecture">Proposed Architecture</h2>
+<p>The solution we came up with was to deploy the apps inside FreeBSD jails, control the deployments via Puppet, and handle routing of requests from the load balancer to the correct jail using NGINX.</p>
+<h3 id="freebsd-jails">FreeBSD Jails</h3>
+<p>Jails work in a very similar way to LXC/LXD or like Docker but without immutable images. They are containers which share the host kernel but have their own copy of the base OS which runs isolated processes. Each jail can be allocated its own IP address and RW filesystem.</p>
+<p>To create a new jail, a filesystem containing the FreeBSD base system is created, the jail.conf files created and then the jail started. A jail runs the same init process tree as it would on bare metal or a VM. Once a jail is running, you can jexec inside the jail to run further commands.</p>
+<h3 id="puppet">Puppet</h3>
+<p>Puppet is a configuration management system. It lets you decide the desired state for a system and it will idempotently change the system to achieve the desired state.</p>
+<p>For example, if you wanted to install the NGINX package, make sure the config file was set up correctly and then start the service, you could write Puppet code like:</p>
+<pre data-lang="ruby" style="background-color:#2b303b;color:#c0c5ce;" class="language-ruby "><code class="language-ruby" data-lang="ruby"><span>package { &#39;</span><span style="color:#a3be8c;">nginx</span><span>&#39;:
+</span><span>  </span><span style="color:#b48ead;">ensure </span><span>=&gt; &#39;</span><span style="color:#a3be8c;">installed</span><span>&#39;,
+</span><span>}
+</span><span>
+</span><span>file { &#39;</span><span style="color:#a3be8c;">/etc/nginx/nginx.conf</span><span>&#39;:
+</span><span>  </span><span style="color:#b48ead;">ensure  </span><span>=&gt; &#39;</span><span style="color:#a3be8c;">file</span><span>&#39;,
+</span><span>  content =&gt; template(&#39;</span><span style="color:#a3be8c;">profiles/nginx/nginx.conf.erb</span><span>&#39;),
+</span><span>}
+</span><span>
+</span><span>service { &#39;</span><span style="color:#a3be8c;">nginx</span><span>&#39;:
+</span><span>  </span><span style="color:#b48ead;">ensure </span><span>=&gt; &#39;</span><span style="color:#a3be8c;">running</span><span>&#39;,
+</span><span>  enable =&gt; </span><span style="color:#d08770;">true</span><span>,
+</span><span>}
+</span></code></pre>
+<p>That code is very generic and Puppet will work across multiple OSes and filesystems. You dont have to worry about OS specific actions, Puppet just does it all for you.</p>
+<h3 id="nginx">NGINX</h3>
+<p>With NGINX we can use it both to serve static assets like a web server and as a reverse proxy to the applications. The config can be set to route requests to specific domains or URLs to specific backends. In this case, the backends would be the IP addresses of the jails.</p>
+<h3 id="putting-it-all-together">Putting it all together</h3>
+<p>I created a basic Puppet type and provider which can check for the presence or absence of jails. This was used in a module which performed the actions to set up the jails.</p>
+<p>The jail filesystem would run on ZFS which meant we could create a template dataset and then new jails were just clones of that dataset.</p>
+<p>When Puppet ran on the host system, it would perform the following actions in order to create a new jail:</p>
+<ul>
+<li>Download the FreeBSD base files tar.xz</li>
+<li>Create the template ZFS dataset and extract the base files into it</li>
+<li>Create some standard files like resolv.conf and install standard packages like Git and Puppet</li>
+<li>Create a ZFS snapshot of the template dataset</li>
+<li>Clone the template snapshot for the new jail</li>
+<li>Amend the jail.conf to include config for the new jail</li>
+<li>Start the new jail</li>
+<li>Run Puppet inside the jail to provision the app</li>
+<li>Subsequent Puppet runs on the host would amend the NGINX config to route traffic to the new jails IP address.</li>
+</ul>
+<p>When creating a new jail, we designated it as the &quot;test&quot; jail which had a specific domain or URL in the NGINX config. So all live traffic would continue to be served by the &quot;live&quot; jail, but any requests to a specific &quot;test&quot; domain/URL would instead be routed to the &quot;test&quot; jail. This meant that the QA department could run their tests in the &quot;test&quot; jail without it affect the &quot;live&quot; jail.</p>
+<p>The switchover was accomplished by changing the NGINX config and running nginx -s reload which gracefully reloads the NGINX processes with the new config without dropping any in flight requests.</p>
+<h2 id="end-result">End Result</h2>
+<p>This setup was running fine for years and allowed us to scale well. I wouldn't recommend going this route for future deployments. We spent a lot of time fighting FreeBSD because the support for third-party packages was so poor. We frequently had to reinvent the wheel to get things working.</p>
+<p>My recommendations would be:</p>
+<ul>
+<li>If you want to self-host and are a sufficiently large organisation, use Kubernetes.</li>
+<li>If you want to self-host and arent that big, use LXD and pair it with Ansbile or Saltstack.</li>
+<li>If you dont want to self-host, use something like Heroku or Fly.io</li>
+</ul>
+
+    </div>
+
+    
+    <div class="article-info">
+        
+        <div class="article-date"> 1 January 2022</div>
+        
+        <div class="article-taxonomies">
+            
+            
+                <ul class="article-tags">
+                    
+                    <li><a href="https://omussell.github.io/tags/homelab/">#homelab</a></li>
+                    
+                </ul>
+            
+        </div>
+    </div>
+
+</article>
+
+
+        </main>
+        <footer>
+            <p>
+                ©  2022<br>
+                Powered by <a target="_blank" href="https://getzola.com/">Zola</a>, Theme <a target="_blank" href="https://github.com/zbrox/anpu-zola-theme">Anpu</a>.
+            </p>
+            <p>
+                
+                
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
