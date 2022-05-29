@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <title>Compiling NGINX with ChaCha20 support</title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://omussell.github.io/main.css">
+
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://omussell.github.io/atom.xml">
+    
+
+    
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to content</a>
+    <div class="container">
+        <header> 
+            <h1 class="site-header">
+                <a href="https:&#x2F;&#x2F;omussell.github.io"></a>
+            </h1>
+            <nav>
+                
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;about&#x2F;">About</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;">Blog</a>
+                
+                
+                <a  href="https:&#x2F;&#x2F;omussell.github.io&#x2F;tags&#x2F;">Tags</a>
+                
+                
+            </nav>
+        </header>
+        <main id="main" tabindex="-1">
+            
+
+<article class="post">
+    <header>
+        <h1>Compiling NGINX with ChaCha20 support</h1>
+    </header>
+    <div class="content">
+        <p>Make a working directory</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>mkdir ~/nginx
+</span><span>cd ~/nginx
+</span></code></pre>
+<p>Install some dependencies</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>pkg install -y ca_root_nss pcre perl5
+</span></code></pre>
+<p>Pull the source files</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>fetch https://nginx.org/download/nginx-1.13.0.tar.gz
+</span><span>fetch https://www.openssl.org/source/openssl-1.1.0e.tar.gz
+</span></code></pre>
+<p>Extract the tarballs</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>tar -xzvf nginx-1.13.0.tar.gz
+</span><span>tar -xzvf openssl-1.1.0e.tar.gz
+</span><span>rm *.tar.gz
+</span></code></pre>
+<p>Compile openssl</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cd ~/nginx/openssl-1.1.0e.tar.gz
+</span><span>./config
+</span><span>make
+</span><span>make install
+</span></code></pre>
+<p>The compiled OpenSSL binary should be located in /usr/local/bin by default, unless the prefixdir variable has been set</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>/usr/local/bin/openssl version
+</span><span># Should output OpenSSL 1.1.0e
+</span></code></pre>
+<p>Compile NGINX</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>#!/bin/sh
+</span><span>cd ~/nginx/nginx-1.13.0/
+</span><span>#make clean
+</span><span>
+</span><span>./configure \
+</span><span>	--with-http_ssl_module \
+</span><span>	--with-http_gzip_static_module \
+</span><span>	--with-file-aio \
+</span><span>	--with-ld-opt=&quot;-L /usr/local/lib&quot; \
+</span><span>
+</span><span>	--without-http_browser_module \
+</span><span>	--without-http_fastcgi_module \
+</span><span>	--without-http_geo_module \
+</span><span>	--without-http_map_module \
+</span><span>	--without-http_proxy_module \
+</span><span>	--without-http_memcached_module \
+</span><span>	--without-http_ssi_module \
+</span><span>	--without-http_userid_module \
+</span><span>	--without-http_split_clients_module \
+</span><span>	--without-http_uwsgi_module \
+</span><span>	--without-http_scgi_module \
+</span><span>	--without-http_limit_conn_module \
+</span><span>	--without-http_referer_module \
+</span><span>	--without-http_http-cache \
+</span><span>	--without_upstream_ip_hash_module \
+</span><span>	--without-mail_pop3_module \
+</span><span>	--without-mail-imap_module \
+</span><span>	--without-mail_smtp_module
+</span><span>
+</span><span>	--with-openssl=~/nginx/openssl-1.1.0e/
+</span><span>
+</span><span>make
+</span><span>make install
+</span></code></pre>
+<p>After running the compile script, NGINX should be installed in /usr/local/nginx</p>
+<p>Start the service</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>/usr/local/nginx/sbin/nginx
+</span></code></pre>
+<p>If there are no issues, update the config file as appropriate in <code>/usr/local/nginx/conf/nginx.conf</code></p>
+<p>Reload NGINX to apply the new config</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>/usr/local/nginx/sbin/nginx -s reload
+</span></code></pre>
+<p>Generate a self-signed certificate</p>
+<p>Current NGINX config</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>worker_processes  1;
+</span><span>
+</span><span>events {
+</span><span>    worker_connections  1024;
+</span><span>}
+</span><span>
+</span><span>
+</span><span>http {
+</span><span>    include       mime.types;
+</span><span>    default_type  application/octet-stream;
+</span><span>    sendfile        on;
+</span><span>    keepalive_timeout  65;
+</span><span>
+</span><span>    server {
+</span><span>        listen       80;
+</span><span>        server_name  localhost;
+</span><span>        location / {
+</span><span>            root   /usr/local/www/;
+</span><span>            index  index.html index.htm;
+</span><span>        }
+</span><span>
+</span><span>        error_page   500 502 503 504  /50x.html;
+</span><span>        location = /50x.html {
+</span><span>            root   html;
+</span><span>        }
+</span><span>
+</span><span>    }
+</span><span>
+</span><span>    server {
+</span><span>        listen       443 ssl;
+</span><span>        server_name  localhost;
+</span><span>
+</span><span>	ssl on;
+</span><span>        #ssl_certificate      /root/nginx/server.pem;
+</span><span>        #ssl_certificate_key  /root/nginx/private.pem;
+</span><span>	ssl_certificate /usr/local/www/nginx-selfsigned.crt;
+</span><span>	ssl_certificate_key /usr/local/www/nginx-selfsigned.key;
+</span><span>	ssl_ciphers &quot;ECDHE-RSA-CHACHA20-POLY1305&quot;;
+</span><span>        ssl_prefer_server_ciphers  on;
+</span><span>	ssl_protocols TLSv1.2;
+</span><span>	ssl_ecdh_curve X25519;
+</span><span>	
+</span><span>	location / {
+</span><span>            root   /usr/local/www/;
+</span><span>            index  index.html index.htm;
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>}
+</span></code></pre>
+
+    </div>
+
+    
+    <div class="article-info">
+        
+        <div class="article-date"> 3 January 2020</div>
+        
+        <div class="article-taxonomies">
+            
+            
+                <ul class="article-tags">
+                    
+                    <li><a href="https://omussell.github.io/tags/nginx/">#nginx</a></li>
+                    
+                    <li><a href="https://omussell.github.io/tags/homelab/">#homelab</a></li>
+                    
+                    <li><a href="https://omussell.github.io/tags/crypto/">#crypto</a></li>
+                    
+                </ul>
+            
+        </div>
+    </div>
+
+</article>
+
+
+        </main>
+        <footer>
+            <p>
+                ©  2021<br>
+                Powered by <a target="_blank" href="https://getzola.com/">Zola</a>, Theme <a target="_blank" href="https://github.com/zbrox/anpu-zola-theme">Anpu</a>.
+            </p>
+            <p>
+                
+                
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

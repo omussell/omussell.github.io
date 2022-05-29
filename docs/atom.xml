@@ -1,0 +1,1589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title></title>
+	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://omussell.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2021-12-09T00:00:00+00:00</updated>
+	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Firecracker</title>
+		<published>2021-12-09T00:00:00+00:00</published>
+		<updated>2021-12-09T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/firecracker/" type="text/html"/>
+		<id>https://omussell.github.io/firecracker/</id>
+		<content type="html">&lt;h1 id=&quot;firecracker&quot;&gt;Firecracker&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&quot;&gt;Firecracker&lt;&#x2F;a&gt; - Secure and fast microVMs for serverless computing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;quickstart&quot;&gt;Quickstart&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&#x2F;blob&#x2F;main&#x2F;docs&#x2F;getting-started.md&quot;&gt;Quickstart&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;get-firecracker&quot;&gt;Get firecracker&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;release_url=&amp;quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&#x2F;releases&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;latest=$(basename $(curl -fsSLI -o &#x2F;dev&#x2F;null -w  %{url_effective} ${release_url}&#x2F;latest))
+&lt;&#x2F;span&gt;&lt;span&gt;curl -L ${release_url}&#x2F;download&#x2F;${latest}&#x2F;firecracker-${latest}-x86_64.tgz | tar -xz
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;get-the-kernel-and-rootfs&quot;&gt;Get the kernel and rootfs&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Official instructions
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;dest_kernel=&amp;quot;hello-vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;dest_rootfs=&amp;quot;hello-rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;image_bucket_url=&amp;quot;https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;spec.ccfc.min&#x2F;img&#x2F;quickstart_guide&#x2F;x86_64&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;kernel=&amp;quot;${image_bucket_url}&#x2F;kernels&#x2F;vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;rootfs=&amp;quot;${image_bucket_url}&#x2F;rootfs&#x2F;bionic.rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_kernel $kernel
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_rootfs $rootfs
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Same but with a recently built image as gleaned from the bucket list
+&lt;&#x2F;span&gt;&lt;span&gt;dest_kernel=&amp;quot;hello-vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;dest_rootfs=&amp;quot;hello-rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;kernel=&amp;quot;https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;spec.ccfc.min&#x2F;img-dev&#x2F;x86_64&#x2F;ubuntu&#x2F;kernel&#x2F;vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;rootfs=&amp;quot;https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;spec.ccfc.min&#x2F;img-dev&#x2F;x86_64&#x2F;ubuntu&#x2F;fsfiles&#x2F;bionic.rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_kernel $kernel
+&lt;&#x2F;span&gt;&lt;span&gt;curl -fsSL -o $dest_rootfs $rootfs
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;using-firectl&quot;&gt;Using firectl&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;get-firectl&quot;&gt;Get firectl&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;curl -Lo firectl https:&#x2F;&#x2F;firectl-release.s3.amazonaws.com&#x2F;firectl-v0.1.0
+&lt;&#x2F;span&gt;&lt;span&gt;chmod +x firectl
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;create-microvm&quot;&gt;Create microvm&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;firectl \
+&lt;&#x2F;span&gt;&lt;span&gt;  --kernel=hello-vmlinux.bin \
+&lt;&#x2F;span&gt;&lt;span&gt;  --root-drive=hello-rootfs.ext4
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;using-the-api&quot;&gt;Using the API&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;set-the-guest-kernel&quot;&gt;Set the guest kernel&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;kernel_path=$(pwd)&amp;quot;&#x2F;hello-vmlinux.bin&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;curl --unix-socket &#x2F;tmp&#x2F;firecracker.socket -i \
+&lt;&#x2F;span&gt;&lt;span&gt;  -X PUT &amp;#39;http:&#x2F;&#x2F;localhost&#x2F;boot-source&amp;#39;   \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Accept: application&#x2F;json&amp;#39;           \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Content-Type: application&#x2F;json&amp;#39;     \
+&lt;&#x2F;span&gt;&lt;span&gt;  -d &amp;quot;{
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;kernel_image_path\&amp;quot;: \&amp;quot;${kernel_path}\&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;boot_args\&amp;quot;: \&amp;quot;console=ttyS0 reboot=k panic=1 pci=off\&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;   }&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;set-the-guest-rootf&quot;&gt;Set the guest rootf&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;rootfs_path=$(pwd)&amp;quot;&#x2F;hello-rootfs.ext4&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;curl --unix-socket &#x2F;tmp&#x2F;firecracker.socket -i \
+&lt;&#x2F;span&gt;&lt;span&gt;  -X PUT &amp;#39;http:&#x2F;&#x2F;localhost&#x2F;drives&#x2F;rootfs&amp;#39; \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Accept: application&#x2F;json&amp;#39;           \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H &amp;#39;Content-Type: application&#x2F;json&amp;#39;     \
+&lt;&#x2F;span&gt;&lt;span&gt;  -d &amp;quot;{
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;drive_id\&amp;quot;: \&amp;quot;rootfs\&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;path_on_host\&amp;quot;: \&amp;quot;${rootfs_path}\&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;is_root_device\&amp;quot;: true,
+&lt;&#x2F;span&gt;&lt;span&gt;        \&amp;quot;is_read_only\&amp;quot;: false
+&lt;&#x2F;span&gt;&lt;span&gt;   }&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;start-the-guest-machine&quot;&gt;Start the guest machine&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;curl --unix-socket &#x2F;tmp&#x2F;firecracker.socket -i \
+&lt;&#x2F;span&gt;&lt;span&gt;  -X PUT &amp;#39;http:&#x2F;&#x2F;localhost&#x2F;actions&amp;#39;       \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H  &amp;#39;Accept: application&#x2F;json&amp;#39;          \
+&lt;&#x2F;span&gt;&lt;span&gt;  -H  &amp;#39;Content-Type: application&#x2F;json&amp;#39;    \
+&lt;&#x2F;span&gt;&lt;span&gt;  -d &amp;#39;{
+&lt;&#x2F;span&gt;&lt;span&gt;      &amp;quot;action_type&amp;quot;: &amp;quot;InstanceStart&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;   }&amp;#39;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;compile-kernel-and-fs-manually&quot;&gt;Compile Kernel and FS manually&lt;&#x2F;h2&gt;
+&lt;p&gt;Follow the steps in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&#x2F;blob&#x2F;master&#x2F;docs&#x2F;rootfs-and-kernel-setup.md&quot;&gt;here&lt;&#x2F;a&gt; to compile the kernel and base file. &lt;&#x2F;p&gt;
+&lt;p&gt;On Ubuntu when compiling you need to install dependencies like libssl-dev, libncurses-dev, bison, autoconf.&lt;&#x2F;p&gt;
+&lt;p&gt;Then if you try and compile and it complains about auto.conf not existing, run make menuconfig, then exit out immediately. That seems to have sorted it.&lt;&#x2F;p&gt;
+&lt;p&gt;Then when you run make vmlinux it asks lots of questions, but by using the preexisting config file from the repo a lot has already been decided. You could probably pipe yes into this, or otherwise just hold enter. Someone with more kernel experience needs to go over those options and decide if they&#x27;re necessary. &lt;&#x2F;p&gt;
+&lt;p&gt;Once compiled continue with the getting started instructions but change the path to the kernel file to the vmlinux you created.&lt;&#x2F;p&gt;
+&lt;p&gt;I compiled 5.4 kernel and used the existing alpine base from the getting started and it boots just fine.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;using-the-jailer&quot;&gt;Using the jailer&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;install&quot;&gt;Install&lt;&#x2F;h3&gt;
+&lt;p&gt;The jailer is used to provide additional isolation for the VMs.&lt;&#x2F;p&gt;
+&lt;p&gt;The jailer binary is included in the tgz file from the firecracker release.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# It needs to be built statically linked to musl.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;apt install -y musl-tools
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# install rust via rustup
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# cd into the jailer directory in the firecracker repo
+&lt;&#x2F;span&gt;&lt;span&gt;cargo build --target=&amp;quot;x86_64-unknown-linux-musl&amp;quot; --release
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# the built binary gets created at:
+&lt;&#x2F;span&gt;&lt;span&gt;..&#x2F;..&#x2F;build&#x2F;cargo_target&#x2F;x86_64-unknown-linux-musl&#x2F;release&#x2F;jailer
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# you should probably build with tools&#x2F;devtool build instead
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;run&quot;&gt;Run&lt;&#x2F;h3&gt;
+&lt;p&gt;Rather than running the jailer binary manually, you can use the &lt;code&gt;--jailer&lt;&#x2F;code&gt; flag with firectl. Note that you must also include the &lt;code&gt;--chroot-base-dir=&amp;quot;&#x2F;srv&#x2F;jailer&amp;quot;&lt;&#x2F;code&gt; flag, otherwise you get the &lt;code&gt;no such file or directory&lt;&#x2F;code&gt; error as per &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker-go-sdk&#x2F;issues&#x2F;313&quot;&gt;this issue&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You also need to copy or move the firectl, firecracker, and jailer binaries into a bin directory in your $PATH otherwise it complains. I copied them to &#x2F;usr&#x2F;local&#x2F;bin&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;firectl --kernel=&#x2F;root&#x2F;release-v0.25.2-x86_64&#x2F;hello-vmlinux.bin --root-drive=&#x2F;root&#x2F;release-v0.25.2-x86_64&#x2F;hello-rootfs.ext4 --jailer=&#x2F;usr&#x2F;local&#x2F;bin&#x2F;jailer --exec-file=&#x2F;usr&#x2F;local&#x2F;bin&#x2F;firecracker --id=testvm4 --chroot-base-dir=&amp;quot;&#x2F;srv&#x2F;jailer&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Firectl also doesnt handle cleaning up the &#x2F;srv&#x2F;jailer&#x2F;firecracker&#x2F;$vm_name chroot directory when you power off the VM. So you need to clean this up manually.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Lean</title>
+		<published>2021-09-25T00:00:00+00:00</published>
+		<updated>2021-09-25T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/lean/" type="text/html"/>
+		<id>https://omussell.github.io/lean/</id>
+		<content type="html">&lt;p&gt;A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;toyota-production-system&quot;&gt;Toyota Production System&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;goal&quot;&gt;Goal&lt;&#x2F;h2&gt;
+&lt;p&gt;Design out overburden (muri) and inconsistency (mura), and to eliminate waste (muda).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;types-of-waste&quot;&gt;Types of waste&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Overproduction&lt;&#x2F;li&gt;
+&lt;li&gt;Time on hand (waiting)&lt;&#x2F;li&gt;
+&lt;li&gt;Transportation&lt;&#x2F;li&gt;
+&lt;li&gt;Processing itself&lt;&#x2F;li&gt;
+&lt;li&gt;Excess inventory&lt;&#x2F;li&gt;
+&lt;li&gt;Movement&lt;&#x2F;li&gt;
+&lt;li&gt;Making defective products&lt;&#x2F;li&gt;
+&lt;li&gt;Underutilised workers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;concept&quot;&gt;Concept&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;just-in-time&quot;&gt;Just-in-time&lt;&#x2F;h3&gt;
+&lt;p&gt;Make only what is needed, only when it is needed and only in the amount that is needed&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;jidoka&quot;&gt;Jidoka&lt;&#x2F;h3&gt;
+&lt;p&gt;Automation with a human touch&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;poka-yoke&quot;&gt;Poka Yoke&lt;&#x2F;h3&gt;
+&lt;p&gt;Any mechanism in a process that helps an equipment operator avoid (yokeru) mistakes (poka) and defects by preventing, correcting, or drawing attention to human errors as they occur&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;continuous-improvement&quot;&gt;Continuous Improvement&lt;&#x2F;h3&gt;
+&lt;p&gt;We form a long term vision, then iteratively work towards it&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;kaizen&quot;&gt;Kaizen&lt;&#x2F;h3&gt;
+&lt;p&gt;We improve our business operations continuously, always driving for innovation and evolution&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;genchi-genbutsu&quot;&gt;Genchi Genbutsu&lt;&#x2F;h3&gt;
+&lt;p&gt;Go to the source to find the facts to make correct decisions&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-right-process-will-produce-the-right-results&quot;&gt;The right process will produce the right results&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create continuous process flow to bring problems to the surface&lt;&#x2F;li&gt;
+&lt;li&gt;Use the &#x27;pull&#x27; system to avoid overproduction (Kanban)&lt;&#x2F;li&gt;
+&lt;li&gt;Level out the workload (Heijunka)&lt;&#x2F;li&gt;
+&lt;li&gt;Build a culture of stopping to fix problems, to get quality right from the start&lt;&#x2F;li&gt;
+&lt;li&gt;Standardised tasks are the foundation for continuous improvement and employee empowerment&lt;&#x2F;li&gt;
+&lt;li&gt;Use visual control so no problems are hidden&lt;&#x2F;li&gt;
+&lt;li&gt;Use only reliable, thoroughly tested technology that serves your people and processes&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;continuously-solving-root-problems-drives-organisational-learning&quot;&gt;Continuously solving root problems drives organisational learning&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Go and see for yourself to thoroughly understand the situation (Genchi Genbutsu)&lt;&#x2F;li&gt;
+&lt;li&gt;Make decisions slowly by consensus, thoroughly considering all options. Implement decisions rapidly (Nemawashi)&lt;&#x2F;li&gt;
+&lt;li&gt;Become a learning organisation through relentless reflection (Hansei) and continuous improvement (Kaizen)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;andon&quot;&gt;Andon&lt;&#x2F;h2&gt;
+&lt;p&gt;The worker has the ability to stop production when a defect is found, and immediately call for assistance.&lt;&#x2F;p&gt;
+&lt;p&gt;Work is stopped until a solution is found.&lt;&#x2F;p&gt;
+&lt;p&gt;Stack light &#x2F; Traffic light - Visual indicator of a machine state or process event&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;5s&quot;&gt;5S&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Seiri       Sort
+&lt;&#x2F;span&gt;&lt;span&gt;Seiton      Set in order
+&lt;&#x2F;span&gt;&lt;span&gt;Seso        Shine
+&lt;&#x2F;span&gt;&lt;span&gt;Seiketsu    Standardise
+&lt;&#x2F;span&gt;&lt;span&gt;Shitsuke    Sustain
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;theory-of-constraints&quot;&gt;Theory of Constraints&lt;&#x2F;h2&gt;
+&lt;p&gt;Organisations can be measured and controlled by variations on three measures:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Inventory - The money that the system has invested in purchasing things which it intends to sell&lt;&#x2F;li&gt;
+&lt;li&gt;Operational expense - The money the system spends in order to turn inventory into throughput&lt;&#x2F;li&gt;
+&lt;li&gt;Throughput - The rate at which the system generates money through sales&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;constraints&quot;&gt;Constraints&lt;&#x2F;h3&gt;
+&lt;p&gt;A constraint is anything that prevents the system from achieving its goal. There is always at least one, but at most only a few, at any given time.&lt;&#x2F;p&gt;
+&lt;p&gt;If a constraints throughput capacity is elevated to the point where it is no longer the systems limiting factor, this is said to &#x27;break&#x27; the constraint.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;buffers&quot;&gt;Buffers&lt;&#x2F;h3&gt;
+&lt;p&gt;Buffers are placed before the governing constraint, thus ensuring that the constraint is never starved.&lt;&#x2F;p&gt;
+&lt;p&gt;Buffers are also placed behind the constraint to prevent downstream failure from blocking the constraints output.&lt;&#x2F;p&gt;
+&lt;p&gt;Buffers used in this way protect the constraint from variations in the rest of the system and should allow for normal variation of processing time and the occasional upset before and behind the constraint.&lt;&#x2F;p&gt;
+&lt;p&gt;With one constraint in the system, all other parts of the system must have sufficient capacity to keep up with the work at the constraint and to catch up if time was lost.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;plant-types-vati&quot;&gt;Plant Types (VATI)&lt;&#x2F;h3&gt;
+&lt;p&gt;The plant types specify the general flow of materials through a system&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;v&quot;&gt;V&lt;&#x2F;h4&gt;
+&lt;p&gt;Flow is one to many, such as a plant that takes one raw material and can make many final products.&lt;&#x2F;p&gt;
+&lt;p&gt;The primary problem in V plants is &#x27;robbing&#x27;, where on operation (A) immediately after a diverging point &#x27;steals&#x27; materials meant for the other operation (B). Once the material has been processed by A, it cannot come back and be run through B without significant rework.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;a&quot;&gt;A&lt;&#x2F;h4&gt;
+&lt;p&gt;Flow is many to one, such as where many sub-assemblies converge for a final assembly.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem in A plants is synchronising the converging lines so that each supplies the final assembly point at the right time.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;t&quot;&gt;T&lt;&#x2F;h4&gt;
+&lt;p&gt;Flow is many to many, similar to I plant (or has multiple lines), which then splits into many assemblies.&lt;&#x2F;p&gt;
+&lt;p&gt;T plants suffer from both synchronisation problems of A plants and the robbing problems of V plants.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;i&quot;&gt;I&lt;&#x2F;h4&gt;
+&lt;p&gt;Material flows in a sequence of events in a straight line. The constraint is the slowest operation.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Finding a New Programming Language</title>
+		<published>2021-08-29T00:00:00+00:00</published>
+		<updated>2021-08-29T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/new-prog-lang/" type="text/html"/>
+		<id>https://omussell.github.io/new-prog-lang/</id>
+		<content type="html">&lt;p&gt;In my journey at work of learning how to program in Python, I&#x27;ve become increasingly annoyed by some of its behaviours.&lt;&#x2F;p&gt;
+&lt;p&gt;Initially creating a new project is difficult. Build a virtualenv, activate it, pip install the requirements. Each of these has their own problems. It also ends up making it hard to deploy projects because you need to do these steps wherever you want to use your project.&lt;&#x2F;p&gt;
+&lt;p&gt;The performance is poor because its interpreted. If you want to make things faster, you can link to C code, but then you have to write C code.&lt;&#x2F;p&gt;
+&lt;p&gt;The package ecosystem is a mess. Packages frequently break or change their dependencies.&lt;&#x2F;p&gt;
+&lt;p&gt;New updates happen frequently and bring backwards incompatible changes with them. So you end up with some packages that won&#x27;t work on newer Python versions, and some packages that only work on new Python versions. You end up stuck in limbo.&lt;&#x2F;p&gt;
+&lt;p&gt;Popular libraries like requests and flask are mature but the way you use the libraries are similar to Python 2 era code. Newer libraries like FastAPI are nicer to use, but they arent stable and for some reason use async. So now every project has to decide between mature and old code, or immature and async code.&lt;&#x2F;p&gt;
+&lt;p&gt;Types hints are a pain. They arent evaluated unless you use a static checker like mypy or a validator like pydantic. You might put loads of effort into maintaining types but ultimately Python is dynamically typed and mypy will miss things so the types are wrong.&lt;&#x2F;p&gt;
+&lt;p&gt;Python seems to work fine for small or short lived projects. But if you want a project to last at least a couple of years, it ends up being painful.&lt;&#x2F;p&gt;
+&lt;p&gt;My requirements for a new language are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Compiled - Interpreted is inherently slower&lt;&#x2F;li&gt;
+&lt;li&gt;Statically typed - Dynamic typing is great but makes it harder in the long run&lt;&#x2F;li&gt;
+&lt;li&gt;Easy to install packages and pin their version&lt;&#x2F;li&gt;
+&lt;li&gt;Easy to deploy&lt;&#x2F;li&gt;
+&lt;li&gt;Good ecosystem - Web servers, ORM, Database connectors&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So far I have tried Go, Rust and even Ada. &lt;&#x2F;p&gt;
+&lt;p&gt;Somehow, I came across Nim, and it fits everything that I want. The syntax is similar enough to Python that it doesnt feel like a chore to learn like the other languages. It also compiles down to a single binary making deployment easy. It uses a C compiler so the resulting binary can be small and compile anywhere that supports C.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem is, the ecosystem isnt there yet. Even basic things like, how to write tests, isnt documented clearly. I think it just needs some more popularity which would sort out the low hanging fruit.&lt;&#x2F;p&gt;
+&lt;p&gt;For now, I&#x27;ve decided to try Go. I dont like that its got policitical messages on the websites. I also dont like that they enforce CoC to permaban people.&lt;&#x2F;p&gt;
+&lt;p&gt;But I dont have much choice. Otherwise I&#x27;d have to use something like C# or Java, backed by Microsoft and Oracle, which are just as bad. At least Go compiles quickly.&lt;&#x2F;p&gt;
+&lt;p&gt;Go has a lot of stuff baked into the stdlib like DNS, HTTP, crypto, file operations etc. which I think should be a standard nowadays. You can get very far without ever having to import other packages. I tried Go while it was still young and endured the problems with importing dependencies.&lt;&#x2F;p&gt;
+&lt;p&gt;I set up Bazel with Gazelle before it was well documented. I used Hugo before it was popular and had lots of themes.&lt;&#x2F;p&gt;
+&lt;p&gt;So I think if I were starting a project now I would:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use Go&lt;&#x2F;li&gt;
+&lt;li&gt;Have Bazel set up on a remote server and use remote caching to perform quick builds during the develop&#x2F;debug phase&lt;&#x2F;li&gt;
+&lt;li&gt;Build the final app in Docker&lt;&#x2F;li&gt;
+&lt;li&gt;Deploy to Kubernetes&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Nim Cheat Sheet</title>
+		<published>2021-08-29T00:00:00+00:00</published>
+		<updated>2021-08-29T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/nim/" type="text/html"/>
+		<id>https://omussell.github.io/nim/</id>
+		<content type="html"></content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Modern Python</title>
+		<published>2021-07-01T00:00:00+00:00</published>
+		<updated>2021-07-01T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/python/" type="text/html"/>
+		<id>https://omussell.github.io/python/</id>
+		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;The following tools and libraries are known to work well with modern python. They are modular, so you can pick and choose the components you want based on your need.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;http&quot;&gt;HTTP&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;client&quot;&gt;Client&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;encode&#x2F;httpx&quot;&gt;HTTPX&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;server&quot;&gt;Server&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;fastapi.tiangolo.com&#x2F;&quot;&gt;FastAPI&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;www.uvicorn.org&#x2F;&quot;&gt;Uvicorn&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;databases&quot;&gt;Databases&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;encode&#x2F;orm&quot;&gt;ORM&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;encode&#x2F;databases&quot;&gt;Databases&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;alembic.sqlalchemy.org&#x2F;en&#x2F;latest&#x2F;tutorial.html&quot;&gt;Alembic&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;async-processes&quot;&gt;Async Processes&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.celeryproject.org&#x2F;en&#x2F;stable&#x2F;getting-started&#x2F;introduction.html&quot;&gt;Celery&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cryptography&quot;&gt;Cryptography&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pynacl.readthedocs.io&#x2F;en&#x2F;latest&#x2F;&quot;&gt;pynacl&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;secrets.html&quot;&gt;secrets&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tools&quot;&gt;Tools&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;linting&quot;&gt;Linting&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;black.readthedocs.io&#x2F;en&#x2F;stable&#x2F;&quot;&gt;black&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;typing&quot;&gt;Typing&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pydantic-docs.helpmanual.io&#x2F;&quot;&gt;Pydantic&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;python&#x2F;mypy&quot;&gt;Mypy&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;python-poetry.org&#x2F;&quot;&gt;poetry&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;documentation&quot;&gt;Documentation&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.mkdocs.org&#x2F;&quot;&gt;mkdocs&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;&quot;&gt;mkdocs-material&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mkdocstrings&#x2F;mkdocstrings&quot;&gt;mkdocstrings&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;code-complexity&quot;&gt;Code Complexity&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;lizard&#x2F;&quot;&gt;lizard&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;radon&#x2F;&quot;&gt;radon&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;lizard&quot;&gt;Lizard&lt;&#x2F;h4&gt;
+&lt;p&gt;&lt;code&gt;lizard -x&#x27;*&#x2F;tests&#x2F;*&#x27; -l python -w src&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;radon&quot;&gt;Radon&lt;&#x2F;h4&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;radon cc --min B --average --total-average src
+&lt;&#x2F;span&gt;&lt;span&gt;radon mi --min B src
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;formatting-styling&quot;&gt;Formatting&#x2F;Styling&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;isort&#x2F;&quot;&gt;isort&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;flake8.pycqa.org&#x2F;en&#x2F;latest&#x2F;&quot;&gt;flake8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-blind-except&#x2F;&quot;&gt;flake8-blind-except&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-bugbear&#x2F;&quot;&gt;flake8-bugbear&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-coding&#x2F;&quot;&gt;flake8-coding&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-commas&#x2F;&quot;&gt;flake8-commas&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-debugger&#x2F;&quot;&gt;flake8-debugger&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-docstrings&#x2F;&quot;&gt;flake8-docstrings&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-isort&#x2F;&quot;&gt;flake8-isort&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-quotes&#x2F;&quot;&gt;flake8-quotes&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;flake8-sfs&#x2F;&quot;&gt;flake8-sfs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Creating Bonded NICs on Ubuntu 20.04</title>
+		<published>2021-03-27T00:00:00+00:00</published>
+		<updated>2021-03-27T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/bonded-nic/" type="text/html"/>
+		<id>https://omussell.github.io/bonded-nic/</id>
+		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;On the HP MicroServer Gen 8 and MicroServer Gen 10+ there are four ethernet ports. I wanted to group these together into a bonded NIC so that ethernet traffic could run over all four to increase the throughput.&lt;&#x2F;p&gt;
+&lt;p&gt;There are other names for bonding, like teaming or link aggregation&#x2F;LACP. They all mean the same thing, multiple network ports joined together to serve traffic.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;Install the dependency:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;apt install ifenslave
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Load the kernel module:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Check if already loaded:
+&lt;&#x2F;span&gt;&lt;span&gt;lsmod | grep bonding
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# If no output then:
+&lt;&#x2F;span&gt;&lt;span&gt;modprobe bonding
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This only loads the bonding kernel module while the system is running, it would be lost on reboot. Add it to the modules file to load it at boot as well:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;vim &#x2F;etc&#x2F;modules
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Add the following line to the file:
+&lt;&#x2F;span&gt;&lt;span&gt;bonding
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Find the network interfaces. You can do this in a few different ways, an easy way is just:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;ip addr
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Which lists all of your network interfaces. &lt;code&gt;lo&lt;&#x2F;code&gt; is for loopback, then the others will be your ethernet interfaces. This can differ between different NIC manufacturers. On this machine, its returning names like &lt;code&gt;eno1&lt;&#x2F;code&gt;, &lt;code&gt;eno2&lt;&#x2F;code&gt; etc. Sometimes it is like &lt;code&gt;enp2s0&lt;&#x2F;code&gt; or &lt;code&gt;enp3s0&lt;&#x2F;code&gt; instead.&lt;&#x2F;p&gt;
+&lt;p&gt;Edit the netplan config file to add the config. You will need to know the IP address of your gateway&#x2F;router and the IP addresses for the DNS nameservers. For me, the router IP is &lt;code&gt;192.168.0.1&lt;&#x2F;code&gt; and the DNS servers are &lt;code&gt;192.168.0.15&lt;&#x2F;code&gt; (Rpi) and &lt;code&gt;1.1.1.1&lt;&#x2F;code&gt; (Cloudflare).&lt;&#x2F;p&gt;
+&lt;p&gt;Also, I&#x27;ve set the bonded NIC to use DHCP to configure its IP address. I&#x27;m also using all available &lt;code&gt;eno*&lt;&#x2F;code&gt; ethernet ports in the bond. If you want to use a specific set of ports instead, check out the &lt;a href=&quot;https:&#x2F;&#x2F;netplan.io&#x2F;examples&#x2F;&quot;&gt;netplan documentation&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;vim &#x2F;etc&#x2F;netplan&#x2F;00-installer-config.yaml
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;network:
+&lt;&#x2F;span&gt;&lt;span&gt;  version: 2
+&lt;&#x2F;span&gt;&lt;span&gt;  ethernets:
+&lt;&#x2F;span&gt;&lt;span&gt;    eports:
+&lt;&#x2F;span&gt;&lt;span&gt;      match:
+&lt;&#x2F;span&gt;&lt;span&gt;        name: eno*
+&lt;&#x2F;span&gt;&lt;span&gt;      optional: true
+&lt;&#x2F;span&gt;&lt;span&gt;  bonds:
+&lt;&#x2F;span&gt;&lt;span&gt;    bond0:
+&lt;&#x2F;span&gt;&lt;span&gt;      interfaces: [eports]
+&lt;&#x2F;span&gt;&lt;span&gt;      dhcp4: true
+&lt;&#x2F;span&gt;&lt;span&gt;      gateway4: 192.168.0.1
+&lt;&#x2F;span&gt;&lt;span&gt;      nameservers:
+&lt;&#x2F;span&gt;&lt;span&gt;        addresses: [192.168.0.15, 1.1.1.1]
+&lt;&#x2F;span&gt;&lt;span&gt;      parameters:
+&lt;&#x2F;span&gt;&lt;span&gt;        mode: 802.3ad
+&lt;&#x2F;span&gt;&lt;span&gt;        lacp-rate: fast
+&lt;&#x2F;span&gt;&lt;span&gt;        mii-monitor-interval: 100
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Apply the changes:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;netplan apply
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you lose your SSH connection, something went wrong, or DHCP has just decided to give it a different IP address than what you used to connect. Its a good idea to have out of band management or a spare keyboard+monitor plugged in if the network stops working.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;end-result&quot;&gt;End result&lt;&#x2F;h2&gt;
+&lt;p&gt;If you run &lt;code&gt;ip addr&lt;&#x2F;code&gt; again, you can now see a new network interface has been created called &lt;code&gt;bond0&lt;&#x2F;code&gt;, which is the master. Then the &lt;code&gt;eno*&lt;&#x2F;code&gt; interfaces have been added as slaves of &lt;code&gt;bond0&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;root@dixie:~# ip addr
+&lt;&#x2F;span&gt;&lt;span&gt;1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+&lt;&#x2F;span&gt;&lt;span&gt;    link&#x2F;loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+&lt;&#x2F;span&gt;&lt;span&gt;    inet 127.0.0.1&#x2F;8 scope host lo
+&lt;&#x2F;span&gt;&lt;span&gt;       valid_lft forever preferred_lft forever
+&lt;&#x2F;span&gt;&lt;span&gt;    inet6 ::1&#x2F;128 scope host 
+&lt;&#x2F;span&gt;&lt;span&gt;       valid_lft forever preferred_lft forever
+&lt;&#x2F;span&gt;&lt;span&gt;2: eno1: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+&lt;&#x2F;span&gt;&lt;span&gt;    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+&lt;&#x2F;span&gt;&lt;span&gt;3: eno2: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+&lt;&#x2F;span&gt;&lt;span&gt;    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+&lt;&#x2F;span&gt;&lt;span&gt;4: eno3: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+&lt;&#x2F;span&gt;&lt;span&gt;    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+&lt;&#x2F;span&gt;&lt;span&gt;5: eno4: &amp;lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+&lt;&#x2F;span&gt;&lt;span&gt;    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+&lt;&#x2F;span&gt;&lt;span&gt;6: bond0: &amp;lt;BROADCAST,MULTICAST,MASTER,UP,LOWER_UP&amp;gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+&lt;&#x2F;span&gt;&lt;span&gt;    link&#x2F;ether de:d5:c6:da:5b:a0 brd ff:ff:ff:ff:ff:ff
+&lt;&#x2F;span&gt;&lt;span&gt;    inet 192.168.0.21&#x2F;24 brd 192.168.0.255 scope global dynamic bond0
+&lt;&#x2F;span&gt;&lt;span&gt;       valid_lft 84976sec preferred_lft 84976sec
+&lt;&#x2F;span&gt;&lt;span&gt;    inet6 fe80::dcd5:c6ff:feda:5ba0&#x2F;64 scope link 
+&lt;&#x2F;span&gt;&lt;span&gt;       valid_lft forever preferred_lft forever
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>LXC&#x2F;LXD Containers</title>
+		<published>2021-02-22T00:00:00+00:00</published>
+		<updated>2021-02-22T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/lxc/" type="text/html"/>
+		<id>https://omussell.github.io/lxc/</id>
+		<content type="html">&lt;p&gt;You should have either a blank disk or an existing zpool for storage. Run &lt;code&gt;lxd init&lt;&#x2F;code&gt;, answer the questions with Yes for the most part. Enter either the disk name like &lt;code&gt;&#x2F;dev&#x2F;sdb&lt;&#x2F;code&gt; or the zpool name &lt;code&gt;tank&lt;&#x2F;code&gt; when prompted.&lt;&#x2F;p&gt;
+&lt;p&gt;Once complete, you can start up an Alpine container with &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;lxc launch images:alpine&#x2F;3.12 alpinecontainer
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;or a Ubuntu container with &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;lxc launch ubuntu:20.04 ubuntucontainer
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You can then connect to the container with &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;lxc exec alpinecontainer -- &#x2F;bin&#x2F;sh
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;or &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;lxc exec ubuntucontainer -- &#x2F;bin&#x2F;bash
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>NAS on HP Microserver Gen8</title>
+		<published>2021-02-13T00:00:00+00:00</published>
+		<updated>2021-02-13T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/microserver/" type="text/html"/>
+		<id>https://omussell.github.io/microserver/</id>
+		<content type="html">&lt;h2 id=&quot;hardware-specs&quot;&gt;Hardware specs&lt;&#x2F;h2&gt;
+&lt;p&gt;HP ProLiant G8 Microserver G1610T&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel Celeron G1610T (dual core 2.3 GHz)&lt;&#x2F;li&gt;
+&lt;li&gt;16GB RAM&lt;&#x2F;li&gt;
+&lt;li&gt;2 x 250GB SSD&lt;&#x2F;li&gt;
+&lt;li&gt;2 x 3TB HDD&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;I previously ran FreeNAS on this Microserver, but that was installed about 6 years ago so its very out of date. I want to use this as a NAS, but Im not too bothered about running a specific NAS OS like FreeNAS&#x2F;TrueNAS etc. So my plan is to install Ubuntu 20.04 (current latest LTS) onto a USB disk, then have the disks set up in zpools with ZFS.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;Whenever you search the internet for installing Ubuntu onto a USB disk it assumes you want to use it as a LiveCD from which to install Ubuntu onto the HDDs. I initially tried installing onto a USB stick by using two sticks, one for the initial boot which is placed in the USB jack inside the case, then another blank one inserted in the USB jack on the front of the case.&lt;&#x2F;p&gt;
+&lt;p&gt;However for whatever reason, the subsequent USB stick didnt boot. I think just a dodgy stick.&lt;&#x2F;p&gt;
+&lt;p&gt;So instead I did the same thing of booting from a USB stick inside the case, but then inserted a micro-sd card into the slot inside the case. I then selected that SD card as the disk to install to. &lt;&#x2F;p&gt;
+&lt;p&gt;In order to boot from this SD card, you need to press F9 during boot to enter the system setup. Then, I cant remember which specific option, but one of them has a list of options for booting from USB sticks which says like &amp;quot;Boot from internal USB drive first&amp;quot;, &amp;quot;Boot from internal SD card first&amp;quot;. You need to select the &amp;quot;Boot from internal SD first&amp;quot; option.&lt;&#x2F;p&gt;
+&lt;p&gt;Then continue boot, and it should boot correctly.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zfs&quot;&gt;ZFS&lt;&#x2F;h2&gt;
+&lt;p&gt;You need to install the &lt;code&gt;zfsutils-linux&lt;&#x2F;code&gt; package to manage zpools.&lt;&#x2F;p&gt;
+&lt;p&gt;I set up the disks so that the two SSDs were in one pool, just striped, no mirror. Then the two HDDs were in another pool, mirrored. This results in two zpools, one with 500GB and no redundancy plus one with 3TB and redundancy.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Amend device names as appropriate
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# SSD zpool
+&lt;&#x2F;span&gt;&lt;span&gt;zpool create SSD_storage &#x2F;dev&#x2F;sdb &#x2F;dev&#x2F;sdc
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# HDD zpool
+&lt;&#x2F;span&gt;&lt;span&gt;zpool create HDD_storage mirror &#x2F;dev&#x2F;sdd &#x2F;dev&#x2F;sde
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Puppet Bolt</title>
+		<published>2021-02-13T00:00:00+00:00</published>
+		<updated>2021-02-13T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/puppet-bolt/" type="text/html"/>
+		<id>https://omussell.github.io/puppet-bolt/</id>
+		<content type="html">&lt;p&gt;Install Bolt with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;wget https:&#x2F;&#x2F;apt.puppet.com&#x2F;puppet-tools-release-focal.deb
+&lt;&#x2F;span&gt;&lt;span&gt;sudo dpkg -i puppet-tools-release-focal.deb
+&lt;&#x2F;span&gt;&lt;span&gt;sudo apt-get update 
+&lt;&#x2F;span&gt;&lt;span&gt;sudo apt-get install puppet-bolt
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you want to create modules but dont want to publish them to the Puppet Forge, you can just &lt;a href=&quot;https:&#x2F;&#x2F;puppet.com&#x2F;docs&#x2F;bolt&#x2F;latest&#x2F;modules.html#modulepath&quot;&gt;add the directory to the module path&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Gemini Protocol</title>
+		<published>2021-01-20T00:00:00+00:00</published>
+		<updated>2021-01-20T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/gemini/" type="text/html"/>
+		<id>https://omussell.github.io/gemini/</id>
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gemini.circumlunar.space&#x2F;&quot;&gt;Project Gemini&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Gemini is a new, collaboratively designed internet protocol, which explores the space inbetween gopher and the web, striving to address (perceived) limitations of one while avoiding the (undeniable) pitfalls of the other.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For the server I&#x27;m using &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Egsthnz&#x2F;satellite&quot;&gt;satellite&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;git clone https:&#x2F;&#x2F;git.sr.ht&#x2F;~gsthnz&#x2F;satellite
+&lt;&#x2F;span&gt;&lt;span&gt;cd satellite
+&lt;&#x2F;span&gt;&lt;span&gt;go build
+&lt;&#x2F;span&gt;&lt;span&gt;mkdir -p &#x2F;var&#x2F;lib&#x2F;satellite&#x2F;certs
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create satellite.toml&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Address to listen to requests (default: 0.0.0.0:1965)
+&lt;&#x2F;span&gt;&lt;span&gt;#listen = &amp;quot;0.0.0.0&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[tls]
+&lt;&#x2F;span&gt;&lt;span&gt;# Directory to save certificates
+&lt;&#x2F;span&gt;&lt;span&gt;directory = &amp;quot;&#x2F;var&#x2F;lib&#x2F;satellite&#x2F;certs&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Multiple domains can be set with the [[domain]] section
+&lt;&#x2F;span&gt;&lt;span&gt;[[domain]]
+&lt;&#x2F;span&gt;&lt;span&gt;name = &amp;quot;gemini.matrix&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;root = &amp;quot;&#x2F;srv&#x2F;gemini&#x2F;gemini.matrix&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For the client I&#x27;m using &lt;a href=&quot;https:&#x2F;&#x2F;bombadillo.colorfield.space&#x2F;&quot;&gt;bombadillo&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;git clone https:&#x2F;&#x2F;tildegit.org&#x2F;sloum&#x2F;bombadillo
+&lt;&#x2F;span&gt;&lt;span&gt;cd bombadillo
+&lt;&#x2F;span&gt;&lt;span&gt;sudo make install
+&lt;&#x2F;span&gt;&lt;span&gt;bombadillo
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You will need to create a directory with some static files inside. These files should have a file extension of &lt;code&gt;.gmi&lt;&#x2F;code&gt; or &lt;code&gt;.gemini&lt;&#x2F;code&gt;. The content is structured like a subset of markdown:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Normal text
+&lt;&#x2F;span&gt;&lt;span&gt;Hello World!
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Link
+&lt;&#x2F;span&gt;&lt;span&gt;=&amp;gt; gemini:&#x2F;&#x2F;example.org&#x2F; An Example Link
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Preformatted text
+&lt;&#x2F;span&gt;&lt;span&gt;# ```
+&lt;&#x2F;span&gt;&lt;span&gt;preformatted text surrounded by 3 backticks
+&lt;&#x2F;span&gt;&lt;span&gt;# ```
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Headers using #
+&lt;&#x2F;span&gt;&lt;span&gt;# Title
+&lt;&#x2F;span&gt;&lt;span&gt;## Sub Title
+&lt;&#x2F;span&gt;&lt;span&gt;### Sub Sub Title
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Unordered list
+&lt;&#x2F;span&gt;&lt;span&gt;* No
+&lt;&#x2F;span&gt;&lt;span&gt;* Particular
+&lt;&#x2F;span&gt;&lt;span&gt;* Order
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Quote lines
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; This is a good quote
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Running bitwarden_rs on a Raspberry Pi 4</title>
+		<published>2021-01-12T00:00:00+00:00</published>
+		<updated>2021-01-12T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/pi-bitwarden/" type="text/html"/>
+		<id>https://omussell.github.io/pi-bitwarden/</id>
+		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;We will be setting up bitwarden_rs without Docker, by compiling it manually and then running as a service. In this example we are using SQLite, but you can change this to MySQL or PostgreSQL if you prefer.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-dependencies&quot;&gt;Install dependencies&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;curl --proto &amp;#39;=https&amp;#39; --tlsv1.2 -sSf https:&#x2F;&#x2F;sh.rustup.rs | sh      # Answer Y when prompted
+&lt;&#x2F;span&gt;&lt;span&gt;apt install -y build-essential git pkg-config libssl-dev libsqlite3-dev
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;clone-the-repo&quot;&gt;Clone the repo&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;git clone https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;bitwarden_rs.git
+&lt;&#x2F;span&gt;&lt;span&gt;cd bitwarden_rs
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;compile&quot;&gt;Compile&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cargo build --features sqlite --release
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;admin&quot;&gt;Admin&lt;&#x2F;h2&gt;
+&lt;p&gt;After compilation, the built binary will be &lt;code&gt;.&#x2F;target&#x2F;release&#x2F;bitwarden_rs&lt;&#x2F;code&gt;. This should be moved to &lt;code&gt;&#x2F;usr&#x2F;bin&lt;&#x2F;code&gt; with &lt;code&gt;mv .&#x2F;target&#x2F;release&#x2F;bitwarden_rs &#x2F;usr&#x2F;bin&#x2F;bitwarden_rs&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The data directory needs to be created with &lt;code&gt;mkdir -p &#x2F;var&#x2F;lib&#x2F;bitwarden_rs&#x2F;data&lt;&#x2F;code&gt;. This is where the bitwarden keys and database are stored.&lt;&#x2F;p&gt;
+&lt;p&gt;Create a user account with &lt;code&gt;adduser bitwarden_rs&lt;&#x2F;code&gt;. Make sure the ownership of everything in &lt;code&gt;&#x2F;var&#x2F;lib&#x2F;bitwarden_rs&lt;&#x2F;code&gt; is set to the &lt;code&gt;bitwarden_rs&lt;&#x2F;code&gt; user.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;frontend&quot;&gt;Frontend&lt;&#x2F;h2&gt;
+&lt;p&gt;Download the already built assets: &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cd &#x2F;var&#x2F;lib&#x2F;bitwarden_rs
+&lt;&#x2F;span&gt;&lt;span&gt;# Amend the version as appropriate
+&lt;&#x2F;span&gt;&lt;span&gt;wget https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;bw_web_builds&#x2F;releases&#x2F;download&#x2F;v2.17.1&#x2F;bw_web_v2.17.1.tar.gz
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Extract them&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;tar -xvf bw_web_v2.17.1.tar.gz
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;run&quot;&gt;Run&lt;&#x2F;h2&gt;
+&lt;p&gt;Create the systemd service file. Copy the file from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;dani-garcia&#x2F;bitwarden_rs&#x2F;wiki&#x2F;Setup-as-a-systemd-service&quot;&gt;the wiki&lt;&#x2F;a&gt;. &lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Caching freebsd-update and pkg files</title>
+		<published>2020-01-13T00:00:00+00:00</published>
+		<updated>2020-01-13T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/fbsd-update-cache/" type="text/html"/>
+		<id>https://omussell.github.io/fbsd-update-cache/</id>
+		<content type="html">&lt;h2 id=&quot;caching-freebsd-update-and-pkg-files&quot;&gt;Caching freebsd-update and pkg files&lt;&#x2F;h2&gt;
+&lt;p&gt;Change the domains as appropriate. The proxy_store location is where the cached files will be placed. This directory needs to be accessible by the user that NGINX is running as (defaults to www).&lt;&#x2F;p&gt;
+&lt;p&gt;NGINX config:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# pkg
+&lt;&#x2F;span&gt;&lt;span&gt;server {
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  listen *:80;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  server_name           pkg.mydomain.local;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  access_log            &#x2F;var&#x2F;log&#x2F;nginx&#x2F;pkg.access.log;
+&lt;&#x2F;span&gt;&lt;span&gt;  error_log             &#x2F;var&#x2F;log&#x2F;nginx&#x2F;pkg.error.log;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  location &#x2F; {
+&lt;&#x2F;span&gt;&lt;span&gt;    root      &#x2F;var&#x2F;cache&#x2F;packages&#x2F;freebsd;
+&lt;&#x2F;span&gt;&lt;span&gt;    try_files $uri @pkg_cache;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  location @pkg_cache {
+&lt;&#x2F;span&gt;&lt;span&gt;  	proxy_pass            		https:&#x2F;&#x2F;pkg.freebsd.org;
+&lt;&#x2F;span&gt;&lt;span&gt;  	proxy_set_header      		Host $host;
+&lt;&#x2F;span&gt;&lt;span&gt;  	proxy_cache_lock         	on;
+&lt;&#x2F;span&gt;&lt;span&gt;  	proxy_cache_lock_timeout 	20s;
+&lt;&#x2F;span&gt;&lt;span&gt;  	proxy_cache_revalidate 		on;
+&lt;&#x2F;span&gt;&lt;span&gt;  	proxy_cache_valid 			200 301 302 30d;
+&lt;&#x2F;span&gt;&lt;span&gt;  	proxy_store 				&#x2F;var&#x2F;cache&#x2F;packages&#x2F;freebsd&#x2F;$request_uri;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;# freebsd-update
+&lt;&#x2F;span&gt;&lt;span&gt;server {
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  listen *:80;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  server_name           freebsd-update.mydomain.local;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  access_log            &#x2F;var&#x2F;log&#x2F;nginx&#x2F;freebsd_update.access.log;
+&lt;&#x2F;span&gt;&lt;span&gt;  error_log             &#x2F;var&#x2F;log&#x2F;nginx&#x2F;freebsd_update.error.log;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  location &#x2F; {
+&lt;&#x2F;span&gt;&lt;span&gt;    root      &#x2F;var&#x2F;cache&#x2F;freebsd-update;
+&lt;&#x2F;span&gt;&lt;span&gt;    try_files $uri @freebsd_update_cache;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  location @freebsd_update_cache {
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_pass            		http:&#x2F;&#x2F;update.freebsd.org;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_set_header      		Host update.freebsd.org;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_cache_lock         	on;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_cache_lock_timeout 	20s;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_cache_revalidate 		on;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_cache_valid 			200 301 302 30d;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_store 				&#x2F;var&#x2F;cache&#x2F;freebsd-update&#x2F;$request_uri;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Client config:&lt;&#x2F;p&gt;
+&lt;p&gt;Create &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;pkg&#x2F;repos&#x2F;FreeBSD.conf&lt;&#x2F;code&gt; with this content:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;FreeBSD: { enabled: NO }
+&lt;&#x2F;span&gt;&lt;span&gt;MyRepo: {
+&lt;&#x2F;span&gt;&lt;span&gt;    url: &amp;quot;pkg+http:&#x2F;&#x2F;pkg.mydomain.local&#x2F;${ABI}&#x2F;latest&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    enabled:	true,
+&lt;&#x2F;span&gt;&lt;span&gt;    signature_type: &amp;quot;fingerprints&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    fingerprints: &amp;quot;&#x2F;usr&#x2F;share&#x2F;keys&#x2F;pkg&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    mirror_type: &amp;quot;srv&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit &lt;code&gt;&#x2F;etc&#x2F;freebsd-update.conf&lt;&#x2F;code&gt;, change &lt;code&gt;ServerName&lt;&#x2F;code&gt; value to &lt;code&gt;freebsd-update.mydomain.local&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Serverless with Knative running in gVisor sandbox on Minikube</title>
+		<published>2020-01-12T00:00:00+00:00</published>
+		<updated>2020-01-12T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/serverless/" type="text/html"/>
+		<id>https://omussell.github.io/serverless/</id>
+		<content type="html">&lt;h2 id=&quot;serverless-with-knative-running-in-gvisor-sandbox-on-minikube&quot;&gt;Serverless with Knative running in gVisor sandbox on Minikube&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;kubernetes.io&#x2F;docs&#x2F;tasks&#x2F;tools&#x2F;install-minikube&#x2F;&quot;&gt;Minikube&lt;&#x2F;a&gt; - A Kubernetes distribution which starts a single-node cluster&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gvisor.dev&quot;&gt;gVisor&lt;&#x2F;a&gt; - A user-space kernel, written in Go, that implements a substantial portion of the Linux system call interface.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;knative.dev&#x2F;&quot;&gt;Knative&lt;&#x2F;a&gt; - Run serverless services on Kubernetes&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Install Minikube as described in the documentation.&lt;&#x2F;p&gt;
+&lt;p&gt;Install gVisor as per &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;kubernetes&#x2F;minikube&#x2F;blob&#x2F;master&#x2F;deploy&#x2F;addons&#x2F;gvisor&#x2F;README.md&quot;&gt;the docs&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;minikube start --container-runtime=containerd  \
+&lt;&#x2F;span&gt;&lt;span&gt;    --docker-opt containerd=&#x2F;var&#x2F;run&#x2F;containerd&#x2F;containerd.sock
+&lt;&#x2F;span&gt;&lt;span&gt;minikube addons enable gvisor
+&lt;&#x2F;span&gt;&lt;span&gt;kubectl get pod,runtimeclass gvisor -n kube-system
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Quick Multi-Node Kubernetes Cluster</title>
+		<published>2020-01-11T00:00:00+00:00</published>
+		<updated>2020-01-11T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/quick-k8s/" type="text/html"/>
+		<id>https://omussell.github.io/quick-k8s/</id>
+		<content type="html">&lt;h2 id=&quot;quick-multi-node-kubernetes-cluster&quot;&gt;Quick Multi-Node Kubernetes Cluster&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;multipass&quot;&gt;Multipass&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;multipass.run&#x2F;&quot;&gt;Multipass&lt;&#x2F;a&gt; lets you easily spin up Ubuntu VMs on a workstation. &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Install
+&lt;&#x2F;span&gt;&lt;span&gt;snap install multipass --classic
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then to create a new instance, just run &lt;code&gt;multipass launch&lt;&#x2F;code&gt;. It will create a new instance based on an Ubuntu LTS image. &lt;&#x2F;p&gt;
+&lt;p&gt;To access the instance, just run &lt;code&gt;multipass shell $name&lt;&#x2F;code&gt;. You then have full access to the instance. &lt;&#x2F;p&gt;
+&lt;p&gt;The instances can also be bootstrapped via &lt;a href=&quot;https:&#x2F;&#x2F;cloud-init.io&#x2F;&quot;&gt;cloud-init&lt;&#x2F;a&gt; in the same way that instances on cloud providers are.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;microk8s&quot;&gt;Microk8s&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;microk8s.io&quot;&gt;Microk8s&lt;&#x2F;a&gt; is a small Kubernetes distribution designed for appliances. &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Install
+&lt;&#x2F;span&gt;&lt;span&gt;sudo snap install microk8s --classic --channel=1.16&#x2F;stable
+&lt;&#x2F;span&gt;&lt;span&gt;sudo usermod -a -G microk8s $USER
+&lt;&#x2F;span&gt;&lt;span&gt;su - $USER
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;cluster&quot;&gt;Cluster&lt;&#x2F;h3&gt;
+&lt;p&gt;So with two Multipass instances launched, and Microk8s installed on each, we can now join them together to &lt;a href=&quot;https:&#x2F;&#x2F;microk8s.io&#x2F;docs&#x2F;clustering&quot;&gt;form a cluster&lt;&#x2F;a&gt; by running &lt;code&gt;microk8s.add-node&lt;&#x2F;code&gt; on the proposed master and then the requisite &lt;code&gt;microk8s.join&lt;&#x2F;code&gt; command on the other node. &lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>NGINX</title>
+		<published>2020-01-10T00:00:00+00:00</published>
+		<updated>2020-01-10T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/nginx/" type="text/html"/>
+		<id>https://omussell.github.io/nginx/</id>
+		<content type="html">&lt;h2 id=&quot;tls-1-3-0-rtt-with-nginx&quot;&gt;TLS 1.3 0-RTT with NGINX&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;docs&#x2F;http&#x2F;ngx_http_ssl_module.html#ssl_early_data&quot;&gt;NGINX Docs&lt;&#x2F;a&gt;
+&lt;a href=&quot;http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;docs&#x2F;http&#x2F;ngx_http_ssl_module.html#var_ssl_early_data&quot;&gt;Early data var&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;ssl_early_data on;
+&lt;&#x2F;span&gt;&lt;span&gt;proxy_set_header Early-Data $ssl_early_data;
+&lt;&#x2F;span&gt;&lt;span&gt;limit_except GET {
+&lt;&#x2F;span&gt;&lt;span&gt;    deny  all;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;0-RTT is vulnerable to replay attacks, so we should only use this with requests using the GET method. If passing the request to a backend, you can set a header with &lt;code&gt;proxy_set_header Early-Data $ssl_early_data;&lt;&#x2F;code&gt;. The value of the $ssl_early_data variable is &amp;quot;1&amp;quot; if early data is used, otherwise &amp;quot;&amp;quot;. This header is passed to the upstream, so it can be used by the upstream application to determine the response.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;only-allow-certain-http-methods-with-nginx&quot;&gt;Only allow certain HTTP methods with NGINX&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;docs&#x2F;http&#x2F;ngx_http_core_module.html#limit_except&quot;&gt;NGNX Docs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;limit_except GET {
+&lt;&#x2F;span&gt;&lt;span&gt;    deny  all;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Only allows GET requests through, denies all other methods, with the exception of HEAD because if GET is allowed HEAD is too.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dynamic-certificate-loading-with-nginx&quot;&gt;Dynamic Certificate loading with NGINX&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.nginx.com&#x2F;blog&#x2F;nginx-plus-r18-released&#x2F;&quot;&gt;NGINX Announcement&lt;&#x2F;a&gt;
+&lt;a href=&quot;http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;docs&#x2F;http&#x2F;ngx_http_ssl_module.html#ssl_certificate&quot;&gt;NGINX Docs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If you have a lot of NGINX servers&#x2F;vhosts all served from the same box, you probably want to secure them with TLS. Normally this would mean a lot of duplicate configuration to specify which certificate is needed for each server_name. With Dynamic Certificate Loading, you can use a NGINX variable as part of the certificate name. So if you have certificate&#x2F;key files named after the server name, you can load them dynamically with NGINX.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;server_name  omuss.net omuss-test.net;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;ssl_certificate      &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;$ssl_server_name.crt;
+&lt;&#x2F;span&gt;&lt;span&gt;ssl_certificate_key  &#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;$ssl_server_name.key;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With certificate and key files named appropriately:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;omuss.net.crt
+&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;omuss.net.key
+&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;omuss-test.net.crt
+&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;omuss-test.net.key
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Note that certificates are lazy loaded, as in they are only loaded when a request comes in. So all certificates aren&#x27;t loaded into memory, which means less resource usage, but there is some overhead for the TLS negotiation because NGINX has to load the certificate from disk. TLS session caching may help alleviate this though.&lt;&#x2F;p&gt;
+&lt;p&gt;You would probably want the certificates stored on a fast disk to eliminate I&#x2F;O overhead.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;brotli-compression-with-nginx&quot;&gt;Brotli Compression with NGINX&lt;&#x2F;h2&gt;
+&lt;p&gt;Brotli can be used as an alternative to GZIP. It can give better compression in some cases.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.nginx.com&#x2F;nginx&#x2F;admin-guide&#x2F;dynamic-modules&#x2F;brotli&#x2F;&quot;&gt;NGINX Brotli Docs&lt;&#x2F;a&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;ngx_brotli&#x2F;&quot;&gt;Module Docs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The normal &lt;code&gt;nginx&lt;&#x2F;code&gt; package does not include the brotli module. You can either compile NGINX yourself and include the Brotli module, or otherwise install the &lt;code&gt;nginx-full&lt;&#x2F;code&gt; package (though the package is big because of lots of dependencies and includes lots of other modules).&lt;&#x2F;p&gt;
+&lt;p&gt;Once you have a NGINX binary with the Brotli module included, you need to load the module in the NGINX configuration:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;load_module &#x2F;usr&#x2F;local&#x2F;libexec&#x2F;nginx&#x2F;ngx_http_brotli_static_module.so;
+&lt;&#x2F;span&gt;&lt;span&gt;load_module &#x2F;usr&#x2F;local&#x2F;libexec&#x2F;nginx&#x2F;ngx_http_brotli_filter_module.so;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Also an important note, you MUST use HTTPS for Brotli to work. So make sure you set a server block to use HTTPS and set up a certificate etc.&lt;&#x2F;p&gt;
+&lt;p&gt;Now you have two options, compress you static files manually and put them where NGINX can find them, or let NGINX compress them on-the-fly. &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;static&quot;&gt;Static&lt;&#x2F;h3&gt;
+&lt;p&gt;With &lt;code&gt;brotli_static&lt;&#x2F;code&gt; set to &lt;code&gt;on&lt;&#x2F;code&gt; or &lt;code&gt;always&lt;&#x2F;code&gt;, the files must already be compressed. This can be done by installing the &lt;code&gt;brotli&lt;&#x2F;code&gt; package on FreeBSD, or otherwise you can do it quick and dirty with python like:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# pip install brotli
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;import brotli
+&lt;&#x2F;span&gt;&lt;span&gt;with open(&amp;#39;index.html&amp;#39;, &amp;#39;rb&amp;#39;) as f:
+&lt;&#x2F;span&gt;&lt;span&gt;    with open(&amp;#39;index.html.br&amp;#39;, &amp;#39;wb&amp;#39;) as brotted:
+&lt;&#x2F;span&gt;&lt;span&gt;        brotted.write(brotli.compress(f.read()))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Note that brotli prefers bytestrings.&lt;&#x2F;p&gt;
+&lt;p&gt;With the &lt;code&gt;brotli_static&lt;&#x2F;code&gt; option turned on, I found that using &lt;code&gt;index.html.br&lt;&#x2F;code&gt; didn&#x27;t work, but if I set the filename to &lt;code&gt;index.html&lt;&#x2F;code&gt; but with Brotli-fied contents, it loaded correctly.&lt;&#x2F;p&gt;
+&lt;p&gt;You should also make sure to set &lt;code&gt;add_header Content-Encoding &amp;quot;br&amp;quot;;&lt;&#x2F;code&gt; so that the browser knows that it is Brotli encoded.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;dynamic&quot;&gt;Dynamic&lt;&#x2F;h3&gt;
+&lt;p&gt;Otherwise, set &lt;code&gt;brotli on;&lt;&#x2F;code&gt; and it will compress file on-the-fly.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;nginx-tcp-udp-proxy&quot;&gt;NGINX TCP&#x2F;UDP proxy&lt;&#x2F;h2&gt;
+&lt;p&gt;NGINX needs to be compiled with the --with-stream option. It can&#x27;t be dynamic, which is the default. In the config file you need to add:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;load_module &#x2F;usr&#x2F;local&#x2F;libexec&#x2F;nginx&#x2F;ngx_stream_module.so;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then in the config file:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;stream {
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  server {
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    listen 80;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_pass 192.168.1.15:80;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  server {
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    # Override the default stream type of TCP with UDP
+&lt;&#x2F;span&gt;&lt;span&gt;    listen 53;
+&lt;&#x2F;span&gt;&lt;span&gt;    proxy_pass 192.168.1.15:53 udp;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Signify</title>
+		<published>2020-01-09T00:00:00+00:00</published>
+		<updated>2020-01-09T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/signify/" type="text/html"/>
+		<id>https://omussell.github.io/signify/</id>
+		<content type="html">&lt;h2 id=&quot;signify&quot;&gt;Signify&lt;&#x2F;h2&gt;
+&lt;p&gt;Sign and verify files&lt;&#x2F;p&gt;
+&lt;p&gt;Generate keys without password (remove -n flag to ask for a password)&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;signify-openbsd -G -p keyname.pub -s keyname.sec -n
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Sign a file&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;signify-openbsd -S -s keyname.sec -m $file_to_sign -x $signature_file
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Verify a file&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;signify-openbsd -V -p keyname.pub -m $file_to_verify -x $signature_file
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>RQLite</title>
+		<published>2020-01-08T00:00:00+00:00</published>
+		<updated>2020-01-08T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/rqlite/" type="text/html"/>
+		<id>https://omussell.github.io/rqlite/</id>
+		<content type="html">&lt;h2 id=&quot;rqlite&quot;&gt;RQLite&lt;&#x2F;h2&gt;
+&lt;p&gt;SQLite, distributed over many nodes with consensus achieved with the Raft protocol.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;go get github.com&#x2F;rqlite&#x2F;rqlite
+&lt;&#x2F;span&gt;&lt;span&gt;cd ~&#x2F;go&#x2F;src&#x2F;github.com&#x2F;rqlite&#x2F;rqlite&#x2F;cmd&#x2F;rqlite
+&lt;&#x2F;span&gt;&lt;span&gt;go get -t -d -v .&#x2F;...
+&lt;&#x2F;span&gt;&lt;span&gt;go build
+&lt;&#x2F;span&gt;&lt;span&gt;# You now have the rqlite binary
+&lt;&#x2F;span&gt;&lt;span&gt;cd ~&#x2F;go&#x2F;src&#x2F;github.com&#x2F;rqlite&#x2F;rqlite&#x2F;cmd&#x2F;rqlited
+&lt;&#x2F;span&gt;&lt;span&gt;go build
+&lt;&#x2F;span&gt;&lt;span&gt;# You now have the rqlited binary
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set up the first cluster node:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;rqlited ~&#x2F;node.1
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then subsequent cluster nodes:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;rqlited -http-addr localhost:4003 -raft-addr localhost:4004 -join http:&#x2F;&#x2F;localhost:4001 ~&#x2F;node.2
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Presumably you&#x27;d have the HTTP address and Raft address to be the same port on different servers, and you&#x27;d join to the same master node.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Building Go with Bazel</title>
+		<published>2020-01-07T00:00:00+00:00</published>
+		<updated>2020-01-07T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/go-bazel/" type="text/html"/>
+		<id>https://omussell.github.io/go-bazel/</id>
+		<content type="html">&lt;h2 id=&quot;handling-go-dependencies&quot;&gt;Handling Go Dependencies&lt;&#x2F;h2&gt;
+&lt;p&gt;During development, you will often use &lt;code&gt;go get&lt;&#x2F;code&gt; to download libraries for import into the program which is useful for development but not so useful when building the finished product. Managing these dependencies over time is a hassle as they change frequently and can sometimes disappear entirely.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;dep&lt;&#x2F;code&gt; tool provides a way of automatically scanning your import statements and evaluating all of the dependencies. It create some files &lt;code&gt;Gopkg.toml&lt;&#x2F;code&gt; and &lt;code&gt;Gopkg.lock&lt;&#x2F;code&gt; which contain the location and latest Git SHA of your dependencies.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;dep&lt;&#x2F;code&gt; is installed via:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;curl https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;golang&#x2F;dep&#x2F;master&#x2F;install.sh | sh
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run &lt;code&gt;dep init&lt;&#x2F;code&gt; to create the initial files, then as your develop run &lt;code&gt;dep ensure&lt;&#x2F;code&gt; to update dependencies to the latest version.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;dep&lt;&#x2F;code&gt; tool also downloads a copy of all dependencies into a &lt;code&gt;vendor&lt;&#x2F;code&gt; folder at the root of your project. This provides a backup in case a dependency disappears and provides the facility for reproducible builds.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;bazel-gazelle&quot;&gt;Bazel &#x2F; Gazelle&lt;&#x2F;h3&gt;
+&lt;p&gt;With our dependencies being updated, we would also need to update the WORKSPACE file so that Bazel&#x2F;Gazelle knows about them as well. Gazelle requires the location and git commit hash in order to pull down the correct dependencies, but this is laborious to update manually.&lt;&#x2F;p&gt;
+&lt;p&gt;Thankfully, we can run a command to have gazelle pull in all of the dependencies from the &lt;code&gt;Gopkg.lock&lt;&#x2F;code&gt; file and update the WORKSPACE file automatically. Bazel will then pull in all of the dependencies correctly without any manual intervention.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;gazelle update-repos -from_file Gopkg.lock&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As part of ongoing development, you would periodically run&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;dep ensure&lt;&#x2F;code&gt; &lt;&#x2F;p&gt;
+&lt;p&gt;followed by&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;gazelle update-repos -from_file Gopkg.lock&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;to keep all of the dependencies up to date and generate the new WORKSPACE file.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;packaging-go-applications&quot;&gt;Packaging Go Applications&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that we&#x27;ve built the go application and its dependencies we now need to package it up to distribute across the infrastructure.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;packaging-with-fpm&quot;&gt;Packaging with fpm&lt;&#x2F;h3&gt;
+&lt;p&gt;The below command is an example of what we would want to run:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;fpm -s dir -t freebsd -n ~&#x2F;go_test --version 1.0.0 --prefix &#x2F;usr&#x2F;local&#x2F;bin go_tests&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;But this has a few issues. Rather than putting the finished package into &lt;code&gt;~&#x2F;go_test&lt;&#x2F;code&gt;, it would be better in a dedicated directory like &lt;code&gt;&#x2F;var&#x2F;packages&lt;&#x2F;code&gt; or similar. The version number is hard coded which obviously isn&#x27;t always going to be correct. You would want to instead have your CI tool set to only run the packaging command when a new tag&#x2F;release is created, and then have the version number derived from the tag&#x2F;release number. It also includes the &lt;code&gt;--prefix&lt;&#x2F;code&gt; flag to specify the path to prepend to any files in the package. This is required as when the package is installed&#x2F;extracted, the files will be extracted to the full path as specified in the package. So in this instance the &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;go_tests&lt;&#x2F;code&gt; file is extracted.&lt;&#x2F;p&gt;
+&lt;p&gt;For now, I&#x27;m getting by with the following command which will overwrite the finished package if it already exists.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;fpm -f -s dir -t freebsd -n ~&#x2F;go_test --prefix &#x2F;usr&#x2F;local&#x2F;bin go_tests&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;building-go-programs-using-bazel&quot;&gt;Building Go programs using Bazel&lt;&#x2F;h2&gt;
+&lt;p&gt;Bazel is a build tool created by Google which operates similarly to their internal build tool, Blaze. It is primarily concerned with generating artifacts from compiled languages like C, C++, Go etc. &lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;pkg install -y bazel&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Bazel requires some files so that it knows what and where to build. As an example, we are going to compile a simple go program with no dependencies (literally print a single string to stdout).&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;&#x2F; ~&#x2F;go&#x2F;src&#x2F;github.com&#x2F;omussell&#x2F;go_tests&#x2F;main.go
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;package main
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;import &amp;quot;fmt&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;func main() {
+&lt;&#x2F;span&gt;&lt;span&gt;	fmt.Println(&amp;quot;test&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A file called WORKSPACE should be created at the root of the directory. This is used by bazel to determine source code locations relative to the WORKSPACE file and differentiate other packages in the same directory. Then a BUILD.bazel file should also be created at the root of the directory. &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;gazelle&quot;&gt;Gazelle&lt;&#x2F;h3&gt;
+&lt;p&gt;Instead of creating BUILD files by hand, we can use the Gazelle tool to iterate over a go source tree and dynamically generate BUILD files. We can also let bazel itself run gazelle.&lt;&#x2F;p&gt;
+&lt;p&gt;Note that gazelle doesn&#x27;t work without bash, and the gazelle.bash file has a hardcoded path to &lt;code&gt;&#x2F;bin&#x2F;bash&lt;&#x2F;code&gt; which of course is not available on FreeBSD by default.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y bash
+&lt;&#x2F;span&gt;&lt;span&gt;ln -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;bash &#x2F;bin&#x2F;bash
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the WORKSPACE file:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;http_archive(
+&lt;&#x2F;span&gt;&lt;span&gt;    name = &amp;quot;io_bazel_rules_go&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    url = &amp;quot;https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;rules_go&#x2F;releases&#x2F;download&#x2F;0.9.0&#x2F;rules_go-0.9.0.tar.gz&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    sha256 = &amp;quot;4d8d6244320dd751590f9100cf39fd7a4b75cd901e1f3ffdfd6f048328883695&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;http_archive(
+&lt;&#x2F;span&gt;&lt;span&gt;    name = &amp;quot;bazel_gazelle&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    url = &amp;quot;https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;bazel-gazelle&#x2F;releases&#x2F;download&#x2F;0.9&#x2F;bazel-gazelle-0.9.tar.gz&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    sha256 = &amp;quot;0103991d994db55b3b5d7b06336f8ae355739635e0c2379dea16b8213ea5a223&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;load(&amp;quot;@io_bazel_rules_go&#x2F;&#x2F;go:def.bzl&amp;quot;, &amp;quot;go_rules_dependencies&amp;quot;, &amp;quot;go_register_toolchains&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;go_rules_dependencies()
+&lt;&#x2F;span&gt;&lt;span&gt;go_register_toolchains(go_version=&amp;quot;host&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;load(&amp;quot;@bazel_gazelle&#x2F;&#x2F;:deps.bzl&amp;quot;, &amp;quot;gazelle_dependencies&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;gazelle_dependencies()
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the BUILD.bazel file:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;load(&amp;quot;@bazel_gazelle&#x2F;&#x2F;:def.bzl&amp;quot;, &amp;quot;gazelle&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;gazelle(
+&lt;&#x2F;span&gt;&lt;span&gt;    name = &amp;quot;gazelle&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    prefix = &amp;quot;github.com&#x2F;omussell&#x2F;go_tests&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then to run:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;bazel run &#x2F;&#x2F;:gazelle
+&lt;&#x2F;span&gt;&lt;span&gt;bazel build &#x2F;&#x2F;:go_tests
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A built binary should be output to the ~&#x2F;.cache directory. Once a binary has been built once, Bazel will only build again if the source code changes. Otherwise, any subsequent runs just complete successfully extremely quickly.&lt;&#x2F;p&gt;
+&lt;p&gt;When attempting to use bazel in any capacity like &lt;code&gt;bazel run ...&lt;&#x2F;code&gt; or &lt;code&gt;bazel build ...&lt;&#x2F;code&gt; it would give the following error:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;ERROR: &#x2F;root&#x2F;.cache&#x2F;bazel&#x2F;_bazel_root&#x2F;...285a1776&#x2F;external&#x2F;io_bazel_rules_go&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &amp;#39;@go_sdk&#x2F;&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;:packages.txt&amp;#39;, but this target could not be found because of: no such package &amp;#39;@go_sdk&#x2F;&#x2F;&amp;#39;: 
+&lt;&#x2F;span&gt;&lt;span&gt;Unsupported operating system: freebsd
+&lt;&#x2F;span&gt;&lt;span&gt;ERROR: &#x2F;root&#x2F;.cache&#x2F;bazel&#x2F;_bazel_root&#x2F;...1776&#x2F;external&#x2F;io_bazel_rules_go&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &amp;#39;@go_sdk&#x2F;&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;:files&amp;#39;, but this target could not be found because of: no such package &amp;#39;@go_sdk&#x2F;&#x2F;&amp;#39;: 
+&lt;&#x2F;span&gt;&lt;span&gt;Unsupported operating system: freebsd
+&lt;&#x2F;span&gt;&lt;span&gt;ERROR: &#x2F;root&#x2F;.cache&#x2F;bazel&#x2F;_bazel_root&#x2F;...5a1776&#x2F;external&#x2F;io_bazel_rules_go&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &amp;#39;@go_sdk&#x2F;&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;:tools&amp;#39;, but this target could not be found because of: no such package &amp;#39;@go_sdk&#x2F;&#x2F;&amp;#39;: 
+&lt;&#x2F;span&gt;&lt;span&gt;Unsupported operating system: freebsd
+&lt;&#x2F;span&gt;&lt;span&gt;ERROR: Analysis of target &amp;#39;&#x2F;&#x2F;:gazelle&amp;#39; failed; build aborted: no such package &amp;#39;@go_sdk&#x2F;&#x2F;&amp;#39;: 
+&lt;&#x2F;span&gt;&lt;span&gt;Unsupported operating system: freebsd
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I think this is caused by bazel attempting to download and build go which isn&#x27;t necessary as we&#x27;ve already installed via the package anyway. In the WORKSPACE file, change the &lt;code&gt;go_register_toolchains()&lt;&#x2F;code&gt; line to &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;go_register_toolchains(go_version=&amp;quot;host&amp;quot;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;as documented at:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;rules_go&#x2F;blob&#x2F;master&#x2F;go&#x2F;toolchains.rst#using-the-installed-go-sdk.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will force bazel to use the already installed go tools.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ci-with-buildbot&quot;&gt;CI with Buildbot&lt;&#x2F;h2&gt;
+&lt;p&gt;Example buildbot config:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;factory.addStep(steps.Git(repourl=&amp;#39;git:&#x2F;&#x2F;github.com&#x2F;omussell&#x2F;go_tests.git&amp;#39;, mode=&amp;#39;incremental&amp;#39;))
+&lt;&#x2F;span&gt;&lt;span&gt;factory.addStep(steps.ShellCommand(command=[&amp;quot;go&amp;quot;, &amp;quot;fix&amp;quot;],))
+&lt;&#x2F;span&gt;&lt;span&gt;factory.addStep(steps.ShellCommand(command=[&amp;quot;go&amp;quot;, &amp;quot;vet&amp;quot;],))
+&lt;&#x2F;span&gt;&lt;span&gt;factory.addStep(steps.ShellCommand(command=[&amp;quot;go&amp;quot;, &amp;quot;fmt&amp;quot;],))
+&lt;&#x2F;span&gt;&lt;span&gt;factory.addStep(steps.ShellCommand(command=[&amp;quot;bazel&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;&#x2F;&#x2F;:gazelle&amp;quot;],))
+&lt;&#x2F;span&gt;&lt;span&gt;factory.addStep(steps.ShellCommand(command=[&amp;quot;bazel&amp;quot;, &amp;quot;build&amp;quot;, &amp;quot;&#x2F;&#x2F;:go_tests&amp;quot;],))
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I needed to rebuild the buildbot jail because it was borked, and after rebuilding it I was surprised that bazel worked without any more configuration. I just needed to install the git, go and bazel packages and run the buildbot config as described above and it ran through and rebuilt everything from scratch. This is one of the major advantages of keeping the build files (WORKSPACE and BUILD.bazel) alongside the source code. I am sure that if desired, anyone with a bazel setup would be able to build this code as well and the outputs would be identical.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;adding-dependencies&quot;&gt;Adding dependencies&lt;&#x2F;h3&gt;
+&lt;p&gt;In order to have Bazel automatically build dependencies we need to make a some changes to the WORKSPACE file. I&#x27;ve extended the example program to pull in a library that generates fake data and prints a random name when invoked.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;package main
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;import &amp;quot;github.com&#x2F;brianvoe&#x2F;gofakeit&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;import &amp;quot;fmt&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;func main() {
+&lt;&#x2F;span&gt;&lt;span&gt;        gofakeit.Seed(0)
+&lt;&#x2F;span&gt;&lt;span&gt;        fmt.Println(gofakeit.Name())
+&lt;&#x2F;span&gt;&lt;span&gt;        &#x2F;&#x2F;      fmt.Println(&amp;quot;test&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The following needs to be appended to the WORKSPACE file:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;load(&amp;quot;@io_bazel_rules_go&#x2F;&#x2F;go:def.bzl&amp;quot;, &amp;quot;go_repository&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;go_repository(
+&lt;&#x2F;span&gt;&lt;span&gt;    name = &amp;quot;com_github_brianvoe_gofakeit&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    importpath = &amp;quot;github.com&#x2F;brianvoe&#x2F;gofakeit&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;    commit = &amp;quot;b0b2ecfdf447299dd6bcdef91001692fc349ce4c&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The go_repository rule is used when a dependency is required that does not have a BUILD.bzl file in their repo.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;bazel-remote-cache&quot;&gt;Bazel Remote Cache&lt;&#x2F;h2&gt;
+&lt;p&gt;When building with Bazel, by default you are connecting to a local Bazel server which runs the build. If multiple people are running the same builds, you are all independently having to build the whole thing from scratch every time. &lt;&#x2F;p&gt;
+&lt;p&gt;With a Remote Cache, some other storage service can cache parts of the build and artifacts which can then be reused by multiple people. 
+This can be a plain HTTP server like NGINX or Google Cloud Storage.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;mkdir -p &#x2F;var&#x2F;cache&#x2F;nginx
+&lt;&#x2F;span&gt;&lt;span&gt;chmod 777 &#x2F;var&#x2F;cache&#x2F;nginx
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# nginx config:
+&lt;&#x2F;span&gt;&lt;span&gt;location &#x2F; {
+&lt;&#x2F;span&gt;&lt;span&gt;    root &#x2F;var&#x2F;cache&#x2F;nginx;
+&lt;&#x2F;span&gt;&lt;span&gt;    dav_methods PUT;
+&lt;&#x2F;span&gt;&lt;span&gt;    create_full_put_path on;
+&lt;&#x2F;span&gt;&lt;span&gt;    client_max_body_size 1G;
+&lt;&#x2F;span&gt;&lt;span&gt;    allow all;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then when running the Bazel build, add the &lt;code&gt;--remote_cache=http:&#x2F;&#x2F;$ip:$port&lt;&#x2F;code&gt; flag to the build parameter like &lt;code&gt;bazel build --remote_cache=http:&#x2F;&#x2F;192.168.1.10:80 &#x2F;&#x2F;...&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>PostgreSQL 10.1 with replication</title>
+		<published>2020-01-06T00:00:00+00:00</published>
+		<updated>2020-01-06T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/pgsql-repl/" type="text/html"/>
+		<id>https://omussell.github.io/pgsql-repl/</id>
+		<content type="html">&lt;h2 id=&quot;postgresql-10-1-with-replication&quot;&gt;PostgreSQL 10.1 with replication&lt;&#x2F;h2&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y postgresql10-server postgresql10-client
+&lt;&#x2F;span&gt;&lt;span&gt;sysrc postgresql_enable=YES
+&lt;&#x2F;span&gt;&lt;span&gt;service postgresql initdb
+&lt;&#x2F;span&gt;&lt;span&gt;service postgresql start
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;postgresql-10-1-scram-authentication&quot;&gt;PostgreSQL 10.1 SCRAM Authentication&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;su - postgres
+&lt;&#x2F;span&gt;&lt;span&gt;psql
+&lt;&#x2F;span&gt;&lt;span&gt;set password_encryption = &amp;#39;scram-sha-256&amp;#39;;
+&lt;&#x2F;span&gt;&lt;span&gt;create role app_db with password &amp;#39;foo&amp;#39;;
+&lt;&#x2F;span&gt;&lt;span&gt;select substring(rolpassword, 1, 14) from pg_authid where rolname = &amp;#39;app_db&amp;#39;;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;postgresql-10-1-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage&quot;&gt;PostgreSQL 10.1 using repmgr for database replication, WAL-G for WAL archiving, and minio for S3 compatible storage&lt;&#x2F;h3&gt;
+&lt;p&gt;For this, I created two bhyve VMs to host postgresql and a jail on the host for minio&lt;&#x2F;p&gt;
+&lt;p&gt;Make sure postgresql is running&lt;&#x2F;p&gt;
+&lt;p&gt;Carry out the following steps on both primary and replicas&lt;&#x2F;p&gt;
+&lt;p&gt;The current packaged version of repmgr is 3.3.1 which isn&#x27;t the latest. The latest is 4.0.1, so we need to compile it ourself, and put files into the correct locations&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;fetch https:&#x2F;&#x2F;repmgr.org&#x2F;download&#x2F;repmgr-4.0.1.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;tar -zvxf repmgr-4.0.1.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;configure
+&lt;&#x2F;span&gt;&lt;span&gt;pkg install -y gmake
+&lt;&#x2F;span&gt;&lt;span&gt;gmake
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy the repmgr files to their correct locations&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cp -v repmgr &#x2F;var&#x2F;db&#x2F;postgres
+&lt;&#x2F;span&gt;&lt;span&gt;cp -v repmgr--4.0.sql &#x2F;usr&#x2F;local&#x2F;share&#x2F;postgresql&#x2F;extension&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;cp -v repmgr.control &#x2F;usr&#x2F;local&#x2F;share&#x2F;postgresql&#x2F;extension
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;vim &#x2F;var&#x2F;db&#x2F;postgrs&#x2F;data10&#x2F;postgresql.conf 
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add lines: &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;include_dir = &amp;#39;postgresql.conf.d&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;listen_addresses = &amp;#39;\*&amp;#39;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;vim &#x2F;var&#x2F;db&#x2F;postgres&#x2F;data10&#x2F;postgresql.conf.d&#x2F;postgresql.replication.conf
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add lines:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;max_wal_senders = 10
+&lt;&#x2F;span&gt;&lt;span&gt;wal_level = &amp;#39;replica&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;wal_keep_segments = 5000
+&lt;&#x2F;span&gt;&lt;span&gt;hot_standby = on
+&lt;&#x2F;span&gt;&lt;span&gt;archive_mode = on
+&lt;&#x2F;span&gt;&lt;span&gt;archive_command = &amp;#39;wal-g stuff here&amp;#39;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;vim &#x2F;var&#x2F;db&#x2F;postgres&#x2F;data10&#x2F;pg_hba.conf&lt;&#x2F;p&gt;
+&lt;p&gt;Add lines:
+Please note, for testing purposes, these rules are wide open and allow everything. Dont do this in production, use a specific role with a password and restrict to a specific address&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;local	all		all			trust
+&lt;&#x2F;span&gt;&lt;span&gt;host	all		all	0.0.0.0&#x2F;0	trust
+&lt;&#x2F;span&gt;&lt;span&gt;host	replication	all	0.0.0.0&#x2F;0	trust
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;vim &#x2F;usr&#x2F;local&#x2F;etc&#x2F;repmgr.conf&lt;&#x2F;p&gt;
+&lt;p&gt;Add lines:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;node_id=1 # arbitrary number, each node needs to be unique
+&lt;&#x2F;span&gt;&lt;span&gt;node_name=postgres-db1 # this nodes hostname
+&lt;&#x2F;span&gt;&lt;span&gt;conninfo=&amp;#39;host=192.168.1.10 user=repmgr dbname=repmgr&amp;#39; # the host value should be a hostname if DNS is working
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On the primary&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;su - postgres
+&lt;&#x2F;span&gt;&lt;span&gt;createuser -s repmgr
+&lt;&#x2F;span&gt;&lt;span&gt;createdb repmgr -O repmgr
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;repmgr -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;repmgr.conf primary register
+&lt;&#x2F;span&gt;&lt;span&gt;repmgr -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;repmgr.conf cluster show
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On a standby&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;su - postgres
+&lt;&#x2F;span&gt;&lt;span&gt;psql &amp;#39;host=node1 user=repmgr dbname=repmgr&amp;#39;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To clone the primary, the data directory on the standby node must exist but be empty&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;rm -rf &#x2F;var&#x2F;db&#x2F;postgres&#x2F;data10&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;mkdir -p &#x2F;var&#x2F;db&#x2F;postgres&#x2F;data10
+&lt;&#x2F;span&gt;&lt;span&gt;chown postgres:postgres &#x2F;var&#x2F;db&#x2F;postgres&#x2F;data10
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Dry run first to check for problems&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;repmgr -h node1 -U repmgr -d repmgr -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;repmgr.conf standby clone --dry-run&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If its ok, run it&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;repmgr -h node1 -U repmgr -d repmgr -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;repmgr.conf standby clone&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;On the primary&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;su - postgres
+&lt;&#x2F;span&gt;&lt;span&gt;psql -d repmgr
+&lt;&#x2F;span&gt;&lt;span&gt;select * from pg_stat_replication;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On the standby&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;repmgr -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;repmgr.conf standby register
+&lt;&#x2F;span&gt;&lt;span&gt;repmgr -f &#x2F;usr&#x2F;local&#x2F;etc&#x2F;repmgr.conf cluster show
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Install minio&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y minio
+&lt;&#x2F;span&gt;&lt;span&gt;sysrc minio_enable=YES
+&lt;&#x2F;span&gt;&lt;span&gt;sysrc minio_disks=&#x2F;home&#x2F;user&#x2F;test
+&lt;&#x2F;span&gt;&lt;span&gt;mkdir -p &#x2F;home&#x2F;user&#x2F;test
+&lt;&#x2F;span&gt;&lt;span&gt;chown minio:minio &#x2F;home&#x2F;user&#x2F;test
+&lt;&#x2F;span&gt;&lt;span&gt;service minio start
+&lt;&#x2F;span&gt;&lt;span&gt;# The access keys are in &#x2F;usr&#x2F;local&#x2F;etc&#x2F;minio&#x2F;config.json
+&lt;&#x2F;span&gt;&lt;span&gt;# You can change them in this file and restart the service to take effect
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On the primary
+WAL-G&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y go
+&lt;&#x2F;span&gt;&lt;span&gt;mkdir -p &#x2F;root&#x2F;go
+&lt;&#x2F;span&gt;&lt;span&gt;setenv GOPATH &#x2F;root&#x2F;go
+&lt;&#x2F;span&gt;&lt;span&gt;cd go
+&lt;&#x2F;span&gt;&lt;span&gt;go get github.com&#x2F;wal-g&#x2F;wal-g
+&lt;&#x2F;span&gt;&lt;span&gt;cd src&#x2F;github.com&#x2F;wal-g&#x2F;wal-g
+&lt;&#x2F;span&gt;&lt;span&gt;make all
+&lt;&#x2F;span&gt;&lt;span&gt;make install
+&lt;&#x2F;span&gt;&lt;span&gt;cp &#x2F;root&#x2F;go&#x2F;bin&#x2F;wal-g &#x2F;usr&#x2F;local&#x2F;bin
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;WAL-G requires certain environment variables to be set. This can be done using envdir, part of the daemontools package&lt;&#x2F;p&gt;
+&lt;p&gt;pkg install -y daemontools&lt;&#x2F;p&gt;
+&lt;p&gt;Setup is now complete. &lt;&#x2F;p&gt;
+&lt;p&gt;For operations, a base backup needs to be taken on a regular basis probably via a cron job, running the following command as postgres user&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;wal-g backup-push &#x2F;var&#x2F;db&#x2F;postgres&#x2F;data10&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Then the archive_command in the postgresql.replication.conf should be set to the wal-push command&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;wal-g wal-push &#x2F;var&#x2F;db&#x2F;postgres&#x2F;data10&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To restore, backup-fetch and wal-fetch can be used to pull the latest base backup and the necessary wal logs to recover to the latest transaction&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Saltstack install and config</title>
+		<published>2020-01-05T00:00:00+00:00</published>
+		<updated>2020-01-05T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/saltstack/" type="text/html"/>
+		<id>https://omussell.github.io/saltstack/</id>
+		<content type="html">&lt;h2 id=&quot;saltstack-install-and-config&quot;&gt;Saltstack install and config&lt;&#x2F;h2&gt;
+&lt;p&gt;Install the salt package&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y py36-salt
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy the sample files to create the master and&#x2F;or minion configuration files&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cp -v &#x2F;usr&#x2F;local&#x2F;etc&#x2F;salt&#x2F;master{.sample,&amp;quot;&amp;quot;}
+&lt;&#x2F;span&gt;&lt;span&gt;cp -v &#x2F;usr&#x2F;local&#x2F;etc&#x2F;salt&#x2F;minion{.sample,&amp;quot;&amp;quot;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set the master&#x2F;minion services to start on boot&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;sysrc salt_master_enable=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;sysrc salt_minion_enable=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Salt expects state files to exist in the &#x2F;srv&#x2F;salt or &#x2F;etc&#x2F;salt directories which don&#x27;t exist by default on FreeBSD so make symlinks instead:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;ln -s &#x2F;usr&#x2F;local&#x2F;etc&#x2F;salt &#x2F;etc&#x2F;salt
+&lt;&#x2F;span&gt;&lt;span&gt;ln -s &#x2F;usr&#x2F;local&#x2F;etc&#x2F;salt &#x2F;srv&#x2F;salt
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Start the services&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;service salt_master onestart
+&lt;&#x2F;span&gt;&lt;span&gt;service salt_minion onestart
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Accept minion keys sent to the master&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;salt-key -A
+&lt;&#x2F;span&gt;&lt;span&gt;# Press y to accept
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create a test state file&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;vi &#x2F;usr&#x2F;local&#x2F;etc&#x2F;salt&#x2F;states&#x2F;examples.sls
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;---
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;install_packages:
+&lt;&#x2F;span&gt;&lt;span&gt;  pkg.installed:
+&lt;&#x2F;span&gt;&lt;span&gt;    - pkgs:
+&lt;&#x2F;span&gt;&lt;span&gt;      - vim-lite
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then apply the examples state&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;salt &amp;#39;*&amp;#39; state.apply examples
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;salt-formulas&quot;&gt;Salt Formulas&lt;&#x2F;h3&gt;
+&lt;p&gt;Install the GitFS backend, this allows you to serve files from git repos.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y git py36-gitpython
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit the &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;salt&#x2F;master&lt;&#x2F;code&gt; configuration file:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;fileserver_backend:
+&lt;&#x2F;span&gt;&lt;span&gt;  - git
+&lt;&#x2F;span&gt;&lt;span&gt;  - roots
+&lt;&#x2F;span&gt;&lt;span&gt;gitfs_remotes:
+&lt;&#x2F;span&gt;&lt;span&gt;  - https:&#x2F;&#x2F;github.com&#x2F;saltstack-formulas&#x2F;lynis-formula
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Restart the master. If master and minion are the same node, restart the minion service as well.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;service salt_master onerestart
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The formulas can then be used in the state file&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;include:
+&lt;&#x2F;span&gt;&lt;span&gt;  - lynis
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;salt-equivalent-to-r10k-and-using-git-as-a-pillar-source&quot;&gt;Salt equivalent to R10K and using git as a pillar source&lt;&#x2F;h3&gt;
+&lt;p&gt;If the git server is also a minion, you can use Reactor to signal to the master to update the fileserver on each git push:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;https:&#x2F;&#x2F;docs.saltstack.com&#x2F;en&#x2F;latest&#x2F;topics&#x2F;tutorials&#x2F;gitfs.html#refreshing-gitfs-upon-push
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You can also use git as a pillar source (host your specific config data in version control)&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;https:&#x2F;&#x2F;docs.saltstack.com&#x2F;en&#x2F;latest&#x2F;topics&#x2F;tutorials&#x2F;gitfs.html#using-git-as-an-external-pillar-source
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;installing-raet&quot;&gt;Installing RAET&lt;&#x2F;h3&gt;
+&lt;p&gt;RAET support isn&#x27;t enabled in the default package. If you install py27-salt and run &lt;code&gt;pkg info py27-salt&lt;&#x2F;code&gt; you can see in the options &lt;code&gt;RAET: off&lt;&#x2F;code&gt;. In order to use RAET, you need to build the py27-salt port.&lt;&#x2F;p&gt;
+&lt;p&gt;Compile the port&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg remove -y py27-salt
+&lt;&#x2F;span&gt;&lt;span&gt;portsnap fetch extract
+&lt;&#x2F;span&gt;&lt;span&gt;cd &#x2F;usr&#x2F;ports&#x2F;sysutil&#x2F;py-salt
+&lt;&#x2F;span&gt;&lt;span&gt;make config
+&lt;&#x2F;span&gt;&lt;span&gt;# Press space to select RAET
+&lt;&#x2F;span&gt;&lt;span&gt;make install
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit &lt;code&gt;&#x2F;srv&#x2F;salt&#x2F;master&lt;&#x2F;code&gt; and &lt;code&gt;&#x2F;srv&#x2F;salt&#x2F;minion&lt;&#x2F;code&gt; and add&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;transport: raet
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then restart the services&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;service salt_master restart
+&lt;&#x2F;span&gt;&lt;span&gt;service salt_minion restart
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You will need to accept keys again&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;salt-key 
+&lt;&#x2F;span&gt;&lt;span&gt;salt-key -A
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;salt-equivalent-of-hiera-eyaml&quot;&gt;Salt equivalent of hiera-eyaml&lt;&#x2F;h3&gt;
+&lt;p&gt;Salt.runners.nacl&lt;&#x2F;p&gt;
+&lt;p&gt;Similar to hiera-eyaml, it is used for encrypting data stored in pillar:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;https:&#x2F;&#x2F;docs.saltstack.com&#x2F;en&#x2F;latest&#x2F;ref&#x2F;runners&#x2F;all&#x2F;salt.runners.nacl.html
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>NSD and Unbound config</title>
+		<published>2020-01-04T00:00:00+00:00</published>
+		<updated>2020-01-04T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/nsd-unbound/" type="text/html"/>
+		<id>https://omussell.github.io/nsd-unbound/</id>
+		<content type="html">&lt;h2 id=&quot;nsd-and-unbound-config&quot;&gt;NSD and Unbound config&lt;&#x2F;h2&gt;
+&lt;p&gt;Set up the unbound&#x2F;nsd-control&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;local-unbound-setup
+&lt;&#x2F;span&gt;&lt;span&gt;nsd-control-setup
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Enable NSD and Unbound to start in &lt;code&gt;&#x2F;etc&#x2F;rc.conf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;sysrc nsd_enable=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;sysrc local_unbound_enable=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set a different listening port for NSD in &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nsd.conf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;server:
+&lt;&#x2F;span&gt;&lt;span&gt;  port: 5353
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create an inital zone file &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nsd&#x2F;home.lan.zone&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ORIGIN home.lan. ;
+&lt;&#x2F;span&gt;&lt;span&gt;$TTL 86400 ;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;@ IN SOA ns1.home.lan. admin.home.lan. (
+&lt;&#x2F;span&gt;&lt;span&gt;        2017080619 ;
+&lt;&#x2F;span&gt;&lt;span&gt;        28800 ;
+&lt;&#x2F;span&gt;&lt;span&gt;        7200 ;
+&lt;&#x2F;span&gt;&lt;span&gt;        864000 ;
+&lt;&#x2F;span&gt;&lt;span&gt;        86400 ;
+&lt;&#x2F;span&gt;&lt;span&gt;        )
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        NS ns1.home.lan.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;ns1 IN A 192.168.1.15
+&lt;&#x2F;span&gt;&lt;span&gt;jail IN A 192.168.1.15
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create the reverse lookup zone file &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;nsd&#x2F;home.lan.reverse&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ORIGIN home.lan.
+&lt;&#x2F;span&gt;&lt;span&gt;$TTL 86400
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;0.1.168.192.in-addr.arpa. IN SOA ns1.home.lan. admin.home.lan. (
+&lt;&#x2F;span&gt;&lt;span&gt;        2017080619
+&lt;&#x2F;span&gt;&lt;span&gt;        28800
+&lt;&#x2F;span&gt;&lt;span&gt;        7200
+&lt;&#x2F;span&gt;&lt;span&gt;        864000
+&lt;&#x2F;span&gt;&lt;span&gt;        86400
+&lt;&#x2F;span&gt;&lt;span&gt;        )
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        NS ns1.home.lan.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;15.1.168.192.in-addr.arpa. IN PTR jail
+&lt;&#x2F;span&gt;&lt;span&gt;15.1.168.192.in-addr.arpa. IN PTR ns1
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;opendnssec&quot;&gt;OpenDNSSEC&lt;&#x2F;h3&gt;
+&lt;p&gt;Install the required packages&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y opendnssec softhsm
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set the softhsm database location in &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;softhsm.conf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;0:&#x2F;var&#x2F;lib&#x2F;softhsm&#x2F;slot0.db
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Initialise the token database:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;softhsm --init-token --slot 0 --label &amp;quot;OpenDNSSEC&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;Enter the PIN for the SO and then the USER.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Make sure opendnssec has permission to access the token database&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;chown opendnssec &#x2F;var&#x2F;lib&#x2F;softhsm&#x2F;slot0.db
+&lt;&#x2F;span&gt;&lt;span&gt;chgrp opendnssec &#x2F;var&#x2F;lib&#x2F;softhsm&#x2F;slot0.db
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set some options for OpenDNSSEC in &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;opendnssec&#x2F;conf.xml&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&amp;lt;Repository name=&amp;quot;SoftHSM&amp;quot;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;Module&amp;gt;&#x2F;usr&#x2F;local&#x2F;lib&#x2F;softhsm&#x2F;libsofthsm.so&amp;lt;&#x2F;Module&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;TokenLabel&amp;gt;OpenDNSSEC&amp;lt;&#x2F;TokenLabel&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;PIN&amp;gt;1234&amp;lt;&#x2F;PIN&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;SkipPublicKey&#x2F;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;Repository&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;opendnssec&#x2F;kasp.xml&lt;&#x2F;code&gt;. Change unixtime to datecounter in the Serial parameter. This allows us to use YYYYMMDDXX format for the SOA SERIAL values.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&amp;lt;Zone&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;PropagationDelay&amp;gt;PT300S&amp;lt;&#x2F;PropagationDelay&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;SOA&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;lt;TTL&amp;gt;PT300S&amp;lt;&#x2F;TTL&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;lt;Minimum&amp;gt;PT300S&amp;lt;&#x2F;Minimum&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;                &amp;lt;Serial&amp;gt;datecounter&amp;lt;&#x2F;Serial&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;&#x2F;SOA&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;Zone&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Compiling NGINX with ChaCha20 support</title>
+		<published>2020-01-03T00:00:00+00:00</published>
+		<updated>2020-01-03T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/nginx-chacha20/" type="text/html"/>
+		<id>https://omussell.github.io/nginx-chacha20/</id>
+		<content type="html">&lt;p&gt;Make a working directory&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;mkdir ~&#x2F;nginx
+&lt;&#x2F;span&gt;&lt;span&gt;cd ~&#x2F;nginx
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Install some dependencies&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y ca_root_nss pcre perl5
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Pull the source files&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;fetch https:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.13.0.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;fetch https:&#x2F;&#x2F;www.openssl.org&#x2F;source&#x2F;openssl-1.1.0e.tar.gz
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Extract the tarballs&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;tar -xzvf nginx-1.13.0.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;tar -xzvf openssl-1.1.0e.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;rm *.tar.gz
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Compile openssl&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cd ~&#x2F;nginx&#x2F;openssl-1.1.0e.tar.gz
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;config
+&lt;&#x2F;span&gt;&lt;span&gt;make
+&lt;&#x2F;span&gt;&lt;span&gt;make install
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiled OpenSSL binary should be located in &#x2F;usr&#x2F;local&#x2F;bin by default, unless the prefixdir variable has been set&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;openssl version
+&lt;&#x2F;span&gt;&lt;span&gt;# Should output OpenSSL 1.1.0e
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Compile NGINX&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;#!&#x2F;bin&#x2F;sh
+&lt;&#x2F;span&gt;&lt;span&gt;cd ~&#x2F;nginx&#x2F;nginx-1.13.0&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;#make clean
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;configure \
+&lt;&#x2F;span&gt;&lt;span&gt;	--with-http_ssl_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--with-http_gzip_static_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--with-file-aio \
+&lt;&#x2F;span&gt;&lt;span&gt;	--with-ld-opt=&amp;quot;-L &#x2F;usr&#x2F;local&#x2F;lib&amp;quot; \
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_browser_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_fastcgi_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_geo_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_map_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_proxy_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_memcached_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_ssi_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_userid_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_split_clients_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_uwsgi_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_scgi_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_limit_conn_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_referer_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-http_http-cache \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without_upstream_ip_hash_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-mail_pop3_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-mail-imap_module \
+&lt;&#x2F;span&gt;&lt;span&gt;	--without-mail_smtp_module
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;	--with-openssl=~&#x2F;nginx&#x2F;openssl-1.1.0e&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;make
+&lt;&#x2F;span&gt;&lt;span&gt;make install
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;After running the compile script, NGINX should be installed in &#x2F;usr&#x2F;local&#x2F;nginx&lt;&#x2F;p&gt;
+&lt;p&gt;Start the service&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If there are no issues, update the config file as appropriate in &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Reload NGINX to apply the new config&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reload
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Generate a self-signed certificate&lt;&#x2F;p&gt;
+&lt;p&gt;Current NGINX config&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;worker_processes  1;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;events {
+&lt;&#x2F;span&gt;&lt;span&gt;    worker_connections  1024;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;http {
+&lt;&#x2F;span&gt;&lt;span&gt;    include       mime.types;
+&lt;&#x2F;span&gt;&lt;span&gt;    default_type  application&#x2F;octet-stream;
+&lt;&#x2F;span&gt;&lt;span&gt;    sendfile        on;
+&lt;&#x2F;span&gt;&lt;span&gt;    keepalive_timeout  65;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    server {
+&lt;&#x2F;span&gt;&lt;span&gt;        listen       80;
+&lt;&#x2F;span&gt;&lt;span&gt;        server_name  localhost;
+&lt;&#x2F;span&gt;&lt;span&gt;        location &#x2F; {
+&lt;&#x2F;span&gt;&lt;span&gt;            root   &#x2F;usr&#x2F;local&#x2F;www&#x2F;;
+&lt;&#x2F;span&gt;&lt;span&gt;            index  index.html index.htm;
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        error_page   500 502 503 504  &#x2F;50x.html;
+&lt;&#x2F;span&gt;&lt;span&gt;        location = &#x2F;50x.html {
+&lt;&#x2F;span&gt;&lt;span&gt;            root   html;
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    server {
+&lt;&#x2F;span&gt;&lt;span&gt;        listen       443 ssl;
+&lt;&#x2F;span&gt;&lt;span&gt;        server_name  localhost;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;	ssl on;
+&lt;&#x2F;span&gt;&lt;span&gt;        #ssl_certificate      &#x2F;root&#x2F;nginx&#x2F;server.pem;
+&lt;&#x2F;span&gt;&lt;span&gt;        #ssl_certificate_key  &#x2F;root&#x2F;nginx&#x2F;private.pem;
+&lt;&#x2F;span&gt;&lt;span&gt;	ssl_certificate &#x2F;usr&#x2F;local&#x2F;www&#x2F;nginx-selfsigned.crt;
+&lt;&#x2F;span&gt;&lt;span&gt;	ssl_certificate_key &#x2F;usr&#x2F;local&#x2F;www&#x2F;nginx-selfsigned.key;
+&lt;&#x2F;span&gt;&lt;span&gt;	ssl_ciphers &amp;quot;ECDHE-RSA-CHACHA20-POLY1305&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;        ssl_prefer_server_ciphers  on;
+&lt;&#x2F;span&gt;&lt;span&gt;	ssl_protocols TLSv1.2;
+&lt;&#x2F;span&gt;&lt;span&gt;	ssl_ecdh_curve X25519;
+&lt;&#x2F;span&gt;&lt;span&gt;	
+&lt;&#x2F;span&gt;&lt;span&gt;	location &#x2F; {
+&lt;&#x2F;span&gt;&lt;span&gt;            root   &#x2F;usr&#x2F;local&#x2F;www&#x2F;;
+&lt;&#x2F;span&gt;&lt;span&gt;            index  index.html index.htm;
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Bhyve VM Creation</title>
+		<published>2020-01-02T00:00:00+00:00</published>
+		<updated>2020-01-02T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/bhyve-vm-creation/" type="text/html"/>
+		<id>https://omussell.github.io/bhyve-vm-creation/</id>
+		<content type="html">&lt;h3 id=&quot;bhyve-initial-setup&quot;&gt;Bhyve Initial Setup&lt;&#x2F;h3&gt;
+&lt;p&gt;Enable the tap interface in &lt;code&gt;&#x2F;etc&#x2F;sysctl.conf&lt;&#x2F;code&gt; and load it on the currently running system&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;net.link.tap.up_on_open=1
+&lt;&#x2F;span&gt;&lt;span&gt;sysctl -f &#x2F;etc&#x2F;sysctl.conf
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Enable bhyve, serial console and bridge&#x2F;tap interface kernel modules in &lt;code&gt;&#x2F;boot&#x2F;loader.conf&lt;&#x2F;code&gt;. Reboot to apply changes or use kldload.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;vmm_load=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;nmdm_load=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;if_bridge_load=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;if_tap_load=&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set up the network interfaces in &lt;code&gt;&#x2F;etc&#x2F;rc.conf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cloned_interfaces=&amp;quot;bridge0 tap0&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;ifconfig_bridge0=&amp;quot;addm re0 addm tap0&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create a ZFS volume&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;zfs create -V16G -o volmode=dev zroot&#x2F;testvm
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Download the installation image&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;fetch ftp:&#x2F;&#x2F;ftp.freebsd.org&#x2F;pub&#x2F;FreeBSD&#x2F;releases&#x2F;ISO-IMAGES&#x2F;11.1&#x2F;FreeBSD-11.1-RELEASE-amd64-disc1.iso 
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Start the VM&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;sh &#x2F;usr&#x2F;share&#x2F;examples&#x2F;bhyve&#x2F;vmrun.sh -c 1 -m 512M -t tap0 -d &#x2F;dev&#x2F;zvol&#x2F;zroot&#x2F;testvm -i -I FreeBSD-11.1-RELEASE-amd64-disc1.iso testvm
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Install as normal, following the menu options&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;new-vm-creation-script&quot;&gt;New VM Creation Script&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;#! &#x2F;bin&#x2F;sh
+&lt;&#x2F;span&gt;&lt;span&gt;read -p &amp;quot;Enter hostname: &amp;quot; hostname
+&lt;&#x2F;span&gt;&lt;span&gt;zfs create -V16G -o volmode=dev zroot&#x2F;$hostname
+&lt;&#x2F;span&gt;&lt;span&gt;sh &#x2F;usr&#x2F;share&#x2F;examples&#x2F;bhyve&#x2F;vmrun.sh -c 1 -m 512M -t tap0 -d &#x2F;dev&#x2F;zvol&#x2F;zroot&#x2F;$hostname -i -I ~&#x2F;FreeBSD-11.1-RELEASE-amd64-disc1.iso $hostname
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;creating-a-linux-guest&quot;&gt;Creating a Linux guest&lt;&#x2F;h3&gt;
+&lt;p&gt;Create a file for the hard disk&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;truncate -s 16G linux.img
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create the file to map the virtual devices for kernel load&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;~&#x2F;device.map
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(hd0) &#x2F;root&#x2F;linux.img
+&lt;&#x2F;span&gt;&lt;span&gt;(cd0) &#x2F;root&#x2F;linux.iso
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Load the kernel&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;grub-bhyve -m ~&#x2F;device.map -r cd0 -M 1024M linuxguest
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Grub should start, choose install as normal&lt;&#x2F;p&gt;
+&lt;p&gt;Start the VM&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;bhyve -A -H -P -s 0:0,hostbridge -s 1:0,lpc -s 2:0,virtio-net,tap0 -s 3:0,virtio-blk,&#x2F;root&#x2F;linux.img -l com1,&#x2F;dev&#x2F;nmdm0A -c 1 -m 512M linuxguest
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Access through the serial console&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cu -l &#x2F;dev&#x2F;nmdm0B
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;pfsense-in-a-vm&quot;&gt;pfSense in a VM&lt;&#x2F;h3&gt;
+&lt;p&gt;Download the pfSense disk image from the website using fetch&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;fetch https:&#x2F;&#x2F;frafiles.pfsense.org&#x2F;mirror&#x2F;downloads&#x2F;pfSense-CE-2.3.1-RELEASE-2g-amd64-nanobsd.img.gz -o ~&#x2F;pfSense.img.gz
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create the storage&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;zfs create -V2G -o volmode=dev zroot&#x2F;pfsense
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Unzip the file, and redirect output to the storage via dd&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;gzip -dc pfSense.img.gz | dd of=&#x2F;dev&#x2F;zvol&#x2F;zroot&#x2F;pfsense obs=64k
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Load the kernel and start the boot process&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;bhyveload -c &#x2F;dev&#x2F;nmdm0A -d &#x2F;dev&#x2F;zvol&#x2F;zroot&#x2F;pfsense -m 256MB pfsense
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Start the VM&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;usr&#x2F;sbin&#x2F;bhyve -c 1 -m 256 -A -H -P -s 0:0,hostbridge -s 1:0,virtio-net,tap0 -s 3:0,ahci-hd,&#x2F;dev&#x2F;zvol&#x2F;zroot&#x2F;pfsense -s 4:1,lpc -l com1,&#x2F;dev&#x2F;nmdm0A pfsense
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Connect to the VM via the serial connection with nmdm&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cu -l &#x2F;dev&#x2F;nmdm0B
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Perform initial configuration through the shell to assign the network interfaces&lt;&#x2F;p&gt;
+&lt;p&gt;Once done, use the IP address to access through the web console &lt;&#x2F;p&gt;
+&lt;p&gt;When finished, you can shutdown&#x2F;reboot&lt;&#x2F;p&gt;
+&lt;p&gt;To de-allocate the resources, you need to destroy the VM&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;bhyvectl --destroy --vm=pfsense
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;multiple-vms-using-bhyve&quot;&gt;Multiple VMs using bhyve&lt;&#x2F;h3&gt;
+&lt;p&gt;To allow networking on multiple vms, there should be a tap assigned to each vm, connected to the same bridge. &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cloned_interfaces=&amp;quot;bridge0 tap0 tap1 tap2&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;ifconfig_bridge0=&amp;quot;addm re0 addm tap0 addm tap1 addm tap2&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then when you provision vms, assign one of the tap interfaces to them.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;vm-bhyve&quot;&gt;vm-bhyve&lt;&#x2F;h3&gt;
+&lt;p&gt;A better way for managing a bhyve hypervisor.&lt;&#x2F;p&gt;
+&lt;p&gt;Follow the instructions on the repo.&lt;&#x2F;p&gt;
+&lt;p&gt;When adding the switch to a network interface, it doesn&#x27;t work with re0. tap1 works, but then internet doesnt work in the VMs. Needs sorting.&lt;&#x2F;p&gt;
+&lt;p&gt;zfs &lt;&#x2F;p&gt;
+&lt;p&gt;bsd-cloud-init should be tested, it sets hostname based on openstack image name.&lt;&#x2F;p&gt;
+&lt;p&gt;otherwise, if we figure out how to make a template VM, you could set the hostname as part of transferring over the rc.conf file&lt;&#x2F;p&gt;
+&lt;p&gt;create template VM, start it, zfs send&#x2F;recv?&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>FreeBSD Jail Creation</title>
+		<published>2020-01-01T00:00:00+00:00</published>
+		<updated>2020-01-01T00:00:00+00:00</updated>
+		<link href="https://omussell.github.io/jail-creation/" type="text/html"/>
+		<id>https://omussell.github.io/jail-creation/</id>
+		<content type="html">&lt;p&gt;Create a template dataset&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;zfs create -o mountpoint=&#x2F;usr&#x2F;local&#x2F;jails zroot&#x2F;jails
+&lt;&#x2F;span&gt;&lt;span&gt;zfs create -p zroot&#x2F;jails&#x2F;template
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Download the base files into a new directory&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;mkdir ~&#x2F;jails
+&lt;&#x2F;span&gt;&lt;span&gt;fetch ftp:&#x2F;&#x2F;ftp.freebsd.org&#x2F;pub&#x2F;FreeBSD&#x2F;releases&#x2F;amd64&#x2F;amd64&#x2F;11.1-RELEASE&#x2F;base.txz -o ~&#x2F;jails
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Extract the base files into the template directory (mountpoint)&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;tar -xf ~&#x2F;jails&#x2F;base.txz -C &#x2F;usr&#x2F;local&#x2F;jails&#x2F;template
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy the resolv.conf file from host to template so that we have working DNS resolution&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;cp &#x2F;etc&#x2F;resolv.conf &#x2F;usr&#x2F;local&#x2F;jails&#x2F;template&#x2F;etc&#x2F;resolv.conf
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When finished, take a snapshot. Anything after the &#x27;@&#x27; symbol is the snapshot name. You can make changes to the template at any time, just make sure that you take another snapshot when you are finished and that any subsequently created jails use the new snapshot.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;zfs snapshot zroot&#x2F;jails&#x2F;template@1
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;New jails can then be created by cloning the snapshot of the template dataset&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;zfs clone zroot&#x2F;jails&#x2F;template@1 zroot&#x2F;jails&#x2F;testjail
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add the jails configuration to &#x2F;etc&#x2F;jail.conf&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;# Global settings applied to all jails
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;interface = &amp;quot;re0&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;host.hostname = &amp;quot;$name&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;ip4.addr = 192.168.1.$ip;
+&lt;&#x2F;span&gt;&lt;span&gt;path = &amp;quot;&#x2F;usr&#x2F;local&#x2F;jails&#x2F;$name&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;exec.start = &amp;quot;&#x2F;bin&#x2F;sh &#x2F;etc&#x2F;rc&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;exec.stop = &amp;quot;&#x2F;bin&#x2F;sh &#x2F;etc&#x2F;rc.shutdown&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;exec.clean;
+&lt;&#x2F;span&gt;&lt;span&gt;mount.devfs;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;# Jail Definitions
+&lt;&#x2F;span&gt;&lt;span&gt;testjail {
+&lt;&#x2F;span&gt;&lt;span&gt;    $ip = 15;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run the jail&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;jail -c testjail
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;View running jails&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;jls
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Login to the jail&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;jexec testjail sh
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+</feed>
