@@ -8,6 +8,16 @@ tags = ["lean"]
 
 A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites
 
+# 5S
+
+```
+Seiri       Sort
+Seiton      Set in order
+Seso        Shine
+Seiketsu    Standardise
+Shitsuke    Sustain
+```
+
 # Toyota Production System
 
 ## Goal
@@ -25,13 +35,62 @@ Design out overburden (muri) and inconsistency (mura), and to eliminate waste (m
 - Making defective products
 - Underutilised workers
 
+## Muda
+
+Waste
+
+### Transport
+
+Moving products that are not actually required to perform processing
+
+### Inventory
+
+All components, work in process and finished product not being processed
+
+### Motion
+
+People or equipment moving or walking more than is required to perform the processing
+
+### Waiting
+
+Waiting for the next production step
+
+### Overproduction
+
+Production ahead of demand
+
+### Over processing
+
+Resulting from poor tool or product design creating activity
+
+### Defects
+The effort involved in inspecting for and fixing defects.
+
+## Mura
+
+Unevenness
+
+Is avoided through just in time systems which are based on keeping little or no inventory. These systems supply the production process with the right part, at the right time, in the right amount, using first-in, first-out (FIFO) component flow. JIT systems create a pull system in which each sub-process withdraws its needs from the preceding sub-processes, and ultimately from an outside supplier. When a preceding process does not receive a request or withdrawal it does not make more parts.
+
+## Muri
+
+Unreasonableness
+
+Muri can be avoided through standardized work. To achieve this a standard condition or output must be efined to assure effective judgment of quality.
+
+
 ## Concept
 
 ### Just-in-time
 Make only what is needed, only when it is needed and only in the amount that is needed
 
 ### Jidoka
-Automation with a human touch
+
+Autonomation, automation with a human touch
+
+If an abnormal situation arises, the machine stops and the worker will stop the production line.
+
+Autonomation aims to prevent the production of defective products, eliminate overproduction and focus attention on understanding the problems.
 
 ### Poka Yoke
 
@@ -45,6 +104,13 @@ We improve our business operations continuously, always driving for innovation a
 
 ### Genchi Genbutsu
 Go to the source to find the facts to make correct decisions
+
+### Heijunka
+Production levelling
+
+Reduce unevenness which in turn reduces waste.
+
+The goal is to produce intermediate goods at a constant rate so that further processing may also be carried out at a constant and predictable rate.
 
 
 ## The right process will produce the right results
@@ -71,15 +137,20 @@ Work is stopped until a solution is found.
 
 Stack light / Traffic light - Visual indicator of a machine state or process event
 
-## 5S
+## Nemawashi
 
-```
-Seiri       Sort
-Seiton      Set in order
-Seso        Shine
-Seiketsu    Standardise
-Shitsuke    Sustain
-```
+An informal process of quietly laying the foundation for some proposed change or project, by talking to the people concerned, and gathering support and feedback. It is considered an important element in any major change, before any formal steps are taken and enables changes to be carried out with the consent of all sides.
+
+## Obeya
+
+Large room
+
+During the product and process development, all individuals involved in managerial planning meet in a great room to speed communicationand decision making.
+
+## Takt Time
+
+Describes the required product assembly duration that is needed to match the demand. Often confused with cycle time, takt time is a tool used to design work and it measures the average time interval between the start of production of one unit and the start of production of the next unit when items are produced sequentially.
+
 
 ## Theory of Constraints
 

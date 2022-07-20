@@ -193,6 +193,13 @@
 		<link href="https://omussell.github.io/lean/" type="text/html"/>
 		<id>https://omussell.github.io/lean/</id>
 		<content type="html">&lt;p&gt;A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;5s&quot;&gt;5S&lt;&#x2F;h1&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Seiri       Sort
+&lt;&#x2F;span&gt;&lt;span&gt;Seiton      Set in order
+&lt;&#x2F;span&gt;&lt;span&gt;Seso        Shine
+&lt;&#x2F;span&gt;&lt;span&gt;Seiketsu    Standardise
+&lt;&#x2F;span&gt;&lt;span&gt;Shitsuke    Sustain
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h1 id=&quot;toyota-production-system&quot;&gt;Toyota Production System&lt;&#x2F;h1&gt;
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;&#x2F;h2&gt;
 &lt;p&gt;Design out overburden (muri) and inconsistency (mura), and to eliminate waste (muda).&lt;&#x2F;p&gt;
@@ -207,11 +214,35 @@
 &lt;li&gt;Making defective products&lt;&#x2F;li&gt;
 &lt;li&gt;Underutilised workers&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;muda&quot;&gt;Muda&lt;&#x2F;h2&gt;
+&lt;p&gt;Waste&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;transport&quot;&gt;Transport&lt;&#x2F;h3&gt;
+&lt;p&gt;Moving products that are not actually required to perform processing&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;inventory&quot;&gt;Inventory&lt;&#x2F;h3&gt;
+&lt;p&gt;All components, work in process and finished product not being processed&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;motion&quot;&gt;Motion&lt;&#x2F;h3&gt;
+&lt;p&gt;People or equipment moving or walking more than is required to perform the processing&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;waiting&quot;&gt;Waiting&lt;&#x2F;h3&gt;
+&lt;p&gt;Waiting for the next production step&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;overproduction&quot;&gt;Overproduction&lt;&#x2F;h3&gt;
+&lt;p&gt;Production ahead of demand&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;over-processing&quot;&gt;Over processing&lt;&#x2F;h3&gt;
+&lt;p&gt;Resulting from poor tool or product design creating activity&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;defects&quot;&gt;Defects&lt;&#x2F;h3&gt;
+&lt;p&gt;The effort involved in inspecting for and fixing defects.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;mura&quot;&gt;Mura&lt;&#x2F;h2&gt;
+&lt;p&gt;Unevenness&lt;&#x2F;p&gt;
+&lt;p&gt;Is avoided through just in time systems which are based on keeping little or no inventory. These systems supply the production process with the right part, at the right time, in the right amount, using first-in, first-out (FIFO) component flow. JIT systems create a pull system in which each sub-process withdraws its needs from the preceding sub-processes, and ultimately from an outside supplier. When a preceding process does not receive a request or withdrawal it does not make more parts.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;muri&quot;&gt;Muri&lt;&#x2F;h2&gt;
+&lt;p&gt;Unreasonableness&lt;&#x2F;p&gt;
+&lt;p&gt;Muri can be avoided through standardized work. To achieve this a standard condition or output must be efined to assure effective judgment of quality.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;concept&quot;&gt;Concept&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;just-in-time&quot;&gt;Just-in-time&lt;&#x2F;h3&gt;
 &lt;p&gt;Make only what is needed, only when it is needed and only in the amount that is needed&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;jidoka&quot;&gt;Jidoka&lt;&#x2F;h3&gt;
-&lt;p&gt;Automation with a human touch&lt;&#x2F;p&gt;
+&lt;p&gt;Autonomation, automation with a human touch&lt;&#x2F;p&gt;
+&lt;p&gt;If an abnormal situation arises, the machine stops and the worker will stop the production line.&lt;&#x2F;p&gt;
+&lt;p&gt;Autonomation aims to prevent the production of defective products, eliminate overproduction and focus attention on understanding the problems.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;poka-yoke&quot;&gt;Poka Yoke&lt;&#x2F;h3&gt;
 &lt;p&gt;Any mechanism in a process that helps an equipment operator avoid (yokeru) mistakes (poka) and defects by preventing, correcting, or drawing attention to human errors as they occur&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;continuous-improvement&quot;&gt;Continuous Improvement&lt;&#x2F;h3&gt;
@@ -220,6 +251,10 @@
 &lt;p&gt;We improve our business operations continuously, always driving for innovation and evolution&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;genchi-genbutsu&quot;&gt;Genchi Genbutsu&lt;&#x2F;h3&gt;
 &lt;p&gt;Go to the source to find the facts to make correct decisions&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;heijunka&quot;&gt;Heijunka&lt;&#x2F;h3&gt;
+&lt;p&gt;Production levelling&lt;&#x2F;p&gt;
+&lt;p&gt;Reduce unevenness which in turn reduces waste.&lt;&#x2F;p&gt;
+&lt;p&gt;The goal is to produce intermediate goods at a constant rate so that further processing may also be carried out at a constant and predictable rate.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;the-right-process-will-produce-the-right-results&quot;&gt;The right process will produce the right results&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Create continuous process flow to bring problems to the surface&lt;&#x2F;li&gt;
@@ -240,13 +275,13 @@
 &lt;p&gt;The worker has the ability to stop production when a defect is found, and immediately call for assistance.&lt;&#x2F;p&gt;
 &lt;p&gt;Work is stopped until a solution is found.&lt;&#x2F;p&gt;
 &lt;p&gt;Stack light &#x2F; Traffic light - Visual indicator of a machine state or process event&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;5s&quot;&gt;5S&lt;&#x2F;h2&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Seiri       Sort
-&lt;&#x2F;span&gt;&lt;span&gt;Seiton      Set in order
-&lt;&#x2F;span&gt;&lt;span&gt;Seso        Shine
-&lt;&#x2F;span&gt;&lt;span&gt;Seiketsu    Standardise
-&lt;&#x2F;span&gt;&lt;span&gt;Shitsuke    Sustain
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;nemawashi&quot;&gt;Nemawashi&lt;&#x2F;h2&gt;
+&lt;p&gt;An informal process of quietly laying the foundation for some proposed change or project, by talking to the people concerned, and gathering support and feedback. It is considered an important element in any major change, before any formal steps are taken and enables changes to be carried out with the consent of all sides.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;obeya&quot;&gt;Obeya&lt;&#x2F;h2&gt;
+&lt;p&gt;Large room&lt;&#x2F;p&gt;
+&lt;p&gt;During the product and process development, all individuals involved in managerial planning meet in a great room to speed communicationand decision making.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;takt-time&quot;&gt;Takt Time&lt;&#x2F;h2&gt;
+&lt;p&gt;Describes the required product assembly duration that is needed to match the demand. Often confused with cycle time, takt time is a tool used to design work and it measures the average time interval between the start of production of one unit and the start of production of the next unit when items are produced sequentially.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;theory-of-constraints&quot;&gt;Theory of Constraints&lt;&#x2F;h2&gt;
 &lt;p&gt;Organisations can be measured and controlled by variations on three measures:&lt;&#x2F;p&gt;
 &lt;ul&gt;
