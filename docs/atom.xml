@@ -4,13 +4,35 @@
 	<link href="https://omussell.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://omussell.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2022-01-01T00:00:00+00:00</updated>
+	<updated>2022-11-08T00:00:00+00:00</updated>
 	<id>https://omussell.github.io/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Basecamp Books</title>
+		<published>2022-11-08T00:00:00+00:00</published>
+		<updated>2022-11-08T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://omussell.github.io/basecamp/" type="text/html"/>
+		<id>https://omussell.github.io/basecamp/</id>
+		<content type="html">&lt;h2 id=&quot;shape-up&quot;&gt;Shape Up&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Shaped versus unshaped work&lt;&#x2F;li&gt;
+&lt;li&gt;Setting appetites instead of estimates&lt;&#x2F;li&gt;
+&lt;li&gt;Designing at the right level of abstraction&lt;&#x2F;li&gt;
+&lt;li&gt;Concepting with breadboards and fat marker sketches&lt;&#x2F;li&gt;
+&lt;li&gt;Making bets with a capped downside (the circuit breaker) and honouring them with uninterrupted time&lt;&#x2F;li&gt;
+&lt;li&gt;Chooing the right cycle length (six weeks)&lt;&#x2F;li&gt;
+&lt;li&gt;A cool-down period between cycles&lt;&#x2F;li&gt;
+&lt;li&gt;Breaking projects apart into scopes&lt;&#x2F;li&gt;
+&lt;li&gt;Downhill versus uphill work and communicating about unknowns&lt;&#x2F;li&gt;
+&lt;li&gt;Scope hammering to separate must-haves from nice-to-haves&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;getting-real&quot;&gt;Getting Real&lt;&#x2F;h2&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Blue&#x2F;Green Deployments with Puppet, NGINX and FreeBSD Jails</title>
 		<published>2022-01-01T00:00:00+00:00</published>
 		<updated>2022-01-01T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/puppet-jails-deploy/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/puppet-jails-deploy/" type="text/html"/>
 		<id>https://omussell.github.io/puppet-jails-deploy/</id>
 		<content type="html">&lt;p&gt;At $WORK, we were going through a period of rapid growth and were planning on creating many more web apps. The apps are mainly Django&#x2F;Python with a few NodeJS apps too. Previously they had been deployed on Debian servers and the deployment process was to SSH onto each app server and run git pull, then restart the processes.&lt;&#x2F;p&gt;
 &lt;p&gt;This solution works fine for apps with little traffic, but since we were growing rapidly, we were finding that this architecture wouldnt scale as much as we would like.&lt;&#x2F;p&gt;
@@ -72,7 +94,7 @@
 		<title>Firecracker</title>
 		<published>2021-12-09T00:00:00+00:00</published>
 		<updated>2021-12-09T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/firecracker/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/firecracker/" type="text/html"/>
 		<id>https://omussell.github.io/firecracker/</id>
 		<content type="html">&lt;h1 id=&quot;firecracker&quot;&gt;Firecracker&lt;&#x2F;h1&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;firecracker-microvm&#x2F;firecracker&quot;&gt;Firecracker&lt;&#x2F;a&gt; - Secure and fast microVMs for serverless computing.&lt;&#x2F;p&gt;
@@ -190,7 +212,7 @@
 		<title>Lean</title>
 		<published>2021-09-25T00:00:00+00:00</published>
 		<updated>2021-09-25T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/lean/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/lean/" type="text/html"/>
 		<id>https://omussell.github.io/lean/</id>
 		<content type="html">&lt;p&gt;A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites&lt;&#x2F;p&gt;
 &lt;h1 id=&quot;5s&quot;&gt;5S&lt;&#x2F;h1&gt;
@@ -316,7 +338,7 @@
 		<title>Finding a New Programming Language</title>
 		<published>2021-08-29T00:00:00+00:00</published>
 		<updated>2021-08-29T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/new-prog-lang/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/new-prog-lang/" type="text/html"/>
 		<id>https://omussell.github.io/new-prog-lang/</id>
 		<content type="html">&lt;p&gt;In my journey at work of learning how to program in Python, I&#x27;ve become increasingly annoyed by some of its behaviours.&lt;&#x2F;p&gt;
 &lt;p&gt;Initially creating a new project is difficult. Build a virtualenv, activate it, pip install the requirements. Each of these has their own problems. It also ends up making it hard to deploy projects because you need to do these steps wherever you want to use your project.&lt;&#x2F;p&gt;
@@ -354,7 +376,7 @@
 		<title>Nim Cheat Sheet</title>
 		<published>2021-08-29T00:00:00+00:00</published>
 		<updated>2021-08-29T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/nim/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/nim/" type="text/html"/>
 		<id>https://omussell.github.io/nim/</id>
 		<content type="html"></content>
 	</entry>
@@ -362,7 +384,7 @@
 		<title>Modern Python</title>
 		<published>2021-07-01T00:00:00+00:00</published>
 		<updated>2021-07-01T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/python/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/python/" type="text/html"/>
 		<id>https://omussell.github.io/python/</id>
 		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
 &lt;p&gt;The following tools and libraries are known to work well with modern python. They are modular, so you can pick and choose the components you want based on your need.&lt;&#x2F;p&gt;
@@ -437,7 +459,7 @@
 		<title>Creating Bonded NICs on Ubuntu 20.04</title>
 		<published>2021-03-27T00:00:00+00:00</published>
 		<updated>2021-03-27T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/bonded-nic/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/bonded-nic/" type="text/html"/>
 		<id>https://omussell.github.io/bonded-nic/</id>
 		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
 &lt;p&gt;On the HP MicroServer Gen 8 and MicroServer Gen 10+ there are four ethernet ports. I wanted to group these together into a bonded NIC so that ethernet traffic could run over all four to increase the throughput.&lt;&#x2F;p&gt;
@@ -521,7 +543,7 @@
 		<title>LXC&#x2F;LXD Containers</title>
 		<published>2021-02-22T00:00:00+00:00</published>
 		<updated>2021-02-22T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/lxc/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/lxc/" type="text/html"/>
 		<id>https://omussell.github.io/lxc/</id>
 		<content type="html">&lt;p&gt;You should have either a blank disk or an existing zpool for storage. Run &lt;code&gt;lxd init&lt;&#x2F;code&gt;, answer the questions with Yes for the most part. Enter either the disk name like &lt;code&gt;&#x2F;dev&#x2F;sdb&lt;&#x2F;code&gt; or the zpool name &lt;code&gt;tank&lt;&#x2F;code&gt; when prompted.&lt;&#x2F;p&gt;
 &lt;p&gt;Once complete, you can start up an Alpine container with &lt;&#x2F;p&gt;
@@ -542,7 +564,7 @@
 		<title>NAS on HP Microserver Gen8</title>
 		<published>2021-02-13T00:00:00+00:00</published>
 		<updated>2021-02-13T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/microserver/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/microserver/" type="text/html"/>
 		<id>https://omussell.github.io/microserver/</id>
 		<content type="html">&lt;h2 id=&quot;hardware-specs&quot;&gt;Hardware specs&lt;&#x2F;h2&gt;
 &lt;p&gt;HP ProLiant G8 Microserver G1610T&lt;&#x2F;p&gt;
@@ -577,7 +599,7 @@
 		<title>Puppet Bolt</title>
 		<published>2021-02-13T00:00:00+00:00</published>
 		<updated>2021-02-13T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/puppet-bolt/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/puppet-bolt/" type="text/html"/>
 		<id>https://omussell.github.io/puppet-bolt/</id>
 		<content type="html">&lt;p&gt;Install Bolt with:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;wget https:&#x2F;&#x2F;apt.puppet.com&#x2F;puppet-tools-release-focal.deb
@@ -592,12 +614,12 @@
 		<title>Gemini Protocol</title>
 		<published>2021-01-20T00:00:00+00:00</published>
 		<updated>2021-01-20T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/gemini/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/gemini/" type="text/html"/>
 		<id>https://omussell.github.io/gemini/</id>
 		<content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gemini.circumlunar.space&#x2F;&quot;&gt;Project Gemini&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Gemini is a new, collaboratively designed internet protocol, which explores the space inbetween gopher and the web, striving to address (perceived) limitations of one while avoiding the (undeniable) pitfalls of the other.
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;For the server I&#x27;m using &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Egsthnz&#x2F;satellite&quot;&gt;satellite&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For the server I&#x27;m using &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;~gsthnz&#x2F;satellite&quot;&gt;satellite&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;git clone https:&#x2F;&#x2F;git.sr.ht&#x2F;~gsthnz&#x2F;satellite
 &lt;&#x2F;span&gt;&lt;span&gt;cd satellite
 &lt;&#x2F;span&gt;&lt;span&gt;go build
@@ -654,7 +676,7 @@
 		<title>Running bitwarden_rs on a Raspberry Pi 4</title>
 		<published>2021-01-12T00:00:00+00:00</published>
 		<updated>2021-01-12T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/pi-bitwarden/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/pi-bitwarden/" type="text/html"/>
 		<id>https://omussell.github.io/pi-bitwarden/</id>
 		<content type="html">&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
 &lt;p&gt;We will be setting up bitwarden_rs without Docker, by compiling it manually and then running as a service. In this example we are using SQLite, but you can change this to MySQL or PostgreSQL if you prefer.&lt;&#x2F;p&gt;
@@ -690,7 +712,7 @@
 		<title>Caching freebsd-update and pkg files</title>
 		<published>2020-01-13T00:00:00+00:00</published>
 		<updated>2020-01-13T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/fbsd-update-cache/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/fbsd-update-cache/" type="text/html"/>
 		<id>https://omussell.github.io/fbsd-update-cache/</id>
 		<content type="html">&lt;h2 id=&quot;caching-freebsd-update-and-pkg-files&quot;&gt;Caching freebsd-update and pkg files&lt;&#x2F;h2&gt;
 &lt;p&gt;Change the domains as appropriate. The proxy_store location is where the cached files will be placed. This directory needs to be accessible by the user that NGINX is running as (defaults to www).&lt;&#x2F;p&gt;
@@ -767,7 +789,7 @@
 		<title>Serverless with Knative running in gVisor sandbox on Minikube</title>
 		<published>2020-01-12T00:00:00+00:00</published>
 		<updated>2020-01-12T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/serverless/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/serverless/" type="text/html"/>
 		<id>https://omussell.github.io/serverless/</id>
 		<content type="html">&lt;h2 id=&quot;serverless-with-knative-running-in-gvisor-sandbox-on-minikube&quot;&gt;Serverless with Knative running in gVisor sandbox on Minikube&lt;&#x2F;h2&gt;
 &lt;ul&gt;
@@ -788,7 +810,7 @@
 		<title>Quick Multi-Node Kubernetes Cluster</title>
 		<published>2020-01-11T00:00:00+00:00</published>
 		<updated>2020-01-11T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/quick-k8s/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/quick-k8s/" type="text/html"/>
 		<id>https://omussell.github.io/quick-k8s/</id>
 		<content type="html">&lt;h2 id=&quot;quick-multi-node-kubernetes-cluster&quot;&gt;Quick Multi-Node Kubernetes Cluster&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;multipass&quot;&gt;Multipass&lt;&#x2F;h3&gt;
@@ -814,7 +836,7 @@
 		<title>NGINX</title>
 		<published>2020-01-10T00:00:00+00:00</published>
 		<updated>2020-01-10T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/nginx/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/nginx/" type="text/html"/>
 		<id>https://omussell.github.io/nginx/</id>
 		<content type="html">&lt;h2 id=&quot;tls-1-3-0-rtt-with-nginx&quot;&gt;TLS 1.3 0-RTT with NGINX&lt;&#x2F;h2&gt;
 &lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;docs&#x2F;http&#x2F;ngx_http_ssl_module.html#ssl_early_data&quot;&gt;NGINX Docs&lt;&#x2F;a&gt;
@@ -905,7 +927,7 @@
 		<title>Signify</title>
 		<published>2020-01-09T00:00:00+00:00</published>
 		<updated>2020-01-09T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/signify/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/signify/" type="text/html"/>
 		<id>https://omussell.github.io/signify/</id>
 		<content type="html">&lt;h2 id=&quot;signify&quot;&gt;Signify&lt;&#x2F;h2&gt;
 &lt;p&gt;Sign and verify files&lt;&#x2F;p&gt;
@@ -925,7 +947,7 @@
 		<title>RQLite</title>
 		<published>2020-01-08T00:00:00+00:00</published>
 		<updated>2020-01-08T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/rqlite/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/rqlite/" type="text/html"/>
 		<id>https://omussell.github.io/rqlite/</id>
 		<content type="html">&lt;h2 id=&quot;rqlite&quot;&gt;RQLite&lt;&#x2F;h2&gt;
 &lt;p&gt;SQLite, distributed over many nodes with consensus achieved with the Raft protocol.&lt;&#x2F;p&gt;
@@ -951,7 +973,7 @@
 		<title>Building Go with Bazel</title>
 		<published>2020-01-07T00:00:00+00:00</published>
 		<updated>2020-01-07T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/go-bazel/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/go-bazel/" type="text/html"/>
 		<id>https://omussell.github.io/go-bazel/</id>
 		<content type="html">&lt;h2 id=&quot;handling-go-dependencies&quot;&gt;Handling Go Dependencies&lt;&#x2F;h2&gt;
 &lt;p&gt;During development, you will often use &lt;code&gt;go get&lt;&#x2F;code&gt; to download libraries for import into the program which is useful for development but not so useful when building the finished product. Managing these dependencies over time is a hassle as they change frequently and can sometimes disappear entirely.&lt;&#x2F;p&gt;
@@ -1108,7 +1130,7 @@ This can be a plain HTTP server like NGINX or Google Cloud Storage.&lt;&#x2F;p&g
 		<title>PostgreSQL 10.1 with replication</title>
 		<published>2020-01-06T00:00:00+00:00</published>
 		<updated>2020-01-06T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/pgsql-repl/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/pgsql-repl/" type="text/html"/>
 		<id>https://omussell.github.io/pgsql-repl/</id>
 		<content type="html">&lt;h2 id=&quot;postgresql-10-1-with-replication&quot;&gt;PostgreSQL 10.1 with replication&lt;&#x2F;h2&gt;
 &lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;pkg install -y postgresql10-server postgresql10-client
@@ -1234,7 +1256,7 @@ WAL-G&lt;&#x2F;p&gt;
 		<title>Saltstack install and config</title>
 		<published>2020-01-05T00:00:00+00:00</published>
 		<updated>2020-01-05T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/saltstack/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/saltstack/" type="text/html"/>
 		<id>https://omussell.github.io/saltstack/</id>
 		<content type="html">&lt;h2 id=&quot;saltstack-install-and-config&quot;&gt;Saltstack install and config&lt;&#x2F;h2&gt;
 &lt;p&gt;Install the salt package&lt;&#x2F;p&gt;
@@ -1330,7 +1352,7 @@ WAL-G&lt;&#x2F;p&gt;
 		<title>NSD and Unbound config</title>
 		<published>2020-01-04T00:00:00+00:00</published>
 		<updated>2020-01-04T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/nsd-unbound/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/nsd-unbound/" type="text/html"/>
 		<id>https://omussell.github.io/nsd-unbound/</id>
 		<content type="html">&lt;h2 id=&quot;nsd-and-unbound-config&quot;&gt;NSD and Unbound config&lt;&#x2F;h2&gt;
 &lt;p&gt;Set up the unbound&#x2F;nsd-control&lt;&#x2F;p&gt;
@@ -1418,7 +1440,7 @@ WAL-G&lt;&#x2F;p&gt;
 		<title>Compiling NGINX with ChaCha20 support</title>
 		<published>2020-01-03T00:00:00+00:00</published>
 		<updated>2020-01-03T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/nginx-chacha20/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/nginx-chacha20/" type="text/html"/>
 		<id>https://omussell.github.io/nginx-chacha20/</id>
 		<content type="html">&lt;p&gt;Make a working directory&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;mkdir ~&#x2F;nginx
@@ -1547,7 +1569,7 @@ WAL-G&lt;&#x2F;p&gt;
 		<title>Bhyve VM Creation</title>
 		<published>2020-01-02T00:00:00+00:00</published>
 		<updated>2020-01-02T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/bhyve-vm-creation/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/bhyve-vm-creation/" type="text/html"/>
 		<id>https://omussell.github.io/bhyve-vm-creation/</id>
 		<content type="html">&lt;h3 id=&quot;bhyve-initial-setup&quot;&gt;Bhyve Initial Setup&lt;&#x2F;h3&gt;
 &lt;p&gt;Enable the tap interface in &lt;code&gt;&#x2F;etc&#x2F;sysctl.conf&lt;&#x2F;code&gt; and load it on the currently running system&lt;&#x2F;p&gt;
@@ -1645,7 +1667,7 @@ WAL-G&lt;&#x2F;p&gt;
 		<title>FreeBSD Jail Creation</title>
 		<published>2020-01-01T00:00:00+00:00</published>
 		<updated>2020-01-01T00:00:00+00:00</updated>
-		<link href="https://omussell.github.io/jail-creation/" type="text/html"/>
+		<link rel="alternate" href="https://omussell.github.io/jail-creation/" type="text/html"/>
 		<id>https://omussell.github.io/jail-creation/</id>
 		<content type="html">&lt;p&gt;Create a template dataset&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;zfs create -o mountpoint=&#x2F;usr&#x2F;local&#x2F;jails zroot&#x2F;jails

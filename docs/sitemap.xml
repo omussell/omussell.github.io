@@ -7,12 +7,19 @@
         <loc>https://omussell.github.io/about/</loc>
     </url>
     <url>
+        <loc>https://omussell.github.io/basecamp/</loc>
+        <lastmod>2022-11-08</lastmod>
+    </url>
+    <url>
         <loc>https://omussell.github.io/bhyve-vm-creation/</loc>
         <lastmod>2020-01-02</lastmod>
     </url>
     <url>
         <loc>https://omussell.github.io/bonded-nic/</loc>
         <lastmod>2021-03-27</lastmod>
+    </url>
+    <url>
+        <loc>https://omussell.github.io/categories/</loc>
     </url>
     <url>
         <loc>https://omussell.github.io/fbsd-update-cache/</loc>
