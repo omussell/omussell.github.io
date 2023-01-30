@@ -1,0 +1,53 @@
+site_name: "Personal Site"
+site_url: "https://omussell.github.io"
+docs_dir: "docs"
+theme:
+  name: "material"
+  palette:
+    primary: blue
+  icon:
+    logo: octicons/mention-16
+  favicon: images/mention.svg
+
+nav:
+  - Home: index.md
+  - Old Posts:
+    - FreeBSD Jail Creation: jail-creation.md
+    - Bhyve VM Creation: bhyve-vm-creation.md
+    - Compiling NGINX with ChaCha20 support: nginx-chacha20.md
+    - NSD and Unbound config: nsd-unbound.md
+    - Saltstack install and config: saltstack.md
+    - PostgreSQL 10.1 with replication: pgsql-repl.md
+    - Building Go with Bazel: go-bazel.md
+    - RQLite: rqlite.md
+    - Signify: signify.md
+    - NGINX: nginx.md
+    - Quick Multi-Node Kubernetes Cluster: quick-k8s.md
+    - Serverless: serverless.md
+    - Caching freebsd-update and pkg files: fbsd-update-cache.md
+    - Pi Bitwarden: pi-bitwarden.md
+    - Gemini: gemini.md
+    - Puppet Bolt: puppet-bolt.md
+    - Microserver NAS: microserver.md
+    - LXC/LXD Containers: lxc.md
+    - Modern Python: python.md
+    - Find a New Programming Language: new-prog-lang.md
+    - Lean: lean.md
+    - Firecracker: firecracker.md
+    - Blue/Green deploymetns with Puppet, NGINX and FreeBSD Jails: puppet-jails-deploy.md
+    - Bonded NICs on Ubuntu: bonded-nic.md
+    - Basecamp books: basecamp.md
+
+
+
+
+
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: True
+  - admonition
+  - pymdownx.superfences
