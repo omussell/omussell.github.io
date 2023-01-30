@@ -1,0 +1,851 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://omussell.github.io/pgsql-repl/">
+      
+      
+        <link rel="prev" href="../saltstack/">
+      
+      
+        <link rel="next" href="../go-bazel/">
+      
+      <link rel="icon" href="../images/mention.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.9">
+    
+    
+      
+        <title>PostgreSQL 10.1 with replication - Personal Site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#postgresql-101-with-replication" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Personal Site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PostgreSQL 10.1 with replication
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+
+    </a>
+    Personal Site
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Old Posts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Old Posts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jail-creation/" class="md-nav__link">
+        FreeBSD Jail Creation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bhyve-vm-creation/" class="md-nav__link">
+        Bhyve VM Creation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx-chacha20/" class="md-nav__link">
+        Compiling NGINX with ChaCha20 support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsd-unbound/" class="md-nav__link">
+        NSD and Unbound config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saltstack/" class="md-nav__link">
+        Saltstack install and config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          PostgreSQL 10.1 with replication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        PostgreSQL 10.1 with replication
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-101-scram-authentication" class="md-nav__link">
+    PostgreSQL 10.1 SCRAM Authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-101-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage" class="md-nav__link">
+    PostgreSQL 10.1 using repmgr for database replication, WAL-G for WAL archiving, and minio for S3 compatible storage
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../go-bazel/" class="md-nav__link">
+        Building Go with Bazel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rqlite/" class="md-nav__link">
+        RQLite
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signify/" class="md-nav__link">
+        Signify
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        NGINX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-k8s/" class="md-nav__link">
+        Quick Multi-Node Kubernetes Cluster
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serverless/" class="md-nav__link">
+        Serverless
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fbsd-update-cache/" class="md-nav__link">
+        Caching freebsd-update and pkg files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pi-bitwarden/" class="md-nav__link">
+        Pi Bitwarden
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gemini/" class="md-nav__link">
+        Gemini
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puppet-bolt/" class="md-nav__link">
+        Puppet Bolt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microserver/" class="md-nav__link">
+        Microserver NAS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        LXC/LXD Containers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        Modern Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new-prog-lang/" class="md-nav__link">
+        Find a New Programming Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lean/" class="md-nav__link">
+        Lean
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firecracker/" class="md-nav__link">
+        Firecracker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puppet-jails-deploy/" class="md-nav__link">
+        Blue/Green deploymetns with Puppet, NGINX and FreeBSD Jails
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bonded-nic/" class="md-nav__link">
+        Bonded NICs on Ubuntu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basecamp/" class="md-nav__link">
+        Basecamp books
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-101-scram-authentication" class="md-nav__link">
+    PostgreSQL 10.1 SCRAM Authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-101-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage" class="md-nav__link">
+    PostgreSQL 10.1 using repmgr for database replication, WAL-G for WAL archiving, and minio for S3 compatible storage
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="postgresql-101-with-replication">PostgreSQL 10.1 with replication<a class="headerlink" href="#postgresql-101-with-replication" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>pkg install -y postgresql10-server postgresql10-client
+sysrc postgresql_enable=YES
+service postgresql initdb
+service postgresql start
+</code></pre></div>
+<h3 id="postgresql-101-scram-authentication">PostgreSQL 10.1 SCRAM Authentication<a class="headerlink" href="#postgresql-101-scram-authentication" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>su - postgres
+psql
+set password_encryption = &#39;scram-sha-256&#39;;
+create role app_db with password &#39;foo&#39;;
+select substring(rolpassword, 1, 14) from pg_authid where rolname = &#39;app_db&#39;;
+</code></pre></div>
+<h3 id="postgresql-101-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage">PostgreSQL 10.1 using repmgr for database replication, WAL-G for WAL archiving, and minio for S3 compatible storage<a class="headerlink" href="#postgresql-101-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage" title="Permanent link">&para;</a></h3>
+<p>For this, I created two bhyve VMs to host postgresql and a jail on the host for minio</p>
+<p>Make sure postgresql is running</p>
+<p>Carry out the following steps on both primary and replicas</p>
+<p>The current packaged version of repmgr is 3.3.1 which isn't the latest. The latest is 4.0.1, so we need to compile it ourself, and put files into the correct locations</p>
+<div class="highlight"><pre><span></span><code>fetch https://repmgr.org/download/repmgr-4.0.1.tar.gz
+tar -zvxf repmgr-4.0.1.tar.gz
+./configure
+pkg install -y gmake
+gmake
+</code></pre></div>
+<p>Copy the repmgr files to their correct locations</p>
+<div class="highlight"><pre><span></span><code>cp -v repmgr /var/db/postgres
+cp -v repmgr--4.0.sql /usr/local/share/postgresql/extension/
+cp -v repmgr.control /usr/local/share/postgresql/extension
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>vim /var/db/postgrs/data10/postgresql.conf 
+</code></pre></div>
+<p>Add lines: </p>
+<div class="highlight"><pre><span></span><code>include_dir = &#39;postgresql.conf.d&#39;
+listen_addresses = &#39;\*&#39;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>vim /var/db/postgres/data10/postgresql.conf.d/postgresql.replication.conf
+</code></pre></div>
+<p>Add lines:</p>
+<div class="highlight"><pre><span></span><code>max_wal_senders = 10
+wal_level = &#39;replica&#39;
+wal_keep_segments = 5000
+hot_standby = on
+archive_mode = on
+archive_command = &#39;wal-g stuff here&#39;
+</code></pre></div>
+<p>vim /var/db/postgres/data10/pg_hba.conf</p>
+<p>Add lines:
+Please note, for testing purposes, these rules are wide open and allow everything. Dont do this in production, use a specific role with a password and restrict to a specific address</p>
+<div class="highlight"><pre><span></span><code>local   all     all         trust
+host    all     all 0.0.0.0/0   trust
+host    replication all 0.0.0.0/0   trust
+</code></pre></div>
+<p>vim /usr/local/etc/repmgr.conf</p>
+<p>Add lines:</p>
+<div class="highlight"><pre><span></span><code>node_id=1 # arbitrary number, each node needs to be unique
+node_name=postgres-db1 # this nodes hostname
+conninfo=&#39;host=192.168.1.10 user=repmgr dbname=repmgr&#39; # the host value should be a hostname if DNS is working
+</code></pre></div>
+<p>On the primary</p>
+<div class="highlight"><pre><span></span><code>su - postgres
+createuser -s repmgr
+createdb repmgr -O repmgr
+
+repmgr -f /usr/local/etc/repmgr.conf primary register
+repmgr -f /usr/local/etc/repmgr.conf cluster show
+</code></pre></div>
+<p>On a standby</p>
+<div class="highlight"><pre><span></span><code>su - postgres
+psql &#39;host=node1 user=repmgr dbname=repmgr&#39;
+</code></pre></div>
+<p>To clone the primary, the data directory on the standby node must exist but be empty</p>
+<div class="highlight"><pre><span></span><code>rm -rf /var/db/postgres/data10/
+mkdir -p /var/db/postgres/data10
+chown postgres:postgres /var/db/postgres/data10
+</code></pre></div>
+<p>Dry run first to check for problems</p>
+<p><code>repmgr -h node1 -U repmgr -d repmgr -f /usr/local/etc/repmgr.conf standby clone --dry-run</code></p>
+<p>If its ok, run it</p>
+<p><code>repmgr -h node1 -U repmgr -d repmgr -f /usr/local/etc/repmgr.conf standby clone</code></p>
+<p>On the primary</p>
+<div class="highlight"><pre><span></span><code>su - postgres
+psql -d repmgr
+select * from pg_stat_replication;
+</code></pre></div>
+<p>On the standby</p>
+<div class="highlight"><pre><span></span><code>repmgr -f /usr/local/etc/repmgr.conf standby register
+repmgr -f /usr/local/etc/repmgr.conf cluster show
+</code></pre></div>
+<p>Install minio</p>
+<div class="highlight"><pre><span></span><code>pkg install -y minio
+sysrc minio_enable=YES
+sysrc minio_disks=/home/user/test
+mkdir -p /home/user/test
+chown minio:minio /home/user/test
+service minio start
+# The access keys are in /usr/local/etc/minio/config.json
+# You can change them in this file and restart the service to take effect
+</code></pre></div>
+<p>On the primary
+WAL-G</p>
+<div class="highlight"><pre><span></span><code>pkg install -y go
+mkdir -p /root/go
+setenv GOPATH /root/go
+cd go
+go get github.com/wal-g/wal-g
+cd src/github.com/wal-g/wal-g
+make all
+make install
+cp /root/go/bin/wal-g /usr/local/bin
+</code></pre></div>
+<p>WAL-G requires certain environment variables to be set. This can be done using envdir, part of the daemontools package</p>
+<p>pkg install -y daemontools</p>
+<p>Setup is now complete. </p>
+<p>For operations, a base backup needs to be taken on a regular basis probably via a cron job, running the following command as postgres user</p>
+<p><code>wal-g backup-push /var/db/postgres/data10</code></p>
+<p>Then the archive_command in the postgresql.replication.conf should be set to the wal-push command</p>
+<p><code>wal-g wal-push /var/db/postgres/data10</code></p>
+<p>To restore, backup-fetch and wal-fetch can be used to pull the latest base backup and the necessary wal logs to recover to the latest transaction</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      
+    
+  </body>
+</html>

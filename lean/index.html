@@ -1,0 +1,792 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://omussell.github.io/lean/">
+      
+      
+        <link rel="prev" href="../new-prog-lang/">
+      
+      
+        <link rel="next" href="../firecracker/">
+      
+      <link rel="icon" href="../images/mention.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.9">
+    
+    
+      
+        <title>Lean - Personal Site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lean" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Personal Site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lean
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+
+    </a>
+    Personal Site
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Old Posts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Old Posts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jail-creation/" class="md-nav__link">
+        FreeBSD Jail Creation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bhyve-vm-creation/" class="md-nav__link">
+        Bhyve VM Creation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx-chacha20/" class="md-nav__link">
+        Compiling NGINX with ChaCha20 support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsd-unbound/" class="md-nav__link">
+        NSD and Unbound config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saltstack/" class="md-nav__link">
+        Saltstack install and config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pgsql-repl/" class="md-nav__link">
+        PostgreSQL 10.1 with replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../go-bazel/" class="md-nav__link">
+        Building Go with Bazel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rqlite/" class="md-nav__link">
+        RQLite
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signify/" class="md-nav__link">
+        Signify
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        NGINX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-k8s/" class="md-nav__link">
+        Quick Multi-Node Kubernetes Cluster
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serverless/" class="md-nav__link">
+        Serverless
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fbsd-update-cache/" class="md-nav__link">
+        Caching freebsd-update and pkg files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pi-bitwarden/" class="md-nav__link">
+        Pi Bitwarden
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gemini/" class="md-nav__link">
+        Gemini
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puppet-bolt/" class="md-nav__link">
+        Puppet Bolt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microserver/" class="md-nav__link">
+        Microserver NAS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        LXC/LXD Containers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        Modern Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new-prog-lang/" class="md-nav__link">
+        Find a New Programming Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lean
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firecracker/" class="md-nav__link">
+        Firecracker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puppet-jails-deploy/" class="md-nav__link">
+        Blue/Green deploymetns with Puppet, NGINX and FreeBSD Jails
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bonded-nic/" class="md-nav__link">
+        Bonded NICs on Ubuntu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basecamp/" class="md-nav__link">
+        Basecamp books
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lean">Lean<a class="headerlink" href="#lean" title="Permanent link">&para;</a></h1>
+<p>A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites</p>
+<h1 id="5s">5S<a class="headerlink" href="#5s" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>Seiri       Sort
+Seiton      Set in order
+Seso        Shine
+Seiketsu    Standardise
+Shitsuke    Sustain
+</code></pre></div>
+<h1 id="toyota-production-system">Toyota Production System<a class="headerlink" href="#toyota-production-system" title="Permanent link">&para;</a></h1>
+<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
+<p>Design out overburden (muri) and inconsistency (mura), and to eliminate waste (muda).</p>
+<h3 id="types-of-waste">Types of waste<a class="headerlink" href="#types-of-waste" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Overproduction</li>
+<li>Time on hand (waiting)</li>
+<li>Transportation</li>
+<li>Processing itself</li>
+<li>Excess inventory</li>
+<li>Movement</li>
+<li>Making defective products</li>
+<li>Underutilised workers</li>
+</ul>
+<h2 id="muda">Muda<a class="headerlink" href="#muda" title="Permanent link">&para;</a></h2>
+<p>Waste</p>
+<h3 id="transport">Transport<a class="headerlink" href="#transport" title="Permanent link">&para;</a></h3>
+<p>Moving products that are not actually required to perform processing</p>
+<h3 id="inventory">Inventory<a class="headerlink" href="#inventory" title="Permanent link">&para;</a></h3>
+<p>All components, work in process and finished product not being processed</p>
+<h3 id="motion">Motion<a class="headerlink" href="#motion" title="Permanent link">&para;</a></h3>
+<p>People or equipment moving or walking more than is required to perform the processing</p>
+<h3 id="waiting">Waiting<a class="headerlink" href="#waiting" title="Permanent link">&para;</a></h3>
+<p>Waiting for the next production step</p>
+<h3 id="overproduction">Overproduction<a class="headerlink" href="#overproduction" title="Permanent link">&para;</a></h3>
+<p>Production ahead of demand</p>
+<h3 id="over-processing">Over processing<a class="headerlink" href="#over-processing" title="Permanent link">&para;</a></h3>
+<p>Resulting from poor tool or product design creating activity</p>
+<h3 id="defects">Defects<a class="headerlink" href="#defects" title="Permanent link">&para;</a></h3>
+<p>The effort involved in inspecting for and fixing defects.</p>
+<h2 id="mura">Mura<a class="headerlink" href="#mura" title="Permanent link">&para;</a></h2>
+<p>Unevenness</p>
+<p>Is avoided through just in time systems which are based on keeping little or no inventory. These systems supply the production process with the right part, at the right time, in the right amount, using first-in, first-out (FIFO) component flow. JIT systems create a pull system in which each sub-process withdraws its needs from the preceding sub-processes, and ultimately from an outside supplier. When a preceding process does not receive a request or withdrawal it does not make more parts.</p>
+<h2 id="muri">Muri<a class="headerlink" href="#muri" title="Permanent link">&para;</a></h2>
+<p>Unreasonableness</p>
+<p>Muri can be avoided through standardized work. To achieve this a standard condition or output must be efined to assure effective judgment of quality.</p>
+<h2 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h2>
+<h3 id="just-in-time">Just-in-time<a class="headerlink" href="#just-in-time" title="Permanent link">&para;</a></h3>
+<p>Make only what is needed, only when it is needed and only in the amount that is needed</p>
+<h3 id="jidoka">Jidoka<a class="headerlink" href="#jidoka" title="Permanent link">&para;</a></h3>
+<p>Autonomation, automation with a human touch</p>
+<p>If an abnormal situation arises, the machine stops and the worker will stop the production line.</p>
+<p>Autonomation aims to prevent the production of defective products, eliminate overproduction and focus attention on understanding the problems.</p>
+<h3 id="poka-yoke">Poka Yoke<a class="headerlink" href="#poka-yoke" title="Permanent link">&para;</a></h3>
+<p>Any mechanism in a process that helps an equipment operator avoid (yokeru) mistakes (poka) and defects by preventing, correcting, or drawing attention to human errors as they occur</p>
+<h3 id="continuous-improvement">Continuous Improvement<a class="headerlink" href="#continuous-improvement" title="Permanent link">&para;</a></h3>
+<p>We form a long term vision, then iteratively work towards it</p>
+<h3 id="kaizen">Kaizen<a class="headerlink" href="#kaizen" title="Permanent link">&para;</a></h3>
+<p>We improve our business operations continuously, always driving for innovation and evolution</p>
+<h3 id="genchi-genbutsu">Genchi Genbutsu<a class="headerlink" href="#genchi-genbutsu" title="Permanent link">&para;</a></h3>
+<p>Go to the source to find the facts to make correct decisions</p>
+<h3 id="heijunka">Heijunka<a class="headerlink" href="#heijunka" title="Permanent link">&para;</a></h3>
+<p>Production levelling</p>
+<p>Reduce unevenness which in turn reduces waste.</p>
+<p>The goal is to produce intermediate goods at a constant rate so that further processing may also be carried out at a constant and predictable rate.</p>
+<h2 id="the-right-process-will-produce-the-right-results">The right process will produce the right results<a class="headerlink" href="#the-right-process-will-produce-the-right-results" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Create continuous process flow to bring problems to the surface</li>
+<li>Use the 'pull' system to avoid overproduction (Kanban)</li>
+<li>Level out the workload (Heijunka)</li>
+<li>Build a culture of stopping to fix problems, to get quality right from the start</li>
+<li>Standardised tasks are the foundation for continuous improvement and employee empowerment</li>
+<li>Use visual control so no problems are hidden</li>
+<li>Use only reliable, thoroughly tested technology that serves your people and processes</li>
+</ul>
+<h2 id="continuously-solving-root-problems-drives-organisational-learning">Continuously solving root problems drives organisational learning<a class="headerlink" href="#continuously-solving-root-problems-drives-organisational-learning" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Go and see for yourself to thoroughly understand the situation (Genchi Genbutsu)</li>
+<li>Make decisions slowly by consensus, thoroughly considering all options. Implement decisions rapidly (Nemawashi)</li>
+<li>Become a learning organisation through relentless reflection (Hansei) and continuous improvement (Kaizen)</li>
+</ul>
+<h2 id="andon">Andon<a class="headerlink" href="#andon" title="Permanent link">&para;</a></h2>
+<p>The worker has the ability to stop production when a defect is found, and immediately call for assistance.</p>
+<p>Work is stopped until a solution is found.</p>
+<p>Stack light / Traffic light - Visual indicator of a machine state or process event</p>
+<h2 id="nemawashi">Nemawashi<a class="headerlink" href="#nemawashi" title="Permanent link">&para;</a></h2>
+<p>An informal process of quietly laying the foundation for some proposed change or project, by talking to the people concerned, and gathering support and feedback. It is considered an important element in any major change, before any formal steps are taken and enables changes to be carried out with the consent of all sides.</p>
+<h2 id="obeya">Obeya<a class="headerlink" href="#obeya" title="Permanent link">&para;</a></h2>
+<p>Large room</p>
+<p>During the product and process development, all individuals involved in managerial planning meet in a great room to speed communicationand decision making.</p>
+<h2 id="takt-time">Takt Time<a class="headerlink" href="#takt-time" title="Permanent link">&para;</a></h2>
+<p>Describes the required product assembly duration that is needed to match the demand. Often confused with cycle time, takt time is a tool used to design work and it measures the average time interval between the start of production of one unit and the start of production of the next unit when items are produced sequentially.</p>
+<h2 id="theory-of-constraints">Theory of Constraints<a class="headerlink" href="#theory-of-constraints" title="Permanent link">&para;</a></h2>
+<p>Organisations can be measured and controlled by variations on three measures:</p>
+<ul>
+<li>Inventory - The money that the system has invested in purchasing things which it intends to sell</li>
+<li>Operational expense - The money the system spends in order to turn inventory into throughput</li>
+<li>Throughput - The rate at which the system generates money through sales</li>
+</ul>
+<h3 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h3>
+<p>A constraint is anything that prevents the system from achieving its goal. There is always at least one, but at most only a few, at any given time.</p>
+<p>If a constraints throughput capacity is elevated to the point where it is no longer the systems limiting factor, this is said to 'break' the constraint.</p>
+<h3 id="buffers">Buffers<a class="headerlink" href="#buffers" title="Permanent link">&para;</a></h3>
+<p>Buffers are placed before the governing constraint, thus ensuring that the constraint is never starved.</p>
+<p>Buffers are also placed behind the constraint to prevent downstream failure from blocking the constraints output.</p>
+<p>Buffers used in this way protect the constraint from variations in the rest of the system and should allow for normal variation of processing time and the occasional upset before and behind the constraint.</p>
+<p>With one constraint in the system, all other parts of the system must have sufficient capacity to keep up with the work at the constraint and to catch up if time was lost.</p>
+<h3 id="plant-types-vati">Plant Types (VATI)<a class="headerlink" href="#plant-types-vati" title="Permanent link">&para;</a></h3>
+<p>The plant types specify the general flow of materials through a system</p>
+<h4 id="v">V<a class="headerlink" href="#v" title="Permanent link">&para;</a></h4>
+<p>Flow is one to many, such as a plant that takes one raw material and can make many final products.</p>
+<p>The primary problem in V plants is 'robbing', where on operation (A) immediately after a diverging point 'steals' materials meant for the other operation (B). Once the material has been processed by A, it cannot come back and be run through B without significant rework.</p>
+<h4 id="a">A<a class="headerlink" href="#a" title="Permanent link">&para;</a></h4>
+<p>Flow is many to one, such as where many sub-assemblies converge for a final assembly.</p>
+<p>The problem in A plants is synchronising the converging lines so that each supplies the final assembly point at the right time.</p>
+<h4 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h4>
+<p>Flow is many to many, similar to I plant (or has multiple lines), which then splits into many assemblies.</p>
+<p>T plants suffer from both synchronisation problems of A plants and the robbing problems of V plants.</p>
+<h4 id="i">I<a class="headerlink" href="#i" title="Permanent link">&para;</a></h4>
+<p>Material flows in a sequence of events in a straight line. The constraint is the slowest operation.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      
+    
+  </body>
+</html>

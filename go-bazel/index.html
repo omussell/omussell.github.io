@@ -1,0 +1,1029 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://omussell.github.io/go-bazel/">
+      
+      
+        <link rel="prev" href="../pgsql-repl/">
+      
+      
+        <link rel="next" href="../rqlite/">
+      
+      <link rel="icon" href="../images/mention.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.9">
+    
+    
+      
+        <title>Building Go with Bazel - Personal Site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-go-with-bazel" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Personal Site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building Go with Bazel
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+
+    </a>
+    Personal Site
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Old Posts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Old Posts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jail-creation/" class="md-nav__link">
+        FreeBSD Jail Creation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bhyve-vm-creation/" class="md-nav__link">
+        Bhyve VM Creation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx-chacha20/" class="md-nav__link">
+        Compiling NGINX with ChaCha20 support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsd-unbound/" class="md-nav__link">
+        NSD and Unbound config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saltstack/" class="md-nav__link">
+        Saltstack install and config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pgsql-repl/" class="md-nav__link">
+        PostgreSQL 10.1 with replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Building Go with Bazel
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Building Go with Bazel
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#handling-go-dependencies" class="md-nav__link">
+    Handling Go Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling Go Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bazel-gazelle" class="md-nav__link">
+    Bazel / Gazelle
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-go-applications" class="md-nav__link">
+    Packaging Go Applications
+  </a>
+  
+    <nav class="md-nav" aria-label="Packaging Go Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packaging-with-fpm" class="md-nav__link">
+    Packaging with fpm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-go-programs-using-bazel" class="md-nav__link">
+    Building Go programs using Bazel
+  </a>
+  
+    <nav class="md-nav" aria-label="Building Go programs using Bazel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gazelle" class="md-nav__link">
+    Gazelle
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-with-buildbot" class="md-nav__link">
+    CI with Buildbot
+  </a>
+  
+    <nav class="md-nav" aria-label="CI with Buildbot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-dependencies" class="md-nav__link">
+    Adding dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bazel-remote-cache" class="md-nav__link">
+    Bazel Remote Cache
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rqlite/" class="md-nav__link">
+        RQLite
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signify/" class="md-nav__link">
+        Signify
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        NGINX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-k8s/" class="md-nav__link">
+        Quick Multi-Node Kubernetes Cluster
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serverless/" class="md-nav__link">
+        Serverless
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fbsd-update-cache/" class="md-nav__link">
+        Caching freebsd-update and pkg files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pi-bitwarden/" class="md-nav__link">
+        Pi Bitwarden
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gemini/" class="md-nav__link">
+        Gemini
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puppet-bolt/" class="md-nav__link">
+        Puppet Bolt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microserver/" class="md-nav__link">
+        Microserver NAS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        LXC/LXD Containers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        Modern Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new-prog-lang/" class="md-nav__link">
+        Find a New Programming Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lean/" class="md-nav__link">
+        Lean
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firecracker/" class="md-nav__link">
+        Firecracker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puppet-jails-deploy/" class="md-nav__link">
+        Blue/Green deploymetns with Puppet, NGINX and FreeBSD Jails
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bonded-nic/" class="md-nav__link">
+        Bonded NICs on Ubuntu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basecamp/" class="md-nav__link">
+        Basecamp books
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#handling-go-dependencies" class="md-nav__link">
+    Handling Go Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling Go Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bazel-gazelle" class="md-nav__link">
+    Bazel / Gazelle
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-go-applications" class="md-nav__link">
+    Packaging Go Applications
+  </a>
+  
+    <nav class="md-nav" aria-label="Packaging Go Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packaging-with-fpm" class="md-nav__link">
+    Packaging with fpm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-go-programs-using-bazel" class="md-nav__link">
+    Building Go programs using Bazel
+  </a>
+  
+    <nav class="md-nav" aria-label="Building Go programs using Bazel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gazelle" class="md-nav__link">
+    Gazelle
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-with-buildbot" class="md-nav__link">
+    CI with Buildbot
+  </a>
+  
+    <nav class="md-nav" aria-label="CI with Buildbot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-dependencies" class="md-nav__link">
+    Adding dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bazel-remote-cache" class="md-nav__link">
+    Bazel Remote Cache
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="building-go-with-bazel">Building Go with Bazel<a class="headerlink" href="#building-go-with-bazel" title="Permanent link">&para;</a></h1>
+<h2 id="handling-go-dependencies">Handling Go Dependencies<a class="headerlink" href="#handling-go-dependencies" title="Permanent link">&para;</a></h2>
+<p>During development, you will often use <code>go get</code> to download libraries for import into the program which is useful for development but not so useful when building the finished product. Managing these dependencies over time is a hassle as they change frequently and can sometimes disappear entirely.</p>
+<p>The <code>dep</code> tool provides a way of automatically scanning your import statements and evaluating all of the dependencies. It create some files <code>Gopkg.toml</code> and <code>Gopkg.lock</code> which contain the location and latest Git SHA of your dependencies.</p>
+<p><code>dep</code> is installed via:</p>
+<div class="highlight"><pre><span></span><code>curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+</code></pre></div>
+<p>Run <code>dep init</code> to create the initial files, then as your develop run <code>dep ensure</code> to update dependencies to the latest version.</p>
+<p>The <code>dep</code> tool also downloads a copy of all dependencies into a <code>vendor</code> folder at the root of your project. This provides a backup in case a dependency disappears and provides the facility for reproducible builds.</p>
+<h3 id="bazel-gazelle">Bazel / Gazelle<a class="headerlink" href="#bazel-gazelle" title="Permanent link">&para;</a></h3>
+<p>With our dependencies being updated, we would also need to update the WORKSPACE file so that Bazel/Gazelle knows about them as well. Gazelle requires the location and git commit hash in order to pull down the correct dependencies, but this is laborious to update manually.</p>
+<p>Thankfully, we can run a command to have gazelle pull in all of the dependencies from the <code>Gopkg.lock</code> file and update the WORKSPACE file automatically. Bazel will then pull in all of the dependencies correctly without any manual intervention.</p>
+<p><code>gazelle update-repos -from_file Gopkg.lock</code></p>
+<p>As part of ongoing development, you would periodically run</p>
+<p><code>dep ensure</code> </p>
+<p>followed by</p>
+<p><code>gazelle update-repos -from_file Gopkg.lock</code></p>
+<p>to keep all of the dependencies up to date and generate the new WORKSPACE file.</p>
+<h2 id="packaging-go-applications">Packaging Go Applications<a class="headerlink" href="#packaging-go-applications" title="Permanent link">&para;</a></h2>
+<p>Now that we've built the go application and its dependencies we now need to package it up to distribute across the infrastructure.</p>
+<h3 id="packaging-with-fpm">Packaging with fpm<a class="headerlink" href="#packaging-with-fpm" title="Permanent link">&para;</a></h3>
+<p>The below command is an example of what we would want to run:</p>
+<p><code>fpm -s dir -t freebsd -n ~/go_test --version 1.0.0 --prefix /usr/local/bin go_tests</code></p>
+<p>But this has a few issues. Rather than putting the finished package into <code>~/go_test</code>, it would be better in a dedicated directory like <code>/var/packages</code> or similar. The version number is hard coded which obviously isn't always going to be correct. You would want to instead have your CI tool set to only run the packaging command when a new tag/release is created, and then have the version number derived from the tag/release number. It also includes the <code>--prefix</code> flag to specify the path to prepend to any files in the package. This is required as when the package is installed/extracted, the files will be extracted to the full path as specified in the package. So in this instance the <code>/usr/local/bin/go_tests</code> file is extracted.</p>
+<p>For now, I'm getting by with the following command which will overwrite the finished package if it already exists.</p>
+<p><code>fpm -f -s dir -t freebsd -n ~/go_test --prefix /usr/local/bin go_tests</code></p>
+<h2 id="building-go-programs-using-bazel">Building Go programs using Bazel<a class="headerlink" href="#building-go-programs-using-bazel" title="Permanent link">&para;</a></h2>
+<p>Bazel is a build tool created by Google which operates similarly to their internal build tool, Blaze. It is primarily concerned with generating artifacts from compiled languages like C, C++, Go etc. </p>
+<p><code>pkg install -y bazel</code></p>
+<p>Bazel requires some files so that it knows what and where to build. As an example, we are going to compile a simple go program with no dependencies (literally print a single string to stdout).</p>
+<div class="highlight"><pre><span></span><code>// ~/go/src/github.com/omussell/go_tests/main.go
+
+package main
+
+import &quot;fmt&quot;
+
+func main() {
+    fmt.Println(&quot;test&quot;)
+}
+</code></pre></div>
+<p>A file called WORKSPACE should be created at the root of the directory. This is used by bazel to determine source code locations relative to the WORKSPACE file and differentiate other packages in the same directory. Then a BUILD.bazel file should also be created at the root of the directory. </p>
+<h3 id="gazelle">Gazelle<a class="headerlink" href="#gazelle" title="Permanent link">&para;</a></h3>
+<p>Instead of creating BUILD files by hand, we can use the Gazelle tool to iterate over a go source tree and dynamically generate BUILD files. We can also let bazel itself run gazelle.</p>
+<p>Note that gazelle doesn't work without bash, and the gazelle.bash file has a hardcoded path to <code>/bin/bash</code> which of course is not available on FreeBSD by default.</p>
+<div class="highlight"><pre><span></span><code>pkg install -y bash
+ln -s /usr/local/bin/bash /bin/bash
+</code></pre></div>
+<p>In the WORKSPACE file:</p>
+<div class="highlight"><pre><span></span><code>http_archive(
+    name = &quot;io_bazel_rules_go&quot;,
+    url = &quot;https://github.com/bazelbuild/rules_go/releases/download/0.9.0/rules_go-0.9.0.tar.gz&quot;,
+    sha256 = &quot;4d8d6244320dd751590f9100cf39fd7a4b75cd901e1f3ffdfd6f048328883695&quot;,
+)
+http_archive(
+    name = &quot;bazel_gazelle&quot;,
+    url = &quot;https://github.com/bazelbuild/bazel-gazelle/releases/download/0.9/bazel-gazelle-0.9.tar.gz&quot;,
+    sha256 = &quot;0103991d994db55b3b5d7b06336f8ae355739635e0c2379dea16b8213ea5a223&quot;,
+)
+load(&quot;@io_bazel_rules_go//go:def.bzl&quot;, &quot;go_rules_dependencies&quot;, &quot;go_register_toolchains&quot;)
+go_rules_dependencies()
+go_register_toolchains(go_version=&quot;host&quot;)
+load(&quot;@bazel_gazelle//:deps.bzl&quot;, &quot;gazelle_dependencies&quot;)
+gazelle_dependencies()
+</code></pre></div>
+<p>In the BUILD.bazel file:</p>
+<div class="highlight"><pre><span></span><code>load(&quot;@bazel_gazelle//:def.bzl&quot;, &quot;gazelle&quot;)
+
+gazelle(
+    name = &quot;gazelle&quot;,
+    prefix = &quot;github.com/omussell/go_tests&quot;,
+)
+</code></pre></div>
+<p>Then to run:</p>
+<div class="highlight"><pre><span></span><code>bazel run //:gazelle
+bazel build //:go_tests
+</code></pre></div>
+<p>A built binary should be output to the ~/.cache directory. Once a binary has been built once, Bazel will only build again if the source code changes. Otherwise, any subsequent runs just complete successfully extremely quickly.</p>
+<p>When attempting to use bazel in any capacity like <code>bazel run ...</code> or <code>bazel build ...</code> it would give the following error:</p>
+<div class="highlight"><pre><span></span><code>ERROR: /root/.cache/bazel/_bazel_root/...285a1776/external/io_bazel_rules_go/
+BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &#39;@go_sdk//
+:packages.txt&#39;, but this target could not be found because of: no such package &#39;@go_sdk//&#39;: 
+Unsupported operating system: freebsd
+ERROR: /root/.cache/bazel/_bazel_root/...1776/external/io_bazel_rules_go/
+BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &#39;@go_sdk//
+:files&#39;, but this target could not be found because of: no such package &#39;@go_sdk//&#39;: 
+Unsupported operating system: freebsd
+ERROR: /root/.cache/bazel/_bazel_root/...5a1776/external/io_bazel_rules_go/
+BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &#39;@go_sdk//
+:tools&#39;, but this target could not be found because of: no such package &#39;@go_sdk//&#39;: 
+Unsupported operating system: freebsd
+ERROR: Analysis of target &#39;//:gazelle&#39; failed; build aborted: no such package &#39;@go_sdk//&#39;: 
+Unsupported operating system: freebsd
+</code></pre></div>
+<p>I think this is caused by bazel attempting to download and build go which isn't necessary as we've already installed via the package anyway. In the WORKSPACE file, change the <code>go_register_toolchains()</code> line to </p>
+<div class="highlight"><pre><span></span><code>go_register_toolchains(go_version=&quot;host&quot;)
+</code></pre></div>
+<p>as documented at:</p>
+<div class="highlight"><pre><span></span><code>https://github.com/bazelbuild/rules_go/blob/master/go/toolchains.rst#using-the-installed-go-sdk.
+</code></pre></div>
+<p>This will force bazel to use the already installed go tools.</p>
+<h2 id="ci-with-buildbot">CI with Buildbot<a class="headerlink" href="#ci-with-buildbot" title="Permanent link">&para;</a></h2>
+<p>Example buildbot config:</p>
+<div class="highlight"><pre><span></span><code>factory.addStep(steps.Git(repourl=&#39;git://github.com/omussell/go_tests.git&#39;, mode=&#39;incremental&#39;))
+factory.addStep(steps.ShellCommand(command=[&quot;go&quot;, &quot;fix&quot;],))
+factory.addStep(steps.ShellCommand(command=[&quot;go&quot;, &quot;vet&quot;],))
+factory.addStep(steps.ShellCommand(command=[&quot;go&quot;, &quot;fmt&quot;],))
+factory.addStep(steps.ShellCommand(command=[&quot;bazel&quot;, &quot;run&quot;, &quot;//:gazelle&quot;],))
+factory.addStep(steps.ShellCommand(command=[&quot;bazel&quot;, &quot;build&quot;, &quot;//:go_tests&quot;],))
+</code></pre></div>
+<p>I needed to rebuild the buildbot jail because it was borked, and after rebuilding it I was surprised that bazel worked without any more configuration. I just needed to install the git, go and bazel packages and run the buildbot config as described above and it ran through and rebuilt everything from scratch. This is one of the major advantages of keeping the build files (WORKSPACE and BUILD.bazel) alongside the source code. I am sure that if desired, anyone with a bazel setup would be able to build this code as well and the outputs would be identical.</p>
+<h3 id="adding-dependencies">Adding dependencies<a class="headerlink" href="#adding-dependencies" title="Permanent link">&para;</a></h3>
+<p>In order to have Bazel automatically build dependencies we need to make a some changes to the WORKSPACE file. I've extended the example program to pull in a library that generates fake data and prints a random name when invoked.</p>
+<div class="highlight"><pre><span></span><code>package main
+
+import &quot;github.com/brianvoe/gofakeit&quot;
+import &quot;fmt&quot;
+
+func main() {
+        gofakeit.Seed(0)
+        fmt.Println(gofakeit.Name())
+        //      fmt.Println(&quot;test&quot;)
+}
+</code></pre></div>
+<p>The following needs to be appended to the WORKSPACE file:</p>
+<div class="highlight"><pre><span></span><code>load(&quot;@io_bazel_rules_go//go:def.bzl&quot;, &quot;go_repository&quot;)
+
+go_repository(
+    name = &quot;com_github_brianvoe_gofakeit&quot;,
+    importpath = &quot;github.com/brianvoe/gofakeit&quot;,
+    commit = &quot;b0b2ecfdf447299dd6bcdef91001692fc349ce4c&quot;,
+)
+</code></pre></div>
+<p>The go_repository rule is used when a dependency is required that does not have a BUILD.bzl file in their repo.</p>
+<h2 id="bazel-remote-cache">Bazel Remote Cache<a class="headerlink" href="#bazel-remote-cache" title="Permanent link">&para;</a></h2>
+<p>When building with Bazel, by default you are connecting to a local Bazel server which runs the build. If multiple people are running the same builds, you are all independently having to build the whole thing from scratch every time. </p>
+<p>With a Remote Cache, some other storage service can cache parts of the build and artifacts which can then be reused by multiple people. 
+This can be a plain HTTP server like NGINX or Google Cloud Storage.</p>
+<div class="highlight"><pre><span></span><code>mkdir -p /var/cache/nginx
+chmod 777 /var/cache/nginx
+
+# nginx config:
+location / {
+    root /var/cache/nginx;
+    dav_methods PUT;
+    create_full_put_path on;
+    client_max_body_size 1G;
+    allow all;
+}
+</code></pre></div>
+<p>Then when running the Bazel build, add the <code>--remote_cache=http://$ip:$port</code> flag to the build parameter like <code>bazel build --remote_cache=http://192.168.1.10:80 //...</code></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      
+    
+  </body>
+</html>
