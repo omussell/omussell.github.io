@@ -155,3 +155,165 @@ You also need to copy or move the firectl, firecracker, and jailer binaries into
 ```
 
 Firectl also doesnt handle cleaning up the /srv/jailer/firecracker/$vm_name chroot directory when you power off the VM. So you need to clean this up manually.
+
+
+## Notes from running the jailer manually
+
+```
+cp -v rootfs.ext4 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+cp -v vmlinux.bin /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket 
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+```
+
+```
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/boot-source'     -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"kernel_image_path\": \"/root/vmlinux.bin\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin 
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/boot-source'     -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"kernel_image_path\": \"/srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin 
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/rootfs.ext4 
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/boot-source'     -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"kernel_image_path\": \"/srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/boot-source'     -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"kernel_image_path\": \"/root/vmlinux.bin\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/boot-source'     -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"kernel_image_path\": \"/root/vmlinux.bin\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/boot-source'     -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"kernel_image_path\": \"./vmlinux.bin\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/drives/rootfs'   -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"drive_id\": \"rootfs\",
+        \"path_on_host\": \"./rootfs.ext4\",
+        \"is_root_device\": true,
+        \"is_read_only\": false
+   }"
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/actions'         -H  'Accept: application/json'            -H  'Content-Type: application/json'      -d '{
+      "action_type": "InstanceStart"
+   }'
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X GET 'http://localhost/'         -H  'Accept: application/json'            -H  'Content-Type: application/json'
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/actions'         -H  'Accept: application/json'            -H  'Content-Type: application/json'      -d '{
+      "action_type": "InstanceStop"
+   }'
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/actions'         -H  'Accept: application/json'            -H  'Content-Type: application/json'      -d '{
+      "action_type": "InstanceStop"
+   }'
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/actions'         -H  'Accept: application/json'            -H  'Content-Type: application/json'      -d '{
+      "action_type": "SendCtrlAltDel"
+   }'
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X GET 'http://localhost/'         -H  'Accept: application/json'            -H  'Content-Type: application/json'
+ps aux | grep fire
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/
+```
+
+```
+mkdir -p /srv/jailer
+cp -v ./release-v1.1.2-x86_64/jailer-v1.1.2-x86_64 /usr/bin/jailer
+ls -alh /usr/bin/jailer
+ls /var/run/netns
+ls /var/run
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --daemonize
+addgroup -G 1111 551e7604-e35c-42b3-b825-416853441234
+addgroup ---gid 1111 551e7604-e35c-42b3-b825-416853441234
+addgroup --gid 1111 551e7604
+addgroup --gid 1111 551e7604-e35c-42b3-b825-416853441234
+addgroup --gid 1111 551e7604
+addgroup --gid 1111 5517604
+addgroup --gid 1111 mygroupname
+adduser
+adduser myusername
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --daemonize --uid 1001 --gid 1111
+ls /usr/bin/firecracker
+cp -v ./release-v1.1.2-x86_64/firecracker-v1.1.2-x86_64 /usr/bin/firecracker
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --daemonize --uid 1001 --gid 1111
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+rm /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/dev/net/tun
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown -R 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown -R 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+```
+
+```
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/boot-source'     -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"kernel_image_path\": \"./vmlinux.bin\",
+        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"
+   }"
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/drives/rootfs'   -H 'Accept: application/json'             -H 'Content-Type: application/json'       -d "{
+        \"drive_id\": \"rootfs\",
+        \"path_on_host\": \"./rootfs.ext4\",
+        \"is_root_device\": true,
+        \"is_read_only\": false
+   }"
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/network-interfaces/eth0'   -H 'Accept: application/json'   -H 'Content-Type: application/json'   -d '{
+      "iface_id": "eth0",
+      "host_dev_name": "tap0"
+    }
+
+'
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT 'http://localhost/actions'         -H  'Accept: application/json'            -H  'Content-Type: application/json'      -d '{
+      "action_type": "InstanceStart"
+   }'
+ps aux | grep jail
+ps aux | grep fire
+ip addr | less
+ping 10.0.0.1
+ping 10.0.0.2
+pkill firecracker
+```
+
+```
+ip tuntap add tap0 mode tap
+ip addr
+ip addr | grep bond0
+ip addr add 10.0.0.1/24 dev tap0
+ip link set tap0 up
+sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+iptables --help
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i tap0 -o eth0 -j ACCEPT
+ps aux | grep fire
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/dev
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/dev
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+```
