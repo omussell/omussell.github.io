@@ -8,16 +8,11 @@
       
       
       
+      
         <link rel="canonical" href="https://omussell.github.io/firecracker/">
       
-      
-        <link rel="prev" href="../lean/">
-      
-      
-        <link rel="next" href="../puppet-jails-deploy/">
-      
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.9">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -25,30 +20,32 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-      
-      
-
-    
-    
-    
-      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
         
+          
+          
+          <meta name="theme-color" content="#2094f3">
+        
+      
+    
+    
+    
+      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
     
       
 
-    
+
     
     
   </head>
@@ -59,9 +56,10 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
   
     
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -78,7 +76,6 @@
       
     </div>
     
-    
       
 
 <header class="md-header" data-md-component="header">
@@ -86,11 +83,11 @@
     <a href=".." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.75 2.37a6.5 6.5 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298 8 8 0 1 1 3.994-7.273.754.754 0 0 1 .006.095v1.5a2.75 2.75 0 0 1-5.072 1.475A4 4 0 1 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496V2.37zM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -112,21 +109,22 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+<div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
         </button>
       </nav>
       
@@ -137,7 +135,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
+          <ol class="md-search-result__list"></ol>
         </div>
       </div>
     </div>
@@ -172,7 +170,7 @@
     <a href=".." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.75 2.37a6.5 6.5 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298 8 8 0 1 1 3.994-7.273.754.754 0 0 1 .006.095v1.5a2.75 2.75 0 0 1-5.072 1.475A4 4 0 1 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496V2.37zM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0z"/></svg>
 
     </a>
     Personal Site
@@ -208,18 +206,17 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
-      
-        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_2">
           Old Posts
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+      <nav class="md-nav" aria-label="Old Posts" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Old Posts
@@ -529,7 +526,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
         
@@ -545,7 +542,6 @@
       </a>
       
         
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -678,6 +674,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-from-running-the-jailer-manually" class="md-nav__link">
+    Notes from running the jailer manually
+  </a>
   
 </li>
       
@@ -750,7 +753,6 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -886,6 +888,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#notes-from-running-the-jailer-manually" class="md-nav__link">
+    Notes from running the jailer manually
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -894,15 +903,12 @@
               </div>
             
           
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
                 
-                  
-
-
-
-<h1 id="firecracker">Firecracker<a class="headerlink" href="#firecracker" title="Permanent link">&para;</a></h1>
+                
+                <h1 id="firecracker">Firecracker<a class="headerlink" href="#firecracker" title="Permanent link">&para;</a></h1>
 <p><a href="https://github.com/firecracker-microvm/firecracker">Firecracker</a> - Secure and fast microVMs for serverless computing.</p>
 <h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/firecracker-microvm/firecracker/blob/main/docs/getting-started.md">Quickstart</a></p>
@@ -1011,33 +1017,219 @@ cargo build --target=&quot;x86_64-unknown-linux-musl&quot; --release
 <div class="highlight"><pre><span></span><code>/usr/local/bin/firectl --kernel=/root/release-v0.25.2-x86_64/hello-vmlinux.bin --root-drive=/root/release-v0.25.2-x86_64/hello-rootfs.ext4 --jailer=/usr/local/bin/jailer --exec-file=/usr/local/bin/firecracker --id=testvm4 --chroot-base-dir=&quot;/srv/jailer&quot;
 </code></pre></div>
 <p>Firectl also doesnt handle cleaning up the /srv/jailer/firecracker/$vm_name chroot directory when you power off the VM. So you need to clean this up manually.</p>
+<h2 id="notes-from-running-the-jailer-manually">Notes from running the jailer manually<a class="headerlink" href="#notes-from-running-the-jailer-manually" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>cp -v rootfs.ext4 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+cp -v vmlinux.bin /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket 
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/boot-source&#39;     -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;kernel_image_path\&quot;: \&quot;/root/vmlinux.bin\&quot;,
+        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+   }&quot;
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin 
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/boot-source&#39;     -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;kernel_image_path\&quot;: \&quot;/srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin\&quot;,
+        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+   }&quot;
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin 
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/rootfs.ext4 
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/boot-source&#39;     -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;kernel_image_path\&quot;: \&quot;/srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/vmlinux.bin\&quot;,
+        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+   }&quot;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/boot-source&#39;     -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;kernel_image_path\&quot;: \&quot;/root/vmlinux.bin\&quot;,
+        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+   }&quot;
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/boot-source&#39;     -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;kernel_image_path\&quot;: \&quot;/root/vmlinux.bin\&quot;,
+        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+   }&quot;
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/boot-source&#39;     -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;kernel_image_path\&quot;: \&quot;./vmlinux.bin\&quot;,
+        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+   }&quot;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/drives/rootfs&#39;   -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;drive_id\&quot;: \&quot;rootfs\&quot;,
+        \&quot;path_on_host\&quot;: \&quot;./rootfs.ext4\&quot;,
+        \&quot;is_root_device\&quot;: true,
+        \&quot;is_read_only\&quot;: false
+   }&quot;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/actions&#39;         -H  &#39;Accept: application/json&#39;            -H  &#39;Content-Type: application/json&#39;      -d &#39;{
+      &quot;action_type&quot;: &quot;InstanceStart&quot;
+   }&#39;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X GET &#39;http://localhost/&#39;         -H  &#39;Accept: application/json&#39;            -H  &#39;Content-Type: application/json&#39;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/actions&#39;         -H  &#39;Accept: application/json&#39;            -H  &#39;Content-Type: application/json&#39;      -d &#39;{
+      &quot;action_type&quot;: &quot;InstanceStop&quot;
+   }&#39;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/actions&#39;         -H  &#39;Accept: application/json&#39;            -H  &#39;Content-Type: application/json&#39;      -d &#39;{
+      &quot;action_type&quot;: &quot;InstanceStop&quot;
+   }&#39;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/actions&#39;         -H  &#39;Accept: application/json&#39;            -H  &#39;Content-Type: application/json&#39;      -d &#39;{
+      &quot;action_type&quot;: &quot;SendCtrlAltDel&quot;
+   }&#39;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X GET &#39;http://localhost/&#39;         -H  &#39;Accept: application/json&#39;            -H  &#39;Content-Type: application/json&#39;
+ps aux | grep fire
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+ls /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mkdir -p /srv/jailer
+cp -v ./release-v1.1.2-x86_64/jailer-v1.1.2-x86_64 /usr/bin/jailer
+ls -alh /usr/bin/jailer
+ls /var/run/netns
+ls /var/run
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --daemonize
+addgroup -G 1111 551e7604-e35c-42b3-b825-416853441234
+addgroup ---gid 1111 551e7604-e35c-42b3-b825-416853441234
+addgroup --gid 1111 551e7604
+addgroup --gid 1111 551e7604-e35c-42b3-b825-416853441234
+addgroup --gid 1111 551e7604
+addgroup --gid 1111 5517604
+addgroup --gid 1111 mygroupname
+adduser
+adduser myusername
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --daemonize --uid 1001 --gid 1111
+ls /usr/bin/firecracker
+cp -v ./release-v1.1.2-x86_64/firecracker-v1.1.2-x86_64 /usr/bin/firecracker
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --daemonize --uid 1001 --gid 1111
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+ls -alh /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+rm /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/dev/net/tun
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown -R 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 --daemonize
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+mkdir -p /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/
+chown -R 1001:1111 /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/boot-source&#39;     -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;kernel_image_path\&quot;: \&quot;./vmlinux.bin\&quot;,
+        \&quot;boot_args\&quot;: \&quot;console=ttyS0 reboot=k panic=1 pci=off\&quot;
+   }&quot;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/drives/rootfs&#39;   -H &#39;Accept: application/json&#39;             -H &#39;Content-Type: application/json&#39;       -d &quot;{
+        \&quot;drive_id\&quot;: \&quot;rootfs\&quot;,
+        \&quot;path_on_host\&quot;: \&quot;./rootfs.ext4\&quot;,
+        \&quot;is_root_device\&quot;: true,
+        \&quot;is_read_only\&quot;: false
+   }&quot;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/network-interfaces/eth0&#39;   -H &#39;Accept: application/json&#39;   -H &#39;Content-Type: application/json&#39;   -d &#39;{
+      &quot;iface_id&quot;: &quot;eth0&quot;,
+      &quot;host_dev_name&quot;: &quot;tap0&quot;
+    }
 
-
-
-
-
+&#39;
+curl --unix-socket /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run/firecracker.socket -i   -X PUT &#39;http://localhost/actions&#39;         -H  &#39;Accept: application/json&#39;            -H  &#39;Content-Type: application/json&#39;      -d &#39;{
+      &quot;action_type&quot;: &quot;InstanceStart&quot;
+   }&#39;
+ps aux | grep jail
+ps aux | grep fire
+ip addr | less
+ping 10.0.0.1
+ping 10.0.0.2
+pkill firecracker
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ip tuntap add tap0 mode tap
+ip addr
+ip addr | grep bond0
+ip addr add 10.0.0.1/24 dev tap0
+ip link set tap0 up
+sh -c &quot;echo 1 &gt; /proc/sys/net/ipv4/ip_forward&quot;
+iptables --help
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i tap0 -o eth0 -j ACCEPT
+ps aux | grep fire
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/dev
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/run
+rm -rf /srv/jailer/firecracker/551e7604-e35c-42b3-b825-416853441234/root/dev
+/usr/bin/jailer --id 551e7604-e35c-42b3-b825-416853441234 --exec-file /usr/bin/firecracker --uid 1001 --gid 1111 
+</code></pre></div>
                 
-              </article>
-            </div>
-          
-          
+              
+              
+                
+
+
+              
+            </article>
+          </div>
         </div>
         
       </main>
       
-        <footer class="md-footer">
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../lean/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lean" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lean
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../puppet-jails-deploy/" class="md-footer__link md-footer__link--next" aria-label="Next: Blue/Green deploymetns with Puppet, NGINX and FreeBSD Jails" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Blue/Green deploymetns with Puppet, NGINX and FreeBSD Jails
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
       
     </div>
   </div>
@@ -1047,11 +1239,10 @@ cargo build --target=&quot;x86_64-unknown-linux-musl&quot; --release
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
-    
-      <script src="../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>
