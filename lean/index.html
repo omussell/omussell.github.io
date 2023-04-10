@@ -8,11 +8,16 @@
       
       
       
-      
         <link rel="canonical" href="https://omussell.github.io/lean/">
       
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../jail-creation/">
+      
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
@@ -20,32 +25,30 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#2094f3">
-        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
       
+      
+
     
     
     
       
+        
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-
+    
     
     
   </head>
@@ -56,10 +59,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,18 +78,21 @@
       
     </div>
     
+    
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.75 2.37a6.5 6.5 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298 8 8 0 1 1 3.994-7.273.754.754 0 0 1 .006.095v1.5a2.75 2.75 0 0 1-5.072 1.475A4 4 0 1 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496V2.37zM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -109,22 +114,21 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -135,7 +139,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -170,7 +174,7 @@
     <a href=".." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.75 2.37a6.5 6.5 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298 8 8 0 1 1 3.994-7.273.754.754 0 0 1 .006.095v1.5a2.75 2.75 0 0 1-5.072 1.475A4 4 0 1 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496V2.37zM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.75 2.37a6.501 6.501 0 0 0 6.5 11.26.75.75 0 0 1 .75 1.298A7.999 7.999 0 0 1 .989 4.148 8 8 0 0 1 16 7.75v1.5a2.75 2.75 0 0 1-5.072 1.475 3.999 3.999 0 0 1-6.65-4.19A4 4 0 0 1 12 8v1.25a1.25 1.25 0 0 0 2.5 0V7.867a6.5 6.5 0 0 0-9.75-5.496ZM10.5 8a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>
 
     </a>
     Personal Site
@@ -202,22 +206,46 @@
     
   
   
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lean
+      </a>
+      
+    </li>
+  
+
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
       
-        <label class="md-nav__link" for="__nav_2">
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Old Posts
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Old Posts" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Old Posts
         </label>
@@ -507,30 +535,6 @@
               
   
   
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Lean
-      </a>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
   
     <li class="md-nav__item">
       <a href="../firecracker/" class="md-nav__link">
@@ -601,6 +605,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -614,12 +619,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="lean">Lean<a class="headerlink" href="#lean" title="Permanent link">&para;</a></h1>
+                  
+
+
+<h1 id="lean">Lean<a class="headerlink" href="#lean" title="Permanent link">&para;</a></h1>
 <p>A collection of notes about the Toyota way, Lean, Theory of Constraints etc. copied from Wikipedia and other sites</p>
 <h1 id="5s">5S<a class="headerlink" href="#5s" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code>Seiri       Sort
@@ -631,6 +638,23 @@ Shitsuke    Sustain
 <h1 id="toyota-production-system">Toyota Production System<a class="headerlink" href="#toyota-production-system" title="Permanent link">&para;</a></h1>
 <h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
 <p>Design out overburden (muri) and inconsistency (mura), and to eliminate waste (muda).</p>
+<h2 id="the-right-process-will-produce-the-right-results">The right process will produce the right results<a class="headerlink" href="#the-right-process-will-produce-the-right-results" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Create continuous process flow to bring problems to the surface</li>
+<li>Use the 'pull' system to avoid overproduction (Kanban)</li>
+<li>Level out the workload (Heijunka)</li>
+<li>Build a culture of stopping to fix problems, to get quality right from the start (Andon)</li>
+<li>Standardised tasks are the foundation for continuous improvement and employee empowerment</li>
+<li>Use visual control so no problems are hidden</li>
+<li>Use only reliable, thoroughly tested technology that serves your people and processes</li>
+</ul>
+<h2 id="continuously-solving-root-problems-drives-organisational-learning">Continuously solving root problems drives organisational learning<a class="headerlink" href="#continuously-solving-root-problems-drives-organisational-learning" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Go and see for yourself to thoroughly understand the situation (Genchi Genbutsu)</li>
+<li>Make decisions slowly by consensus, thoroughly considering all options. Implement decisions rapidly (Nemawashi)</li>
+<li>Become a learning organisation through relentless reflection (Hansei) and continuous improvement (Kaizen)</li>
+</ul>
+<h2 id="muda-waste">Muda - Waste<a class="headerlink" href="#muda-waste" title="Permanent link">&para;</a></h2>
 <h3 id="types-of-waste">Types of waste<a class="headerlink" href="#types-of-waste" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Overproduction</li>
@@ -642,8 +666,6 @@ Shitsuke    Sustain
 <li>Making defective products</li>
 <li>Underutilised workers</li>
 </ul>
-<h2 id="muda">Muda<a class="headerlink" href="#muda" title="Permanent link">&para;</a></h2>
-<p>Waste</p>
 <h3 id="transport">Transport<a class="headerlink" href="#transport" title="Permanent link">&para;</a></h3>
 <p>Moving products that are not actually required to perform processing</p>
 <h3 id="inventory">Inventory<a class="headerlink" href="#inventory" title="Permanent link">&para;</a></h3>
@@ -658,13 +680,11 @@ Shitsuke    Sustain
 <p>Resulting from poor tool or product design creating activity</p>
 <h3 id="defects">Defects<a class="headerlink" href="#defects" title="Permanent link">&para;</a></h3>
 <p>The effort involved in inspecting for and fixing defects.</p>
-<h2 id="mura">Mura<a class="headerlink" href="#mura" title="Permanent link">&para;</a></h2>
-<p>Unevenness</p>
+<h2 id="mura-inconsistency">Mura - Inconsistency<a class="headerlink" href="#mura-inconsistency" title="Permanent link">&para;</a></h2>
 <p>Is avoided through just in time systems which are based on keeping little or no inventory. These systems supply the production process with the right part, at the right time, in the right amount, using first-in, first-out (FIFO) component flow. JIT systems create a pull system in which each sub-process withdraws its needs from the preceding sub-processes, and ultimately from an outside supplier. When a preceding process does not receive a request or withdrawal it does not make more parts.</p>
-<h2 id="muri">Muri<a class="headerlink" href="#muri" title="Permanent link">&para;</a></h2>
-<p>Unreasonableness</p>
-<p>Muri can be avoided through standardized work. To achieve this a standard condition or output must be efined to assure effective judgment of quality.</p>
-<h2 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h2>
+<h2 id="muri-overburden">Muri - Overburden<a class="headerlink" href="#muri-overburden" title="Permanent link">&para;</a></h2>
+<p>Muri can be avoided through standardized work. To achieve this a standard condition or output must be defined to assure effective judgment of quality.</p>
+<h2 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h2>
 <h3 id="just-in-time">Just-in-time<a class="headerlink" href="#just-in-time" title="Permanent link">&para;</a></h3>
 <p>Make only what is needed, only when it is needed and only in the amount that is needed</p>
 <h3 id="jidoka">Jidoka<a class="headerlink" href="#jidoka" title="Permanent link">&para;</a></h3>
@@ -683,22 +703,6 @@ Shitsuke    Sustain
 <p>Production levelling</p>
 <p>Reduce unevenness which in turn reduces waste.</p>
 <p>The goal is to produce intermediate goods at a constant rate so that further processing may also be carried out at a constant and predictable rate.</p>
-<h2 id="the-right-process-will-produce-the-right-results">The right process will produce the right results<a class="headerlink" href="#the-right-process-will-produce-the-right-results" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Create continuous process flow to bring problems to the surface</li>
-<li>Use the 'pull' system to avoid overproduction (Kanban)</li>
-<li>Level out the workload (Heijunka)</li>
-<li>Build a culture of stopping to fix problems, to get quality right from the start</li>
-<li>Standardised tasks are the foundation for continuous improvement and employee empowerment</li>
-<li>Use visual control so no problems are hidden</li>
-<li>Use only reliable, thoroughly tested technology that serves your people and processes</li>
-</ul>
-<h2 id="continuously-solving-root-problems-drives-organisational-learning">Continuously solving root problems drives organisational learning<a class="headerlink" href="#continuously-solving-root-problems-drives-organisational-learning" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Go and see for yourself to thoroughly understand the situation (Genchi Genbutsu)</li>
-<li>Make decisions slowly by consensus, thoroughly considering all options. Implement decisions rapidly (Nemawashi)</li>
-<li>Become a learning organisation through relentless reflection (Hansei) and continuous improvement (Kaizen)</li>
-</ul>
 <h2 id="andon">Andon<a class="headerlink" href="#andon" title="Permanent link">&para;</a></h2>
 <p>The worker has the ability to stop production when a defect is found, and immediately call for assistance.</p>
 <p>Work is stopped until a solution is found.</p>
@@ -710,97 +714,61 @@ Shitsuke    Sustain
 <p>During the product and process development, all individuals involved in managerial planning meet in a great room to speed communicationand decision making.</p>
 <h2 id="takt-time">Takt Time<a class="headerlink" href="#takt-time" title="Permanent link">&para;</a></h2>
 <p>Describes the required product assembly duration that is needed to match the demand. Often confused with cycle time, takt time is a tool used to design work and it measures the average time interval between the start of production of one unit and the start of production of the next unit when items are produced sequentially.</p>
-<h2 id="theory-of-constraints">Theory of Constraints<a class="headerlink" href="#theory-of-constraints" title="Permanent link">&para;</a></h2>
+<h1 id="theory-of-constraints">Theory of Constraints<a class="headerlink" href="#theory-of-constraints" title="Permanent link">&para;</a></h1>
 <p>Organisations can be measured and controlled by variations on three measures:</p>
 <ul>
 <li>Inventory - The money that the system has invested in purchasing things which it intends to sell</li>
 <li>Operational expense - The money the system spends in order to turn inventory into throughput</li>
 <li>Throughput - The rate at which the system generates money through sales</li>
 </ul>
-<h3 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h3>
+<h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
 <p>A constraint is anything that prevents the system from achieving its goal. There is always at least one, but at most only a few, at any given time.</p>
 <p>If a constraints throughput capacity is elevated to the point where it is no longer the systems limiting factor, this is said to 'break' the constraint.</p>
-<h3 id="buffers">Buffers<a class="headerlink" href="#buffers" title="Permanent link">&para;</a></h3>
+<h2 id="buffers">Buffers<a class="headerlink" href="#buffers" title="Permanent link">&para;</a></h2>
 <p>Buffers are placed before the governing constraint, thus ensuring that the constraint is never starved.</p>
 <p>Buffers are also placed behind the constraint to prevent downstream failure from blocking the constraints output.</p>
 <p>Buffers used in this way protect the constraint from variations in the rest of the system and should allow for normal variation of processing time and the occasional upset before and behind the constraint.</p>
 <p>With one constraint in the system, all other parts of the system must have sufficient capacity to keep up with the work at the constraint and to catch up if time was lost.</p>
-<h3 id="plant-types-vati">Plant Types (VATI)<a class="headerlink" href="#plant-types-vati" title="Permanent link">&para;</a></h3>
+<h2 id="plant-types-vati">Plant Types (VATI)<a class="headerlink" href="#plant-types-vati" title="Permanent link">&para;</a></h2>
 <p>The plant types specify the general flow of materials through a system</p>
-<h4 id="v">V<a class="headerlink" href="#v" title="Permanent link">&para;</a></h4>
+<h3 id="v">V<a class="headerlink" href="#v" title="Permanent link">&para;</a></h3>
 <p>Flow is one to many, such as a plant that takes one raw material and can make many final products.</p>
 <p>The primary problem in V plants is 'robbing', where on operation (A) immediately after a diverging point 'steals' materials meant for the other operation (B). Once the material has been processed by A, it cannot come back and be run through B without significant rework.</p>
-<h4 id="a">A<a class="headerlink" href="#a" title="Permanent link">&para;</a></h4>
+<h3 id="a">A<a class="headerlink" href="#a" title="Permanent link">&para;</a></h3>
 <p>Flow is many to one, such as where many sub-assemblies converge for a final assembly.</p>
 <p>The problem in A plants is synchronising the converging lines so that each supplies the final assembly point at the right time.</p>
-<h4 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h4>
+<h3 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h3>
 <p>Flow is many to many, similar to I plant (or has multiple lines), which then splits into many assemblies.</p>
 <p>T plants suffer from both synchronisation problems of A plants and the robbing problems of V plants.</p>
-<h4 id="i">I<a class="headerlink" href="#i" title="Permanent link">&para;</a></h4>
+<h3 id="i">I<a class="headerlink" href="#i" title="Permanent link">&para;</a></h3>
 <p>Material flows in a sequence of events in a straight line. The constraint is the slowest operation.</p>
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../new-prog-lang/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Find a New Programming Language" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Find a New Programming Language
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../firecracker/" class="md-footer__link md-footer__link--next" aria-label="Next: Firecracker" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Firecracker
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        
-          Made with
-          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-            Material for MkDocs
-          </a>
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -810,10 +778,11 @@ Shitsuke    Sustain
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
       
     
   </body>
