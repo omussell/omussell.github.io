@@ -11,6 +11,8 @@ theme:
 
 nav:
   - Home: index.md
+  - Lean: lean.md
+  - Modern Python: python.md
   - Old Posts:
     - FreeBSD Jail Creation: jail-creation.md
     - Bhyve VM Creation: bhyve-vm-creation.md
@@ -30,9 +32,7 @@ nav:
     - Puppet Bolt: puppet-bolt.md
     - Microserver NAS: microserver.md
     - LXC/LXD Containers: lxc.md
-    - Modern Python: python.md
     - Find a New Programming Language: new-prog-lang.md
-    - Lean: lean.md
     - Firecracker: firecracker.md
     - Blue/Green deploymetns with Puppet, NGINX and FreeBSD Jails: puppet-jails-deploy.md
     - Bonded NICs on Ubuntu: bonded-nic.md
