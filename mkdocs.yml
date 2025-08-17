@@ -11,6 +11,8 @@ theme:
 
 nav:
   - Home: index.md
+  - Homelab:
+    - Hardware: homelab/hardware.md
   - Lean: lean.md
   - Modern Python: python.md
   - Old Posts:

@@ -4,6 +4,16 @@
 
 The following tools and libraries are known to work well with modern python. They are modular, so you can pick and choose the components you want based on your need.
 
+A minimal project might have:
+
+- Dependencies managed with `uv`
+- Formatting with `ruff`
+- Typing/validation with `attrs`
+- HTTP server with `litestar` running with `uvicorn`
+- HTTP requests with `httpx`
+- Documentation with `mkdocs`
+- Tests with `pytest`
+
 ## HTTP
 
 ### Client
@@ -12,36 +22,45 @@ The following tools and libraries are known to work well with modern python. The
 
 ### Server
 
-- [FastAPI](https://fastapi.tiangolo.com/)
+- [Litestar](https://litestar.dev/)
 - [Uvicorn](https://www.uvicorn.org/)
 
 ## Databases
 
-- [SQLModel](https://github.com/tiangolo/sqlmodel)
+- [Advanced Alchemy](https://docs.advanced-alchemy.litestar.dev/latest/)
 - [Alembic](https://alembic.sqlalchemy.org/en/latest/tutorial.html)
 
-## Async Processes
+## Async Task Processes
 
-- [Arq](https://github.com/samuelcolvin/arq)
+- [Celery](https://docs.celeryq.dev/en/v5.5.3/getting-started/introduction.html)
 
 ## Cryptography
 
 - [pynacl](https://pynacl.readthedocs.io/en/latest/)
 - [secrets](https://docs.python.org/3/library/secrets.html)
 
-## Tools
+## Dev Tools
+
+### Project management
+
+- [uv](https://docs.astral.sh/uv/)
 
 ### Formatting/Styling
+
 - [ruff](https://github.com/astral-sh/ruff)
 
-### Linting
+### Typing and Validation
 
-- [black](https://black.readthedocs.io/en/stable/)
-
-### Typing
+- [attrs](https://www.attrs.org/en/stable/)
+- [cattrs](https://catt.rs/en/stable/index.html)
 
 - [Pydantic](https://pydantic-docs.helpmanual.io/)
 - [Mypy](https://github.com/python/mypy)
+
+### Tests
+
+- [pytest](https://docs.pytest.org/en/stable/)
+- [playwright](https://playwright.dev/)
 
 ### Documentation
 

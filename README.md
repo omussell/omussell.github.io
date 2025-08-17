@@ -1,1 +1,1 @@
-[Personal Site](https://omussell.github.io/)
+<https://omussell.github.io/>
