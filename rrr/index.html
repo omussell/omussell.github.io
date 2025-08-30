@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://omussell.github.io/serverless/">
+        <link rel="canonical" href="https://omussell.github.io/rrr/">
       
       
-        <link rel="prev" href="../quick-k8s/">
-      
-      
-        <link rel="next" href="../fbsd-update-cache/">
       
       
       <link rel="icon" href="../images/mention.svg">
@@ -22,7 +18,7 @@
     
     
       
-        <title>Serverless - Personal Site</title>
+        <title>Robots, Reactors and Rockets - Personal Site</title>
       
     
     
@@ -72,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#serverless-with-knative-running-in-gvisor-sandbox-on-minikube" class="md-skip">
+        <a href="#robots-reactors-and-rockets" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Serverless
+              Robots, Reactors and Rockets
             
           </span>
         </div>
@@ -335,20 +331,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -364,7 +358,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Old Posts
@@ -628,19 +622,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../serverless/" class="md-nav__link">
         
   
   
@@ -651,7 +636,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -951,19 +935,7 @@
 
 
 
-<h1 id="serverless-with-knative-running-in-gvisor-sandbox-on-minikube">Serverless with Knative running in gVisor sandbox on Minikube<a class="headerlink" href="#serverless-with-knative-running-in-gvisor-sandbox-on-minikube" title="Permanent link">&para;</a></h1>
-<ul>
-<li><a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">Minikube</a> - A Kubernetes distribution which starts a single-node cluster</li>
-<li><a href="https://gvisor.dev">gVisor</a> - A user-space kernel, written in Go, that implements a substantial portion of the Linux system call interface.</li>
-<li><a href="https://knative.dev/">Knative</a> - Run serverless services on Kubernetes</li>
-</ul>
-<p>Install Minikube as described in the documentation.</p>
-<p>Install gVisor as per <a href="https://github.com/kubernetes/minikube/blob/master/deploy/addons/gvisor/README.md">the docs</a>:</p>
-<div class="highlight"><pre><span></span><code>minikube start --container-runtime=containerd  \
-    --docker-opt containerd=/var/run/containerd/containerd.sock
-minikube addons enable gvisor
-kubectl get pod,runtimeclass gvisor -n kube-system
-</code></pre></div>
+<h1 id="robots-reactors-and-rockets">Robots, Reactors and Rockets<a class="headerlink" href="#robots-reactors-and-rockets" title="Permanent link">&para;</a></h1>
 
 
 

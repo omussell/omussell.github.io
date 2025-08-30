@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://omussell.github.io/serverless/">
+        <link rel="canonical" href="https://omussell.github.io/homelab/">
       
       
-        <link rel="prev" href="../quick-k8s/">
-      
-      
-        <link rel="next" href="../fbsd-update-cache/">
       
       
       <link rel="icon" href="../images/mention.svg">
@@ -22,7 +18,7 @@
     
     
       
-        <title>Serverless - Personal Site</title>
+        <title>Homelab - Personal Site</title>
       
     
     
@@ -72,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#serverless-with-knative-running-in-gvisor-sandbox-on-minikube" class="md-skip">
+        <a href="#homelab" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Serverless
+              Homelab
             
           </span>
         </div>
@@ -264,7 +260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../homelab/hardware/" class="md-nav__link">
+      <a href="hardware/" class="md-nav__link">
         
   
   
@@ -335,20 +331,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -364,7 +358,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Old Posts
@@ -628,19 +622,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../serverless/" class="md-nav__link">
         
   
   
@@ -651,7 +636,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -951,19 +935,12 @@
 
 
 
-<h1 id="serverless-with-knative-running-in-gvisor-sandbox-on-minikube">Serverless with Knative running in gVisor sandbox on Minikube<a class="headerlink" href="#serverless-with-knative-running-in-gvisor-sandbox-on-minikube" title="Permanent link">&para;</a></h1>
-<ul>
-<li><a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">Minikube</a> - A Kubernetes distribution which starts a single-node cluster</li>
-<li><a href="https://gvisor.dev">gVisor</a> - A user-space kernel, written in Go, that implements a substantial portion of the Linux system call interface.</li>
-<li><a href="https://knative.dev/">Knative</a> - Run serverless services on Kubernetes</li>
-</ul>
-<p>Install Minikube as described in the documentation.</p>
-<p>Install gVisor as per <a href="https://github.com/kubernetes/minikube/blob/master/deploy/addons/gvisor/README.md">the docs</a>:</p>
-<div class="highlight"><pre><span></span><code>minikube start --container-runtime=containerd  \
-    --docker-opt containerd=/var/run/containerd/containerd.sock
-minikube addons enable gvisor
-kubectl get pod,runtimeclass gvisor -n kube-system
-</code></pre></div>
+<h1 id="homelab">Homelab<a class="headerlink" href="#homelab" title="Permanent link">&para;</a></h1>
+<p>The homelab has evolved over time as I tried learning new things to either support my current work or build towards finding new work.</p>
+<p>It started out with basic Linux like Debian/Ubuntu before moving to FreeBSD. That meant learning about managing services using Jails and storing data on disks with ZFS. That was then used at my next workplace.</p>
+<p>After that it was setting up a hypervisor for running VMs and spinning up Kubernetes clusters. Running different CI systems for building images and deploying containers.</p>
+<p>Its currently defunct and my intention is to have the hardware set up properly either in a small rack or some other kind of furniture as a more permanent solution. Its mostly been a pile of computers on the floor. I've always managed the networking by using an 8 port dumb switch. Now there will be a router, switches and fiber networking.</p>
+<p>In addition to the networking there is also a bunch of raspberry pis which will be running all the time since they have low power usage. They will be for running services like DNS, web servers etc. when it would be preferred for them to always be accessible. Then for any heavier compute or storage testing there are the beefier intel based HP microservers which can run VMs and have lots of disk space and will be turned on as needed.</p>
 
 
 

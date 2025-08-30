@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://omussell.github.io/serverless/">
+        <link rel="canonical" href="https://omussell.github.io/homelab/hardware/">
       
       
-        <link rel="prev" href="../quick-k8s/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../fbsd-update-cache/">
+        <link rel="next" href="../../lean/">
       
       
-      <link rel="icon" href="../images/mention.svg">
+      <link rel="icon" href="../../images/mention.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
       
-        <title>Serverless - Personal Site</title>
+        <title>Hardware - Personal Site</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#serverless-with-knative-running-in-gvisor-sandbox-on-minikube" class="md-skip">
+        <a href="#hardware" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
+    <a href="../.." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 .5a7.5 7.5 0 0 1 7.499 7.462l.002.038v1.164a2.612 2.612 0 0 1-4.783 1.454A3.76 3.76 0 0 1 8 11.776 3.776 3.776 0 1 1 11.776 8v1.164a1.112 1.112 0 0 0 2.225 0L14 8a6 6 0 1 0-3.311 5.365.75.75 0 0 1 .673 1.341A7.5 7.5 0 1 1 8 .5m0 5.225a2.275 2.275 0 1 0 0 4.552 2.275 2.275 0 0 0 0-4.552"/></svg>
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Serverless
+              Hardware
             
           </span>
         </div>
@@ -186,7 +186,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
+    <a href="../.." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 .5a7.5 7.5 0 0 1 7.499 7.462l.002.038v1.164a2.612 2.612 0 0 1-4.783 1.454A3.76 3.76 0 0 1 8 11.776 3.776 3.776 0 1 1 11.776 8v1.164a1.112 1.112 0 0 0 2.225 0L14 8a6 6 0 1 0-3.311 5.365.75.75 0 0 1 .673 1.341A7.5 7.5 0 1 1 8 .5m0 5.225a2.275 2.275 0 1 0 0 4.552 2.275 2.275 0 0 0 0-4.552"/></svg>
@@ -204,124 +204,12 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Home
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Homelab
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Homelab
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../homelab/hardware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Hardware
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../lean/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Lean
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Modern Python
     
   </span>
   
@@ -348,7 +236,242 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Homelab
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Homelab
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gigabyte-brix-pro-gb-bxi7-4770r" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gigabyte Brix Pro GB-BXI7-4770R
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hp-proliantgen10-plus-microserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      HP ProLiantGen10 Plus Microserver
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hp-proliant-g8-microserver-g1610t" class="md-nav__link">
+    <span class="md-ellipsis">
+      HP ProLiant G8 Microserver G1610T
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi-2-model-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi 2 Model B
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi-4-model-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi 4 Model B
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-x-raspberry-pi-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 x Raspberry Pi 5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-x-raspberry-pi-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 x Raspberry Pi 5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-x-raspberry-pi-5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 x Raspberry Pi 5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lean
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modern Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -364,7 +487,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Old Posts
@@ -378,7 +501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jail-creation/" class="md-nav__link">
+      <a href="../../jail-creation/" class="md-nav__link">
         
   
   
@@ -401,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bhyve-vm-creation/" class="md-nav__link">
+      <a href="../../bhyve-vm-creation/" class="md-nav__link">
         
   
   
@@ -424,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nginx-chacha20/" class="md-nav__link">
+      <a href="../../nginx-chacha20/" class="md-nav__link">
         
   
   
@@ -447,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nsd-unbound/" class="md-nav__link">
+      <a href="../../nsd-unbound/" class="md-nav__link">
         
   
   
@@ -470,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../saltstack/" class="md-nav__link">
+      <a href="../../saltstack/" class="md-nav__link">
         
   
   
@@ -493,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pgsql-repl/" class="md-nav__link">
+      <a href="../../pgsql-repl/" class="md-nav__link">
         
   
   
@@ -516,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../go-bazel/" class="md-nav__link">
+      <a href="../../go-bazel/" class="md-nav__link">
         
   
   
@@ -539,7 +662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rqlite/" class="md-nav__link">
+      <a href="../../rqlite/" class="md-nav__link">
         
   
   
@@ -562,7 +685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../signify/" class="md-nav__link">
+      <a href="../../signify/" class="md-nav__link">
         
   
   
@@ -585,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nginx/" class="md-nav__link">
+      <a href="../../nginx/" class="md-nav__link">
         
   
   
@@ -608,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quick-k8s/" class="md-nav__link">
+      <a href="../../quick-k8s/" class="md-nav__link">
         
   
   
@@ -628,19 +751,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../serverless/" class="md-nav__link">
         
   
   
@@ -651,7 +765,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -664,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fbsd-update-cache/" class="md-nav__link">
+      <a href="../../fbsd-update-cache/" class="md-nav__link">
         
   
   
@@ -687,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pi-bitwarden/" class="md-nav__link">
+      <a href="../../pi-bitwarden/" class="md-nav__link">
         
   
   
@@ -710,7 +823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gemini/" class="md-nav__link">
+      <a href="../../gemini/" class="md-nav__link">
         
   
   
@@ -733,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../puppet-bolt/" class="md-nav__link">
+      <a href="../../puppet-bolt/" class="md-nav__link">
         
   
   
@@ -756,7 +869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../microserver/" class="md-nav__link">
+      <a href="../../microserver/" class="md-nav__link">
         
   
   
@@ -779,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lxc/" class="md-nav__link">
+      <a href="../../lxc/" class="md-nav__link">
         
   
   
@@ -802,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../new-prog-lang/" class="md-nav__link">
+      <a href="../../new-prog-lang/" class="md-nav__link">
         
   
   
@@ -825,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firecracker/" class="md-nav__link">
+      <a href="../../firecracker/" class="md-nav__link">
         
   
   
@@ -848,7 +961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../puppet-jails-deploy/" class="md-nav__link">
+      <a href="../../puppet-jails-deploy/" class="md-nav__link">
         
   
   
@@ -871,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bonded-nic/" class="md-nav__link">
+      <a href="../../bonded-nic/" class="md-nav__link">
         
   
   
@@ -894,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../basecamp/" class="md-nav__link">
+      <a href="../../basecamp/" class="md-nav__link">
         
   
   
@@ -937,6 +1050,95 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gigabyte-brix-pro-gb-bxi7-4770r" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gigabyte Brix Pro GB-BXI7-4770R
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hp-proliantgen10-plus-microserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      HP ProLiantGen10 Plus Microserver
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hp-proliant-g8-microserver-g1610t" class="md-nav__link">
+    <span class="md-ellipsis">
+      HP ProLiant G8 Microserver G1610T
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi-2-model-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi 2 Model B
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi-4-model-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi 4 Model B
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-x-raspberry-pi-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 x Raspberry Pi 5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-x-raspberry-pi-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 x Raspberry Pi 5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-x-raspberry-pi-5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 x Raspberry Pi 5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -951,19 +1153,73 @@
 
 
 
-<h1 id="serverless-with-knative-running-in-gvisor-sandbox-on-minikube">Serverless with Knative running in gVisor sandbox on Minikube<a class="headerlink" href="#serverless-with-knative-running-in-gvisor-sandbox-on-minikube" title="Permanent link">&para;</a></h1>
+<h1 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h1>
+<p>The homelab has evolved over time as I tried learning new things to either support my current work or build towards finding new work.</p>
+<p>It started out with basic Linux like Debian/Ubuntu before moving to FreeBSD. That meant learning about managing services using Jails and storing data on disks with ZFS. That was then used at my next workplace.</p>
+<p>After that it was setting up a hypervisor for running VMs and spinning up Kubernetes clusters. Running different CI systems for building images and deploying containers.</p>
+<p>Its currently defunct and my intention is to have the hardware set up properly either in a small rack or some other kind of furniture as a more permanent solution. Its mostly been a pile of computers on the floor. I've always managed the networking by using an 8 port dumb switch. Now there will be a router, switches and fiber networking.</p>
+<p>In addition to the networking there is also a bunch of raspberry pis which will be running all the time since they have low power usage. They will be for running services like DNS, web servers etc. when it would be preferred for them to always be accessible. Then for any heavier compute or storage testing there are the beefier intel based HP microservers which can run VMs and have lots of disk space and will be turned on as needed.</p>
+<h3 id="gigabyte-brix-pro-gb-bxi7-4770r">Gigabyte Brix Pro GB-BXI7-4770R<a class="headerlink" href="#gigabyte-brix-pro-gb-bxi7-4770r" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">Minikube</a> - A Kubernetes distribution which starts a single-node cluster</li>
-<li><a href="https://gvisor.dev">gVisor</a> - A user-space kernel, written in Go, that implements a substantial portion of the Linux system call interface.</li>
-<li><a href="https://knative.dev/">Knative</a> - Run serverless services on Kubernetes</li>
+<li>Intel Core i7-4770R (quad core 3.2GHz)</li>
+<li>16GB RAM</li>
+<li>250GB mSATA SSD</li>
+<li>250GB 2.5 inch SSD</li>
 </ul>
-<p>Install Minikube as described in the documentation.</p>
-<p>Install gVisor as per <a href="https://github.com/kubernetes/minikube/blob/master/deploy/addons/gvisor/README.md">the docs</a>:</p>
-<div class="highlight"><pre><span></span><code>minikube start --container-runtime=containerd  \
-    --docker-opt containerd=/var/run/containerd/containerd.sock
-minikube addons enable gvisor
-kubectl get pod,runtimeclass gvisor -n kube-system
-</code></pre></div>
+<h3 id="hp-proliantgen10-plus-microserver">HP ProLiantGen10 Plus Microserver<a class="headerlink" href="#hp-proliantgen10-plus-microserver" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Intel Xeon E-2224 4 Core Processor</li>
+<li>16GB RAM</li>
+<li>2 x 250GB SSD</li>
+</ul>
+<h3 id="hp-proliant-g8-microserver-g1610t">HP ProLiant G8 Microserver G1610T<a class="headerlink" href="#hp-proliant-g8-microserver-g1610t" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Intel Celeron G1610T (dual core 2.3 GHz)</li>
+<li>16GB RAM</li>
+<li>2 x 3TB HDD</li>
+<li>2 x 4TB HDD</li>
+</ul>
+<h3 id="raspberry-pi-2-model-b">Raspberry Pi 2 Model B<a class="headerlink" href="#raspberry-pi-2-model-b" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quad core</li>
+<li>1GB RAM</li>
+<li>8GB MicroSD</li>
+</ul>
+<h3 id="raspberry-pi-4-model-b">Raspberry Pi 4 Model B<a class="headerlink" href="#raspberry-pi-4-model-b" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quad core</li>
+<li>4GB RAM</li>
+<li>16GB MicroSD</li>
+</ul>
+<h3 id="3-x-raspberry-pi-5">3 x Raspberry Pi 5<a class="headerlink" href="#3-x-raspberry-pi-5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quad core</li>
+<li>8GB RAM</li>
+<li>32GB MicroSD</li>
+<li>256GB NVME</li>
+</ul>
+<h3 id="1-x-raspberry-pi-5">1 x Raspberry Pi 5<a class="headerlink" href="#1-x-raspberry-pi-5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quad core</li>
+<li>8GB RAM</li>
+<li>32GB MicroSD</li>
+<li>Hailo 13 TOPS</li>
+</ul>
+<h3 id="1-x-raspberry-pi-5_1">1 x Raspberry Pi 5<a class="headerlink" href="#1-x-raspberry-pi-5_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quad core</li>
+<li>8GB RAM</li>
+<li>32GB MicroSD</li>
+<li>Dual NVME HAT</li>
+<li>2 x 512GB NVME</li>
+</ul>
+<h3 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h3>
+<ul>
+<li>MikroTik 5009UG+ Compact Rackmount 9 Port Router</li>
+<li>MikroTik CSS318 Cloud Smart Switch - CSS318-16G-2S+IN</li>
+<li>Mikrotik Rack-holder 19inch 10U Adjustable Desktop Rack</li>
+<li>MikroTik SFP+ Direct Attach Active Optics Cable 5m - S+AO0005</li>
+</ul>
 
 
 
@@ -1012,10 +1268,10 @@ kubectl get pod,runtimeclass gvisor -n kube-system
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>
