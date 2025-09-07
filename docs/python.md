@@ -57,6 +57,10 @@ A minimal project might have:
 - [Pydantic](https://pydantic-docs.helpmanual.io/)
 - [Mypy](https://github.com/python/mypy)
 
+### Logging
+
+- [structlog](https://www.structlog.org/en/stable/index.html)
+
 ### Tests
 
 - [pytest](https://docs.pytest.org/en/stable/)
