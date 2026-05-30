@@ -16,6 +16,7 @@ nav:
   - Lean: lean.md
   - Modern Python: python.md
   - Factorio: factorio.md
+  - AI: ai.md
   - Old Posts:
     - FreeBSD Jail Creation: jail-creation.md
     - Bhyve VM Creation: bhyve-vm-creation.md
