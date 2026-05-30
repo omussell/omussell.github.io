@@ -8,31 +8,27 @@
       
       
       
-        <link rel="canonical" href="https://omussell.github.io/nsd-unbound/">
+        <link rel="canonical" href="https://omussell.github.io/homelab/k3s/">
       
       
-        <link rel="prev" href="../nginx-chacha20/">
-      
-      
-        <link rel="next" href="../saltstack/">
       
       
         
       
       
-      <link rel="icon" href="../images/mention.svg">
+      <link rel="icon" href="../../images/mention.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>NSD and Unbound config - Personal Site</title>
+        <title>Managing k3s clusters using Fleet - Personal Site</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +47,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nsd-and-unbound-config" class="md-skip">
+        <a href="#managing-k3s-clusters-using-fleet" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
+    <a href="../.." title="Personal Site" class="md-header__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 .5a7.5 7.5 0 0 1 7.499 7.462l.002.038v1.164a2.612 2.612 0 0 1-4.783 1.454A3.76 3.76 0 0 1 8 11.776 3.776 3.776 0 1 1 11.776 8v1.164a1.112 1.112 0 0 0 2.225 0L14 8a6 6 0 1 0-3.311 5.365.75.75 0 0 1 .673 1.341A7.5 7.5 0 1 1 8 .5m0 5.225a2.275 2.275 0 1 0 0 4.552 2.275 2.275 0 0 0 0-4.552"/></svg>
@@ -110,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NSD and Unbound config
+              Managing k3s clusters using Fleet
             
           </span>
         </div>
@@ -188,7 +184,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
+    <a href="../.." title="Personal Site" class="md-nav__button md-logo" aria-label="Personal Site" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 .5a7.5 7.5 0 0 1 7.499 7.462l.002.038v1.164a2.612 2.612 0 0 1-4.783 1.454A3.76 3.76 0 0 1 8 11.776 3.776 3.776 0 1 1 11.776 8v1.164a1.112 1.112 0 0 0 2.225 0L14 8a6 6 0 1 0-3.311 5.365.75.75 0 0 1 .673 1.341A7.5 7.5 0 1 1 8 .5m0 5.225a2.275 2.275 0 1 0 0 4.552 2.275 2.275 0 0 0 0-4.552"/></svg>
@@ -206,7 +202,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -280,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../homelab/hardware/" class="md-nav__link">
+      <a href="../hardware/" class="md-nav__link">
         
   
   
@@ -315,7 +311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lean/" class="md-nav__link">
+      <a href="../../lean/" class="md-nav__link">
         
   
   
@@ -342,7 +338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/" class="md-nav__link">
+      <a href="../../python/" class="md-nav__link">
         
   
   
@@ -369,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../factorio/" class="md-nav__link">
+      <a href="../../factorio/" class="md-nav__link">
         
   
   
@@ -396,7 +392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ai/" class="md-nav__link">
+      <a href="../../ai/" class="md-nav__link">
         
   
   
@@ -420,20 +416,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -454,7 +448,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -472,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jail-creation/" class="md-nav__link">
+      <a href="../../jail-creation/" class="md-nav__link">
         
   
   
@@ -500,7 +494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bhyve-vm-creation/" class="md-nav__link">
+      <a href="../../bhyve-vm-creation/" class="md-nav__link">
         
   
   
@@ -528,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nginx-chacha20/" class="md-nav__link">
+      <a href="../../nginx-chacha20/" class="md-nav__link">
         
   
   
@@ -553,37 +547,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NSD and Unbound config
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../nsd-unbound/" class="md-nav__link">
         
   
   
@@ -599,37 +566,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#opendnssec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenDNSSEC
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -642,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../saltstack/" class="md-nav__link">
+      <a href="../../saltstack/" class="md-nav__link">
         
   
   
@@ -670,7 +606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pgsql-repl/" class="md-nav__link">
+      <a href="../../pgsql-repl/" class="md-nav__link">
         
   
   
@@ -698,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../go-bazel/" class="md-nav__link">
+      <a href="../../go-bazel/" class="md-nav__link">
         
   
   
@@ -726,7 +662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rqlite/" class="md-nav__link">
+      <a href="../../rqlite/" class="md-nav__link">
         
   
   
@@ -754,7 +690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../signify/" class="md-nav__link">
+      <a href="../../signify/" class="md-nav__link">
         
   
   
@@ -782,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nginx/" class="md-nav__link">
+      <a href="../../nginx/" class="md-nav__link">
         
   
   
@@ -810,7 +746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quick-k8s/" class="md-nav__link">
+      <a href="../../quick-k8s/" class="md-nav__link">
         
   
   
@@ -838,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../serverless/" class="md-nav__link">
+      <a href="../../serverless/" class="md-nav__link">
         
   
   
@@ -866,7 +802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fbsd-update-cache/" class="md-nav__link">
+      <a href="../../fbsd-update-cache/" class="md-nav__link">
         
   
   
@@ -894,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pi-bitwarden/" class="md-nav__link">
+      <a href="../../pi-bitwarden/" class="md-nav__link">
         
   
   
@@ -922,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gemini/" class="md-nav__link">
+      <a href="../../gemini/" class="md-nav__link">
         
   
   
@@ -950,7 +886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../puppet-bolt/" class="md-nav__link">
+      <a href="../../puppet-bolt/" class="md-nav__link">
         
   
   
@@ -978,7 +914,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../microserver/" class="md-nav__link">
+      <a href="../../microserver/" class="md-nav__link">
         
   
   
@@ -1006,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lxc/" class="md-nav__link">
+      <a href="../../lxc/" class="md-nav__link">
         
   
   
@@ -1034,7 +970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../new-prog-lang/" class="md-nav__link">
+      <a href="../../new-prog-lang/" class="md-nav__link">
         
   
   
@@ -1062,7 +998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firecracker/" class="md-nav__link">
+      <a href="../../firecracker/" class="md-nav__link">
         
   
   
@@ -1090,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../puppet-jails-deploy/" class="md-nav__link">
+      <a href="../../puppet-jails-deploy/" class="md-nav__link">
         
   
   
@@ -1118,7 +1054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bonded-nic/" class="md-nav__link">
+      <a href="../../bonded-nic/" class="md-nav__link">
         
   
   
@@ -1146,7 +1082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../basecamp/" class="md-nav__link">
+      <a href="../../basecamp/" class="md-nav__link">
         
   
   
@@ -1194,25 +1130,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#opendnssec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenDNSSEC
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1228,86 +1145,24 @@
 
 
 
-<h1 id="nsd-and-unbound-config">NSD and Unbound config<a class="headerlink" href="#nsd-and-unbound-config" title="Permanent link">&para;</a></h1>
-<p>Set up the unbound/nsd-control</p>
-<div class="highlight"><pre><span></span><code>local-unbound-setup
-nsd-control-setup
-</code></pre></div>
-<p>Enable NSD and Unbound to start in <code>/etc/rc.conf</code></p>
-<div class="highlight"><pre><span></span><code>sysrc nsd_enable=&quot;YES&quot;
-sysrc local_unbound_enable=&quot;YES&quot;
-</code></pre></div>
-<p>Set a different listening port for NSD in <code>/usr/local/etc/nsd.conf</code></p>
-<div class="highlight"><pre><span></span><code>server:
-  port: 5353
-</code></pre></div>
-<p>Create an inital zone file <code>/usr/local/etc/nsd/home.lan.zone</code></p>
-<div class="highlight"><pre><span></span><code>$ORIGIN home.lan. ;
-$TTL 86400 ;
-
-@ IN SOA ns1.home.lan. admin.home.lan. (
-        2017080619 ;
-        28800 ;
-        7200 ;
-        864000 ;
-        86400 ;
-        )
-
-        NS ns1.home.lan.
-
-ns1 IN A 192.168.1.15
-jail IN A 192.168.1.15
-</code></pre></div>
-<p>Create the reverse lookup zone file <code>/usr/local/etc/nsd/home.lan.reverse</code></p>
-<div class="highlight"><pre><span></span><code>$ORIGIN home.lan.
-$TTL 86400
-
-0.1.168.192.in-addr.arpa. IN SOA ns1.home.lan. admin.home.lan. (
-        2017080619
-        28800
-        7200
-        864000
-        86400
-        )
-
-        NS ns1.home.lan.
-
-15.1.168.192.in-addr.arpa. IN PTR jail
-15.1.168.192.in-addr.arpa. IN PTR ns1
-</code></pre></div>
-<h3 id="opendnssec">OpenDNSSEC<a class="headerlink" href="#opendnssec" title="Permanent link">&para;</a></h3>
-<p>Install the required packages</p>
-<div class="highlight"><pre><span></span><code>pkg install -y opendnssec softhsm
-</code></pre></div>
-<p>Set the softhsm database location in <code>/usr/local/etc/softhsm.conf</code></p>
-<div class="highlight"><pre><span></span><code>0:/var/lib/softhsm/slot0.db
-</code></pre></div>
-<p>Initialise the token database:</p>
-<div class="highlight"><pre><span></span><code>softhsm --init-token --slot 0 --label &quot;OpenDNSSEC&quot;
-Enter the PIN for the SO and then the USER.
-</code></pre></div>
-<p>Make sure opendnssec has permission to access the token database</p>
-<div class="highlight"><pre><span></span><code>chown opendnssec /var/lib/softhsm/slot0.db
-chgrp opendnssec /var/lib/softhsm/slot0.db
-</code></pre></div>
-<p>Set some options for OpenDNSSEC in <code>/usr/local/etc/opendnssec/conf.xml</code></p>
-<div class="highlight"><pre><span></span><code>&lt;Repository name=&quot;SoftHSM&quot;&gt;
-        &lt;Module&gt;/usr/local/lib/softhsm/libsofthsm.so&lt;/Module&gt;
-        &lt;TokenLabel&gt;OpenDNSSEC&lt;/TokenLabel&gt;
-        &lt;PIN&gt;1234&lt;/PIN&gt;
-        &lt;SkipPublicKey/&gt;
-&lt;/Repository&gt;
-</code></pre></div>
-<p>Edit <code>/usr/local/etc/opendnssec/kasp.xml</code>. Change unixtime to datecounter in the Serial parameter. This allows us to use YYYYMMDDXX format for the SOA SERIAL values.</p>
-<div class="highlight"><pre><span></span><code>&lt;Zone&gt;
-        &lt;PropagationDelay&gt;PT300S&lt;/PropagationDelay&gt;
-        &lt;SOA&gt;
-                &lt;TTL&gt;PT300S&lt;/TTL&gt;
-                &lt;Minimum&gt;PT300S&lt;/Minimum&gt;
-                &lt;Serial&gt;datecounter&lt;/Serial&gt;
-        &lt;/SOA&gt;
-&lt;/Zone&gt;
-</code></pre></div>
+<h1 id="managing-k3s-clusters-using-fleet">Managing k3s clusters using Fleet<a class="headerlink" href="#managing-k3s-clusters-using-fleet" title="Permanent link">&para;</a></h1>
+<p>https://www.suse.com/c/microservices-at-edge-with-k3s-and-fleet/</p>
+<ul>
+<li>Download k3sup</li>
+<li>Use this to set up k3s on remote server over SSH</li>
+<li>Get the /etc/rancher/k3s/k3s.yaml file from the server, copy it into local ~/.kube.config file and update the server line to be the server hostname or IP instead of 127.0.0.1</li>
+<li>Make sure to disable firewalld</li>
+<li>
+<p>Run kubectl get nodes</p>
+</li>
+<li>
+<p>helm repo add fleet https://rancher.github.io/fleet-helm-charts/ </p>
+</li>
+</ul>
+<p>helm -n cattle-fleet-system install --create-namespace --wait fleet-crd \
+  fleet/fleet-crd
+helm -n cattle-fleet-system install --create-namespace --wait fleet \
+  fleet/fleet</p>
 
 
 
@@ -1357,10 +1212,10 @@ chgrp opendnssec /var/lib/softhsm/slot0.db
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

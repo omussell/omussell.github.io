@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://omussell.github.io/nsd-unbound/">
+        <link rel="canonical" href="https://omussell.github.io/ai/">
       
       
-        <link rel="prev" href="../nginx-chacha20/">
+        <link rel="prev" href="../factorio/">
       
       
-        <link rel="next" href="../saltstack/">
+        <link rel="next" href="../jail-creation/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>NSD and Unbound config - Personal Site</title>
+        <title>AI - Personal Site</title>
       
     
     
@@ -73,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#nsd-and-unbound-config" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -110,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NSD and Unbound config
+              AI
             
           </span>
         </div>
@@ -393,10 +388,17 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../ai/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -412,6 +414,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -420,20 +423,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -454,7 +455,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -553,37 +554,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NSD and Unbound config
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../nsd-unbound/" class="md-nav__link">
         
   
   
@@ -599,37 +573,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#opendnssec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenDNSSEC
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1191,27 +1134,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#opendnssec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenDNSSEC
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1228,86 +1150,31 @@
 
 
 
-<h1 id="nsd-and-unbound-config">NSD and Unbound config<a class="headerlink" href="#nsd-and-unbound-config" title="Permanent link">&para;</a></h1>
-<p>Set up the unbound/nsd-control</p>
-<div class="highlight"><pre><span></span><code>local-unbound-setup
-nsd-control-setup
-</code></pre></div>
-<p>Enable NSD and Unbound to start in <code>/etc/rc.conf</code></p>
-<div class="highlight"><pre><span></span><code>sysrc nsd_enable=&quot;YES&quot;
-sysrc local_unbound_enable=&quot;YES&quot;
-</code></pre></div>
-<p>Set a different listening port for NSD in <code>/usr/local/etc/nsd.conf</code></p>
-<div class="highlight"><pre><span></span><code>server:
-  port: 5353
-</code></pre></div>
-<p>Create an inital zone file <code>/usr/local/etc/nsd/home.lan.zone</code></p>
-<div class="highlight"><pre><span></span><code>$ORIGIN home.lan. ;
-$TTL 86400 ;
+  <h1>AI</h1>
 
-@ IN SOA ns1.home.lan. admin.home.lan. (
-        2017080619 ;
-        28800 ;
-        7200 ;
-        864000 ;
-        86400 ;
-        )
-
-        NS ns1.home.lan.
-
-ns1 IN A 192.168.1.15
-jail IN A 192.168.1.15
-</code></pre></div>
-<p>Create the reverse lookup zone file <code>/usr/local/etc/nsd/home.lan.reverse</code></p>
-<div class="highlight"><pre><span></span><code>$ORIGIN home.lan.
-$TTL 86400
-
-0.1.168.192.in-addr.arpa. IN SOA ns1.home.lan. admin.home.lan. (
-        2017080619
-        28800
-        7200
-        864000
-        86400
-        )
-
-        NS ns1.home.lan.
-
-15.1.168.192.in-addr.arpa. IN PTR jail
-15.1.168.192.in-addr.arpa. IN PTR ns1
-</code></pre></div>
-<h3 id="opendnssec">OpenDNSSEC<a class="headerlink" href="#opendnssec" title="Permanent link">&para;</a></h3>
-<p>Install the required packages</p>
-<div class="highlight"><pre><span></span><code>pkg install -y opendnssec softhsm
-</code></pre></div>
-<p>Set the softhsm database location in <code>/usr/local/etc/softhsm.conf</code></p>
-<div class="highlight"><pre><span></span><code>0:/var/lib/softhsm/slot0.db
-</code></pre></div>
-<p>Initialise the token database:</p>
-<div class="highlight"><pre><span></span><code>softhsm --init-token --slot 0 --label &quot;OpenDNSSEC&quot;
-Enter the PIN for the SO and then the USER.
-</code></pre></div>
-<p>Make sure opendnssec has permission to access the token database</p>
-<div class="highlight"><pre><span></span><code>chown opendnssec /var/lib/softhsm/slot0.db
-chgrp opendnssec /var/lib/softhsm/slot0.db
-</code></pre></div>
-<p>Set some options for OpenDNSSEC in <code>/usr/local/etc/opendnssec/conf.xml</code></p>
-<div class="highlight"><pre><span></span><code>&lt;Repository name=&quot;SoftHSM&quot;&gt;
-        &lt;Module&gt;/usr/local/lib/softhsm/libsofthsm.so&lt;/Module&gt;
-        &lt;TokenLabel&gt;OpenDNSSEC&lt;/TokenLabel&gt;
-        &lt;PIN&gt;1234&lt;/PIN&gt;
-        &lt;SkipPublicKey/&gt;
-&lt;/Repository&gt;
-</code></pre></div>
-<p>Edit <code>/usr/local/etc/opendnssec/kasp.xml</code>. Change unixtime to datecounter in the Serial parameter. This allows us to use YYYYMMDDXX format for the SOA SERIAL values.</p>
-<div class="highlight"><pre><span></span><code>&lt;Zone&gt;
-        &lt;PropagationDelay&gt;PT300S&lt;/PropagationDelay&gt;
-        &lt;SOA&gt;
-                &lt;TTL&gt;PT300S&lt;/TTL&gt;
-                &lt;Minimum&gt;PT300S&lt;/Minimum&gt;
-                &lt;Serial&gt;datecounter&lt;/Serial&gt;
-        &lt;/SOA&gt;
-&lt;/Zone&gt;
-</code></pre></div>
+<p>Until recently my main engagement with AI was by running Ollama with a small model like gemma3n on a mac mini. It was very basic usage, and trying to use it for code was by copy/pasting a snippet and asking it for input.</p>
+<p>Then recently I discovered Opencode which is a way of running AI with Agents. I'm too cheap to pay for "real" models like ChatGPT/Claude so I wanted to run it locally.</p>
+<p>Running either on a Mac laptop or Mac mini was only possible by using very small and slow models.</p>
+<p>I do have a gaming computer though, with an NVIDIA 3070 GPU. You can also set Ollama to allow network access. </p>
+<p>So the current method has been to run Opencode from the mac mini and configure it to connect to Ollama running on the gaming computer. The model I've been using has mainly been Gemma 4 with the <code>e4b</code> variant which can reasonably fit within the 3070's VRAM. </p>
+<p>This is still a little slow, but its much faster than the laptop or mac mini. </p>
+<p>This is also as far as I can reasonably go with local hardware. Dedicated AI hardware like DGX spark are expensive (£4,300) and highly sought after. Likewise getting gaming GPUs and connecting them together would be expensive. I'd have to build a whole computer because I dont have any motherboards with 2 PCIe slots, the GPUs are expensive and you need two of them. Even then, if you had two 3090s linked with NVLINK then you'd get 48GB VRAM which is only enough to run ~70B parameter models. That still limits you to small models, but they will run faster.</p>
+<p>I've mainly been using it with the <a href="https://github.com/omussell/nexus">Nexus project</a> since that is purely programming.</p>
+<p>Some things I've found since working with Opencode:</p>
+<ul>
+<li>You have to be careful in write mode, because it has <code>bash</code> access. It can read, write and delete files, use  git, in addition to running any other shell commands. I havent yet tried sandboxing using a tool or containers. I'll try <a href="https://www.docker.com/products/docker-sandboxes/">sbx</a> next.</li>
+<li>If it says its going to delete some files, it may delete the whole folder with <code>rm -rf</code> instead. Found that out the hard way. If its read the file contents while doing some other work, you can ask it to retrieve the file from its memory and it will print the contents to the screen so you can copy and recover it.</li>
+<li>Everything you're doing is saved in a session, and when you exit it will print the session ID. So you can reattach to an old session with <code>opencode -s sessionid</code>. This means you dont have to start over again.</li>
+<li>AGENTS.md are read on startup and kept in its memory while you converse. Its very important to have a lot of detail in that document because it directly influences the AI's behaviour.</li>
+<li>Writing plans to files is very helpful. I was getting some mixed results while trying to prompt it to create a plan which seemed correct. It was creating a high level plan where each task would involve multiple steps. So it was helpful to take the high level plan and iterate over it into discrete actionable tasks. </li>
+<li>Bootstrapping from a blank repo doesnt go well. It needs context and existing content to push it in the right direction. I had been starting from a blank folder with only a README.md with rough notes. It was trying to run a lot of other commands to bootstrap. For example I said I wanted to use <code>sqlc</code> for handling the SQL and database connection. It was trying to run the wrong commands and creating files with the incorrect content. Instead I should have done this manually and got the ball rolling and then it could continue. This might be a side effect from using a relatively weak model.</li>
+</ul>
+<p>Next things to try are:</p>
+<ul>
+<li>Be more rigorous with planning and executing the plans</li>
+<li>Sandboxing</li>
+<li>A real model like Codex, Claude code, or GLM 5.1 for coding</li>
+</ul>
 
 
 
