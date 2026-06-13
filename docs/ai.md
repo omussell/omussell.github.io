@@ -1,3 +1,6 @@
+
+## Notes from 2026-05-30
+
 Until recently my main engagement with AI was by running Ollama with a small model like gemma3n on a mac mini. It was very basic usage, and trying to use it for code was by copy/pasting a snippet and asking it for input.
 
 Then recently I discovered Opencode which is a way of running AI with Agents. I'm too cheap to pay for "real" models like ChatGPT/Claude so I wanted to run it locally.
@@ -28,3 +31,35 @@ Next things to try are:
 - Be more rigorous with planning and executing the plans
 - Sandboxing
 - A real model like Codex, Claude code, or GLM 5.1 for coding
+
+
+
+## Notes from 2026-06-13
+
+I've been doing further research on how to run models locally and also keeping up with the changes happening in the AI world. A lot has been happening recently. 
+
+Anthropic released Fable with major guardrails, and then subsequently prevented access due to those guardrails being broken. This has triggered more talk about the importance of open source models, and how the popular ones like DeepSeek-v4-pro, GLM 5.1, Qwen3.6, are all Chinese made and hosted. The only other major open source option being Gemma by Google. The worry is that not only will they restrict the frontier models to US, they will also restrict access to the Chinese models.
+
+I'm planning on downloading the models from HuggingFace as a backup just in case this happens.
+
+Gemma has had more variants released, most notably a 12b parameter model and also quantization for the models. Apparently the original tweet announcing the Gemma 4 models also said about a 124b MoE model and was then rewritten to remove the reference.
+
+I tried running the quantized 12b model and it worked albeit slowly. I think the best way to use it would be to work interactively with gemma4:e4b to come up with a plan, write that to a file and then let the 12b-qat model execute the plan with an agent.
+
+I did also have a quick go at using llama.cpp for serving a model, which was annoying to set up on a Windows machine because of having to use Powershell.
+
+For work I did some research on how to properly sandbox an agent. The `sbx` tool by Docker was binned immediately after finding that it requires you to have a Docker account and to be logged in. The next option to be tested was OpenShell by Nvidia which works pretty well. It starts a VM and blocks all filesystem and network access unless you explicitly allow it using config in a policy file. This can be as fine grained as allowing GET requests with curl but disallowing POST. The only caveat with using it is that you have to run a command to copy the codebase into the sandbox and then run the agent. I havent yet looked deeper if you're supposed to give it read/write access to the code folder on the host. The alternative was to give it permission to write to Github/Gitlab which would mean the changes are isolated into the sandbox and then git pushed onto a branch and reviewed with a pull request.
+
+While testing OpenShell there were references to Nemoclaw so I was reading about that too. I remember when OpenClaw was first released and it was going crazy. NemoClaw seems like a sandbox version of OpenClaw. I wasnt really sure if you were supposed to use that as an agent harness for coding or if it was specifically only for Claws.
+
+I did install Claude and created an account since I've only used local models thus far. It seems fine, I only used the free version. I would want to use Claude + Opus for work since that seems like the best for reasoning/coding right now.
+
+I would also like to try doing some basic training/inference to see how that proccess works. I was reading for example taking the gemma3:270m model which is really basic/dumb and training that on our company documentation so you can ask it questions and it will know the answers.
+
+Next things to try:
+
+- MoE model on 3070 hardware, like qwen3.6:35b-a3b
+- Test quantized versions of Gemma4 models to see if they run faster
+- Pay for Claude and use that
+- Training/inference test
+- How to properly use sandbox with agents without manually copying code
