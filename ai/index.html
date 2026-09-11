@@ -484,6 +484,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#notes-from-2026-09-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes from 2026-09-11
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1247,6 +1258,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#notes-from-2026-09-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes from 2026-09-11
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1325,6 +1347,16 @@
 <p>At the moment its still using Windows. The intention is to move the 3070 into the old 1060 machine and migrate windows onto there for the gaming machine. </p>
 <p>Once thats done, the AI machine will be changed to the latest Ubuntu server version. It doesnt need a graphical environment to waste the VRAM.</p>
 <p>The plan is to use this for programming the Nexus project since its relatively complicated even as a prototype. I want to coordinate the tasks using Hermes and secure it with Openshell/Nemoclaw. Then use Qwen3.8 27b for coding and Gemma 4 31b for writing documentation and prose.</p>
+<h2 id="notes-from-2026-09-11">Notes from 2026-09-11<a class="headerlink" href="#notes-from-2026-09-11" title="Permanent link">&para;</a></h2>
+<p>I have been continuing to work on the Nexus project using Opencode with local models. Using Qwen3.8 27b has been working well but its just so slow on the current Windows+Ollama setup. I have been waiting for an official release of the NVFP4 quant since that should run better on Blackwell GPUs and its now available as <a href="https://huggingface.co/nvidia/Qwen3.8-27B-NVFP4">https://huggingface.co/nvidia/Qwen3.8-27B-NVFP4</a>. Similarly there is a NVFP4 quant of Gemma4 31b at <a href="https://huggingface.co/nvidia/Gemma-4-31B-IT-NVFP4">https://huggingface.co/nvidia/Gemma-4-31B-IT-NVFP4</a>.</p>
+<p>I did a presentation at work of how to use sandboxes with agents. This was the easy way using the built in sandbox with Claude Code and then the harder way using Nvidia Openshell.</p>
+<p>When working on Nexus, I was getting impatient waiting for Qwen3.8 to write the code so I was looking for another model instead. This led to using Ornith1.5 35B-A3B which worked pretty well actually. It could run very fast, completing tasks within seconds which took 3.8 30 minutes. </p>
+<p>However, it was getting itself stuck in weird states. It would write code into a new file, but do it slightly wrong. This was often caused by backtick characters surrounding SQL statements within the Go code. It would miss the closing backtick or put it in the wrong place. That would cause a Go build to fail and it just could not figure out what was wrong. It would try reading the file as literal bytes and write weird python scripts. Even when I specifically prompted that it was just a missing backtick, it would go in circles trying to fix it. It would convince itself that the Opencode write tool was corrupting the characters so would write elaborate shell and python scripts to try writing literal bytes strings instead.</p>
+<p>It also really struggled with the system names, which are admittedly weird, like Fulgora and Vulcanus. It would try creating a file or Go function/class names with the system name misspelled and then it wouldnt build.</p>
+<p>Eventually I got fed up of it and started looking for alternatives again, which resulted in finding that Ornith 1.5 is derived from Qwen3.5, when I thought it used 3.6. I had heard alot of praise for Qwen3.6 35b-a3b so switched to that instead.</p>
+<p>The longer term intention would be to have Qwen3.8 27b do the harder stuff and Qwen3.6 35b-a3b do the easier stuff. Its not often clear though when something is easy or hard. </p>
+<p>It wouldnt surprise me if Qwen4 release with a 35b-a3b or similar version within the next month or so. The Qwen3.8-Flash-Next is 125b-a6b and apparently uses the Qwen4 architecture.</p>
+<p>I'm still sorting out the hardware and backing up files, should be done by this weekend. My hope is that with Ubuntu and vLLM, it will run Qwen3.8 27b with NVFP4 quant at a faster tokens/second rate which will make it more tolerable. It would also be good to get Hermes up and running so that it can manage the tasks to do and switching between the Qwen and Gemma models appropriate to the given task.</p>
 
 
 
