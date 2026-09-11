@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1197,7 +1197,7 @@ cd ~/nginx/nginx-1.13.0/
     --with-http_ssl_module \
     --with-http_gzip_static_module \
     --with-file-aio \
-    --with-ld-opt=&quot;-L /usr/local/lib&quot; \
+    --with-ld-opt="-L /usr/local/lib" \
 
     --without-http_browser_module \
     --without-http_fastcgi_module \
@@ -1270,7 +1270,7 @@ http {
         #ssl_certificate_key  /root/nginx/private.pem;
     ssl_certificate /usr/local/www/nginx-selfsigned.crt;
     ssl_certificate_key /usr/local/www/nginx-selfsigned.key;
-    ssl_ciphers &quot;ECDHE-RSA-CHACHA20-POLY1305&quot;;
+    ssl_ciphers "ECDHE-RSA-CHACHA20-POLY1305";
         ssl_prefer_server_ciphers  on;
     ssl_protocols TLSv1.2;
     ssl_ecdh_curve X25519;
@@ -1335,7 +1335,7 @@ http {
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

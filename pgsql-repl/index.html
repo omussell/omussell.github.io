@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1259,9 +1259,9 @@ service postgresql start
 <h3 id="postgresql-101-scram-authentication">PostgreSQL 10.1 SCRAM Authentication<a class="headerlink" href="#postgresql-101-scram-authentication" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>su - postgres
 psql
-set password_encryption = &#39;scram-sha-256&#39;;
-create role app_db with password &#39;foo&#39;;
-select substring(rolpassword, 1, 14) from pg_authid where rolname = &#39;app_db&#39;;
+set password_encryption = 'scram-sha-256';
+create role app_db with password 'foo';
+select substring(rolpassword, 1, 14) from pg_authid where rolname = 'app_db';
 </code></pre></div>
 <h3 id="postgresql-101-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage">PostgreSQL 10.1 using repmgr for database replication, WAL-G for WAL archiving, and minio for S3 compatible storage<a class="headerlink" href="#postgresql-101-using-repmgr-for-database-replication-wal-g-for-wal-archiving-and-minio-for-s3-compatible-storage" title="Permanent link">&para;</a></h3>
 <p>For this, I created two bhyve VMs to host postgresql and a jail on the host for minio</p>
@@ -1282,18 +1282,18 @@ cp -v repmgr.control /usr/local/share/postgresql/extension
 <div class="highlight"><pre><span></span><code>vim /var/db/postgrs/data10/postgresql.conf 
 </code></pre></div>
 <p>Add lines: </p>
-<div class="highlight"><pre><span></span><code>include_dir = &#39;postgresql.conf.d&#39;
-listen_addresses = &#39;\*&#39;
+<div class="highlight"><pre><span></span><code>include_dir = 'postgresql.conf.d'
+listen_addresses = '\*'
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>vim /var/db/postgres/data10/postgresql.conf.d/postgresql.replication.conf
 </code></pre></div>
 <p>Add lines:</p>
 <div class="highlight"><pre><span></span><code>max_wal_senders = 10
-wal_level = &#39;replica&#39;
+wal_level = 'replica'
 wal_keep_segments = 5000
 hot_standby = on
 archive_mode = on
-archive_command = &#39;wal-g stuff here&#39;
+archive_command = 'wal-g stuff here'
 </code></pre></div>
 <p>vim /var/db/postgres/data10/pg_hba.conf</p>
 <p>Add lines:
@@ -1306,7 +1306,7 @@ host    replication all 0.0.0.0/0   trust
 <p>Add lines:</p>
 <div class="highlight"><pre><span></span><code>node_id=1 # arbitrary number, each node needs to be unique
 node_name=postgres-db1 # this nodes hostname
-conninfo=&#39;host=192.168.1.10 user=repmgr dbname=repmgr&#39; # the host value should be a hostname if DNS is working
+conninfo='host=192.168.1.10 user=repmgr dbname=repmgr' # the host value should be a hostname if DNS is working
 </code></pre></div>
 <p>On the primary</p>
 <div class="highlight"><pre><span></span><code>su - postgres
@@ -1318,7 +1318,7 @@ repmgr -f /usr/local/etc/repmgr.conf cluster show
 </code></pre></div>
 <p>On a standby</p>
 <div class="highlight"><pre><span></span><code>su - postgres
-psql &#39;host=node1 user=repmgr dbname=repmgr&#39;
+psql 'host=node1 user=repmgr dbname=repmgr'
 </code></pre></div>
 <p>To clone the primary, the data directory on the standby node must exist but be empty</p>
 <div class="highlight"><pre><span></span><code>rm -rf /var/db/postgres/data10/
@@ -1420,7 +1420,7 @@ cp /root/go/bin/wal-g /usr/local/bin
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

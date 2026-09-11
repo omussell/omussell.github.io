@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1486,10 +1486,10 @@
 
 package main
 
-import &quot;fmt&quot;
+import "fmt"
 
 func main() {
-    fmt.Println(&quot;test&quot;)
+    fmt.Println("test")
 }
 </code></pre></div>
 <p>A file called WORKSPACE should be created at the root of the directory. This is used by bazel to determine source code locations relative to the WORKSPACE file and differentiate other packages in the same directory. Then a BUILD.bazel file should also be created at the root of the directory. </p>
@@ -1501,27 +1501,27 @@ ln -s /usr/local/bin/bash /bin/bash
 </code></pre></div>
 <p>In the WORKSPACE file:</p>
 <div class="highlight"><pre><span></span><code>http_archive(
-    name = &quot;io_bazel_rules_go&quot;,
-    url = &quot;https://github.com/bazelbuild/rules_go/releases/download/0.9.0/rules_go-0.9.0.tar.gz&quot;,
-    sha256 = &quot;4d8d6244320dd751590f9100cf39fd7a4b75cd901e1f3ffdfd6f048328883695&quot;,
+    name = "io_bazel_rules_go",
+    url = "https://github.com/bazelbuild/rules_go/releases/download/0.9.0/rules_go-0.9.0.tar.gz",
+    sha256 = "4d8d6244320dd751590f9100cf39fd7a4b75cd901e1f3ffdfd6f048328883695",
 )
 http_archive(
-    name = &quot;bazel_gazelle&quot;,
-    url = &quot;https://github.com/bazelbuild/bazel-gazelle/releases/download/0.9/bazel-gazelle-0.9.tar.gz&quot;,
-    sha256 = &quot;0103991d994db55b3b5d7b06336f8ae355739635e0c2379dea16b8213ea5a223&quot;,
+    name = "bazel_gazelle",
+    url = "https://github.com/bazelbuild/bazel-gazelle/releases/download/0.9/bazel-gazelle-0.9.tar.gz",
+    sha256 = "0103991d994db55b3b5d7b06336f8ae355739635e0c2379dea16b8213ea5a223",
 )
-load(&quot;@io_bazel_rules_go//go:def.bzl&quot;, &quot;go_rules_dependencies&quot;, &quot;go_register_toolchains&quot;)
+load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains")
 go_rules_dependencies()
-go_register_toolchains(go_version=&quot;host&quot;)
-load(&quot;@bazel_gazelle//:deps.bzl&quot;, &quot;gazelle_dependencies&quot;)
+go_register_toolchains(go_version="host")
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()
 </code></pre></div>
 <p>In the BUILD.bazel file:</p>
-<div class="highlight"><pre><span></span><code>load(&quot;@bazel_gazelle//:def.bzl&quot;, &quot;gazelle&quot;)
+<div class="highlight"><pre><span></span><code>load("@bazel_gazelle//:def.bzl", "gazelle")
 
 gazelle(
-    name = &quot;gazelle&quot;,
-    prefix = &quot;github.com/omussell/go_tests&quot;,
+    name = "gazelle",
+    prefix = "github.com/omussell/go_tests",
 )
 </code></pre></div>
 <p>Then to run:</p>
@@ -1531,22 +1531,22 @@ bazel build //:go_tests
 <p>A built binary should be output to the ~/.cache directory. Once a binary has been built once, Bazel will only build again if the source code changes. Otherwise, any subsequent runs just complete successfully extremely quickly.</p>
 <p>When attempting to use bazel in any capacity like <code>bazel run ...</code> or <code>bazel build ...</code> it would give the following error:</p>
 <div class="highlight"><pre><span></span><code>ERROR: /root/.cache/bazel/_bazel_root/...285a1776/external/io_bazel_rules_go/
-BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &#39;@go_sdk//
-:packages.txt&#39;, but this target could not be found because of: no such package &#39;@go_sdk//&#39;: 
+BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target '@go_sdk//
+:packages.txt', but this target could not be found because of: no such package '@go_sdk//': 
 Unsupported operating system: freebsd
 ERROR: /root/.cache/bazel/_bazel_root/...1776/external/io_bazel_rules_go/
-BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &#39;@go_sdk//
-:files&#39;, but this target could not be found because of: no such package &#39;@go_sdk//&#39;: 
+BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target '@go_sdk//
+:files', but this target could not be found because of: no such package '@go_sdk//': 
 Unsupported operating system: freebsd
 ERROR: /root/.cache/bazel/_bazel_root/...5a1776/external/io_bazel_rules_go/
-BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target &#39;@go_sdk//
-:tools&#39;, but this target could not be found because of: no such package &#39;@go_sdk//&#39;: 
+BUILD.bazel:7:1: every rule of type go_context_data implicitly depends upon the target '@go_sdk//
+:tools', but this target could not be found because of: no such package '@go_sdk//': 
 Unsupported operating system: freebsd
-ERROR: Analysis of target &#39;//:gazelle&#39; failed; build aborted: no such package &#39;@go_sdk//&#39;: 
+ERROR: Analysis of target '//:gazelle' failed; build aborted: no such package '@go_sdk//': 
 Unsupported operating system: freebsd
 </code></pre></div>
 <p>I think this is caused by bazel attempting to download and build go which isn't necessary as we've already installed via the package anyway. In the WORKSPACE file, change the <code>go_register_toolchains()</code> line to </p>
-<div class="highlight"><pre><span></span><code>go_register_toolchains(go_version=&quot;host&quot;)
+<div class="highlight"><pre><span></span><code>go_register_toolchains(go_version="host")
 </code></pre></div>
 <p>as documented at:</p>
 <div class="highlight"><pre><span></span><code>https://github.com/bazelbuild/rules_go/blob/master/go/toolchains.rst#using-the-installed-go-sdk.
@@ -1554,34 +1554,34 @@ Unsupported operating system: freebsd
 <p>This will force bazel to use the already installed go tools.</p>
 <h2 id="ci-with-buildbot">CI with Buildbot<a class="headerlink" href="#ci-with-buildbot" title="Permanent link">&para;</a></h2>
 <p>Example buildbot config:</p>
-<div class="highlight"><pre><span></span><code>factory.addStep(steps.Git(repourl=&#39;git://github.com/omussell/go_tests.git&#39;, mode=&#39;incremental&#39;))
-factory.addStep(steps.ShellCommand(command=[&quot;go&quot;, &quot;fix&quot;],))
-factory.addStep(steps.ShellCommand(command=[&quot;go&quot;, &quot;vet&quot;],))
-factory.addStep(steps.ShellCommand(command=[&quot;go&quot;, &quot;fmt&quot;],))
-factory.addStep(steps.ShellCommand(command=[&quot;bazel&quot;, &quot;run&quot;, &quot;//:gazelle&quot;],))
-factory.addStep(steps.ShellCommand(command=[&quot;bazel&quot;, &quot;build&quot;, &quot;//:go_tests&quot;],))
+<div class="highlight"><pre><span></span><code>factory.addStep(steps.Git(repourl='git://github.com/omussell/go_tests.git', mode='incremental'))
+factory.addStep(steps.ShellCommand(command=["go", "fix"],))
+factory.addStep(steps.ShellCommand(command=["go", "vet"],))
+factory.addStep(steps.ShellCommand(command=["go", "fmt"],))
+factory.addStep(steps.ShellCommand(command=["bazel", "run", "//:gazelle"],))
+factory.addStep(steps.ShellCommand(command=["bazel", "build", "//:go_tests"],))
 </code></pre></div>
 <p>I needed to rebuild the buildbot jail because it was borked, and after rebuilding it I was surprised that bazel worked without any more configuration. I just needed to install the git, go and bazel packages and run the buildbot config as described above and it ran through and rebuilt everything from scratch. This is one of the major advantages of keeping the build files (WORKSPACE and BUILD.bazel) alongside the source code. I am sure that if desired, anyone with a bazel setup would be able to build this code as well and the outputs would be identical.</p>
 <h3 id="adding-dependencies">Adding dependencies<a class="headerlink" href="#adding-dependencies" title="Permanent link">&para;</a></h3>
 <p>In order to have Bazel automatically build dependencies we need to make a some changes to the WORKSPACE file. I've extended the example program to pull in a library that generates fake data and prints a random name when invoked.</p>
 <div class="highlight"><pre><span></span><code>package main
 
-import &quot;github.com/brianvoe/gofakeit&quot;
-import &quot;fmt&quot;
+import "github.com/brianvoe/gofakeit"
+import "fmt"
 
 func main() {
         gofakeit.Seed(0)
         fmt.Println(gofakeit.Name())
-        //      fmt.Println(&quot;test&quot;)
+        //      fmt.Println("test")
 }
 </code></pre></div>
 <p>The following needs to be appended to the WORKSPACE file:</p>
-<div class="highlight"><pre><span></span><code>load(&quot;@io_bazel_rules_go//go:def.bzl&quot;, &quot;go_repository&quot;)
+<div class="highlight"><pre><span></span><code>load("@io_bazel_rules_go//go:def.bzl", "go_repository")
 
 go_repository(
-    name = &quot;com_github_brianvoe_gofakeit&quot;,
-    importpath = &quot;github.com/brianvoe/gofakeit&quot;,
-    commit = &quot;b0b2ecfdf447299dd6bcdef91001692fc349ce4c&quot;,
+    name = "com_github_brianvoe_gofakeit",
+    importpath = "github.com/brianvoe/gofakeit",
+    commit = "b0b2ecfdf447299dd6bcdef91001692fc349ce4c",
 )
 </code></pre></div>
 <p>The go_repository rule is used when a dependency is required that does not have a BUILD.bzl file in their repo.</p>
@@ -1654,7 +1654,7 @@ location / {
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

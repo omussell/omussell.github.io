@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1299,12 +1299,12 @@
 <div class="highlight"><pre><span></span><code>pkg install -y py36-salt
 </code></pre></div>
 <p>Copy the sample files to create the master and/or minion configuration files</p>
-<div class="highlight"><pre><span></span><code>cp -v /usr/local/etc/salt/master{.sample,&quot;&quot;}
-cp -v /usr/local/etc/salt/minion{.sample,&quot;&quot;}
+<div class="highlight"><pre><span></span><code>cp -v /usr/local/etc/salt/master{.sample,""}
+cp -v /usr/local/etc/salt/minion{.sample,""}
 </code></pre></div>
 <p>Set the master/minion services to start on boot</p>
-<div class="highlight"><pre><span></span><code>sysrc salt_master_enable=&quot;YES&quot;
-sysrc salt_minion_enable=&quot;YES&quot;
+<div class="highlight"><pre><span></span><code>sysrc salt_master_enable="YES"
+sysrc salt_minion_enable="YES"
 </code></pre></div>
 <p>Salt expects state files to exist in the /srv/salt or /etc/salt directories which don't exist by default on FreeBSD so make symlinks instead:</p>
 <div class="highlight"><pre><span></span><code>ln -s /usr/local/etc/salt /etc/salt
@@ -1329,7 +1329,7 @@ install_packages:
       - vim-lite
 </code></pre></div>
 <p>Then apply the examples state</p>
-<div class="highlight"><pre><span></span><code>salt &#39;*&#39; state.apply examples
+<div class="highlight"><pre><span></span><code>salt '*' state.apply examples
 </code></pre></div>
 <h3 id="salt-formulas">Salt Formulas<a class="headerlink" href="#salt-formulas" title="Permanent link">&para;</a></h3>
 <p>Install the GitFS backend, this allows you to serve files from git repos.</p>
@@ -1434,7 +1434,7 @@ salt-key -A
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

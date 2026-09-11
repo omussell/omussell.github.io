@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1363,17 +1363,17 @@
 <h3 id="puppet">Puppet<a class="headerlink" href="#puppet" title="Permanent link">&para;</a></h3>
 <p>Puppet is a configuration management system. It lets you decide the desired state for a system and it will idempotently change the system to achieve the desired state.</p>
 <p>For example, if you wanted to install the NGINX package, make sure the config file was set up correctly and then start the service, you could write Puppet code like:</p>
-<div class="highlight"><pre><span></span><code><span class="n">package</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;nginx&#39;</span><span class="p">:</span>
-<span class="w">  </span><span class="k">ensure</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;installed&#39;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">package</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">'nginx'</span><span class="p">:</span>
+<span class="w">  </span><span class="k">ensure</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'installed'</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="n">file</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;/etc/nginx/nginx.conf&#39;</span><span class="p">:</span>
-<span class="w">  </span><span class="k">ensure</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;file&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="n">content</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">template</span><span class="p">(</span><span class="s1">&#39;profiles/nginx/nginx.conf.erb&#39;</span><span class="p">),</span>
+<span class="n">file</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">'/etc/nginx/nginx.conf'</span><span class="p">:</span>
+<span class="w">  </span><span class="k">ensure</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'file'</span><span class="p">,</span>
+<span class="w">  </span><span class="n">content</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">template</span><span class="p">(</span><span class="s1">'profiles/nginx/nginx.conf.erb'</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="n">service</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;nginx&#39;</span><span class="p">:</span>
-<span class="w">  </span><span class="k">ensure</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;running&#39;</span><span class="p">,</span>
+<span class="n">service</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">'nginx'</span><span class="p">:</span>
+<span class="w">  </span><span class="k">ensure</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'running'</span><span class="p">,</span>
 <span class="w">  </span><span class="n">enable</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span><span class="p">,</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1457,7 +1457,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

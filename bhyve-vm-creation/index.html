@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../images/mention.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1345,14 +1345,14 @@
 sysctl -f /etc/sysctl.conf
 </code></pre></div>
 <p>Enable bhyve, serial console and bridge/tap interface kernel modules in <code>/boot/loader.conf</code>. Reboot to apply changes or use kldload.</p>
-<div class="highlight"><pre><span></span><code>vmm_load=&quot;YES&quot;
-nmdm_load=&quot;YES&quot;
-if_bridge_load=&quot;YES&quot;
-if_tap_load=&quot;YES&quot;
+<div class="highlight"><pre><span></span><code>vmm_load="YES"
+nmdm_load="YES"
+if_bridge_load="YES"
+if_tap_load="YES"
 </code></pre></div>
 <p>Set up the network interfaces in <code>/etc/rc.conf</code></p>
-<div class="highlight"><pre><span></span><code>cloned_interfaces=&quot;bridge0 tap0&quot;
-ifconfig_bridge0=&quot;addm re0 addm tap0&quot;
+<div class="highlight"><pre><span></span><code>cloned_interfaces="bridge0 tap0"
+ifconfig_bridge0="addm re0 addm tap0"
 </code></pre></div>
 <p>Create a ZFS volume</p>
 <div class="highlight"><pre><span></span><code>zfs create -V16G -o volmode=dev zroot/testvm
@@ -1366,7 +1366,7 @@ ifconfig_bridge0=&quot;addm re0 addm tap0&quot;
 <p>Install as normal, following the menu options</p>
 <h3 id="new-vm-creation-script">New VM Creation Script<a class="headerlink" href="#new-vm-creation-script" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>#! /bin/sh
-read -p &quot;Enter hostname: &quot; hostname
+read -p "Enter hostname: " hostname
 zfs create -V16G -o volmode=dev zroot/$hostname
 sh /usr/share/examples/bhyve/vmrun.sh -c 1 -m 512M -t tap0 -d /dev/zvol/zroot/$hostname -i -I ~/FreeBSD-11.1-RELEASE-amd64-disc1.iso $hostname
 </code></pre></div>
@@ -1417,8 +1417,8 @@ sh /usr/share/examples/bhyve/vmrun.sh -c 1 -m 512M -t tap0 -d /dev/zvol/zroot/$h
 </code></pre></div>
 <h3 id="multiple-vms-using-bhyve">Multiple VMs using bhyve<a class="headerlink" href="#multiple-vms-using-bhyve" title="Permanent link">&para;</a></h3>
 <p>To allow networking on multiple vms, there should be a tap assigned to each vm, connected to the same bridge. </p>
-<div class="highlight"><pre><span></span><code>cloned_interfaces=&quot;bridge0 tap0 tap1 tap2&quot;
-ifconfig_bridge0=&quot;addm re0 addm tap0 addm tap1 addm tap2&quot;
+<div class="highlight"><pre><span></span><code>cloned_interfaces="bridge0 tap0 tap1 tap2"
+ifconfig_bridge0="addm re0 addm tap0 addm tap1 addm tap2"
 </code></pre></div>
 <p>Then when you provision vms, assign one of the tap interfaces to them.</p>
 <h3 id="vm-bhyve">vm-bhyve<a class="headerlink" href="#vm-bhyve" title="Permanent link">&para;</a></h3>
@@ -1481,7 +1481,7 @@ ifconfig_bridge0=&quot;addm re0 addm tap0 addm tap1 addm tap2&quot;
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
